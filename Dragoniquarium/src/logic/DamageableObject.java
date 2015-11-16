@@ -7,9 +7,9 @@ public abstract class DamageableObject extends TargetObject {
 	protected double speed;
 	
 	public int topBorder = 20;
-	public int bottomBorder = 580;
-	public int rightBorder = 1000;
-	public int leftBorder = 100;
+	public int bottomBorder = 650;
+	public int rightBorder = 1240;
+	public int leftBorder = 200;
 	
 //	private boolean movingIn;
 	protected boolean hasDestination;
@@ -191,12 +191,12 @@ public abstract class DamageableObject extends TargetObject {
 		}
 		
 		y += ySpeed;
-		if(y < 20) {
+		if(y < topBorder) {
 			if(tickCountY < 2*risingTickY) tickCountY = 2*risingTickY;
-			y = 20;
-		} else if( y > 580) {
+			y = topBorder;
+		} else if( y > bottomBorder) {
 			if(tickCountY < 2*risingTickY) tickCountY = 2*risingTickY;
-			y = 580;
+			y = bottomBorder;
 		}
 	}
 	
@@ -205,8 +205,8 @@ public abstract class DamageableObject extends TargetObject {
 			xDestination = RandomUtility.random(200, 800);
 			yDestination = RandomUtility.random(150, 500);
 		} else if(movingType == 2) {
-			xDestination = RandomUtility.random(100, 900);
-			yDestination = 560;
+			xDestination = RandomUtility.random(leftBorder+radius, rightBorder-radius);
+			yDestination = bottomBorder;
 		}
 		hasDestination = true;
 	}

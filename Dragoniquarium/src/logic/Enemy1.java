@@ -1,5 +1,6 @@
 package logic;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.List;
 
@@ -33,9 +34,10 @@ public class Enemy1 extends EnemyObject {
 
 	@Override
 	public void draw(Graphics2D g2d) {
+		g2d.setColor(Color.BLUE);
 		g2d.fillOval((int)(x-radius), (int)(y-radius), 2*radius, 2*radius);
 		
 	}
-	
+
 
 }
