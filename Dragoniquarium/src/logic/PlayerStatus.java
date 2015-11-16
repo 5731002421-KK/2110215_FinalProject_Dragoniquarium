@@ -3,16 +3,26 @@ package logic;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
+import render.DrawingUtility;
 import render.IRenderable;
 import render.Resource;
 
 public class PlayerStatus implements IRenderable{
 	
 	private int egg;
-
+	private boolean pause = false;
+	
 	public PlayerStatus() {
 		super();
 		this.egg = 200;
+	}
+	
+	public boolean isPause() {
+		return pause;
+	}
+	
+	public void setPause(boolean pause) {
+		this.pause = pause;
 	}
 	
 	public boolean isDisplayingArea(int x,int y){
@@ -34,13 +44,14 @@ public class PlayerStatus implements IRenderable{
 	@Override
 	public void draw(Graphics2D g2d) {
 		
-		g2d.setColor(Color.BLACK);
+		DrawingUtility.drawStatusBar(g2d, egg, pause);
+		/*g2d.setColor(Color.BLACK);
 		g2d.fillRect(0, 420, 640, 60);
 		g2d.setColor(Color.white);
 		
 		String scoreText = "EGG: " + this.egg;
 		g2d.setFont(Resource.standardFont);
-		g2d.drawString(scoreText, 10, 455);
+		g2d.drawString(scoreText, 10, 455);*/
 		
 	}
 

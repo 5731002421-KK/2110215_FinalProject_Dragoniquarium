@@ -12,7 +12,7 @@ import render.RenderableHolder;
 public class Button implements IRenderable{
 
 	private int x, y;
-	private int z;
+	private int cost;
 	private int width, height;
 	private boolean visible = true;
 	private boolean isPointerOver = false;
@@ -21,16 +21,23 @@ public class Button implements IRenderable{
 	/* type 1 to 5 - create dragon 1-5
 	 * type 6 pause
 	*/
-	public Button(int type, int x, int y, int width, int height, int z) {
+	public Button(int type, int x, int y, int width, int height,int cost) {
 		super();
 		this.type = type;
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
-		this.z = z;
+		this.cost = cost;
 	}
-	public void click(List <TargetObject> onScreenObject, int zCounter) {
+	public void click(List <TargetObject> onScreenObject, PlayerStatus player,int zCounter) {
+		if( 1<= type && type <= 5) {
+			if( player.getEgg() < cost) {
+				return ;
+			} else {
+				player.subtractEgg(cost);
+			}
+		}
 		switch (type) {
 		case 1:
 			TargetObject dragon = new Dragon1(RandomUtility.random(300, 700), 0, zCounter);

@@ -42,9 +42,9 @@ public class GameLogic {
 	public GameLogic() {
 		player = new PlayerStatus();
 //		playerStatus = new PlayerStatus();
-//		RenderableHolder.getInstance().add(player);
+		RenderableHolder.getInstance().add(player);
 //		RenderableHolder.getInstance().add(playerStatus);
-		Button button = new Button(1, 30, 500, 30, 30, Integer.MAX_VALUE);
+		Button button = new Button(1, 30, 480, 30, 30, 100);
 		onScreenButton.add(button);
 		RenderableHolder.getInstance().add(button);
 		spawnDelayCounter = 0;
@@ -83,9 +83,9 @@ public class GameLogic {
 			}
 			
 			// check out of screen
-			if (obj.x < 0 || obj.x > 1024 || obj.y < 0 || obj.y >= 900 ) {
-				obj.destroyed = true;
-			}
+//			if (obj.x < 0 || obj.x > 1024 || obj.y < 0 || obj.y >= 900 ) {
+//				obj.destroyed = true;
+//			}
 		}
 		
 		// lay Egg
@@ -174,7 +174,7 @@ public class GameLogic {
 		
 		targetButton = getButtonAt(InputUtility.getMouseX(), InputUtility.getMouseY());
 		if(targetButton != null && click ){
-			targetButton.click(onScreenObject, zCounter);
+			targetButton.click(onScreenObject, player, zCounter);
 		}
 		
 		
