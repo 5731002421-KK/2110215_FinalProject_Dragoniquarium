@@ -112,26 +112,23 @@ public class DrawingUtility {
 		}
 	}*/
 	
-/*	public static void drawStatusBar(Graphics2D g2, int remainingSecond,int score,Gun gun,boolean pause){
+	public static void drawStatusBar(Graphics2D g2, int currentEgg, boolean pause){
 
 		g2.setColor(Color.BLACK);
-		g2.fillRect(0, 0, ConfigurableOption.screenWidth, 40);
+		g2.fillRect(20, 600, 80, 60);
 		
 		g2.setColor(Color.WHITE);
 		g2.setFont(standardFont);
-		g2.drawString("TIME : "+remainingSecond, 5, 35);
+		g2.drawString( "" + currentEgg, 20, 650);
 		
-		g2.drawString("SOCRE : "+score, ConfigurableOption.screenWidth/2 + 40, 35);
+//		g2.drawString("SOCRE : "+score, ConfigurableOption.screenWidth/2 + 40, 35);
 		
-		if(gun != null){
-			gun.render(g2);
-		}
 		
 		if(pause) {
 			g2.setFont(standardFont);
-			g2.drawString("PAUSE", ConfigurableOption.screenWidth/2-40, ConfigurableOption.screenHeight/2);
+//			g2.drawString("PAUSE", ConfigurableOption.screenWidth/2-40, ConfigurableOption.screenHeight/2);
 		}
-	}*/
+	}
 	
 /*	public static GameAnimation createShootingAnimationAt(int x,int y){
 		GameAnimation anim = new GameAnimation(DrawingUtility.shootAnim,7,1);
