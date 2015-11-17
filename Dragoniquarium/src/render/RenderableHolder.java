@@ -18,6 +18,9 @@ public class RenderableHolder {
 		super();
 	}
 	
+	public void clear() {
+		entities.clear();
+	}
 	public void add(IRenderable obj) {
 		entities.add(obj);
 		Collections.sort(entities, new Comparator<IRenderable>() {
