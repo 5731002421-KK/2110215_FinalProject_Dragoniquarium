@@ -6,8 +6,7 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 
-
-
+import main.Main;
 //import lib.DrawingUtility;
 import input.InputUtility;
 import render.RenderableHolder;
@@ -49,6 +48,26 @@ public class GameLogic {
 		RenderableHolder.getInstance().add(button);
 		spawnDelayCounter = 0;
 		
+	}
+	
+	//Called before enter the game loop
+	public synchronized void onStart(){
+		player = new PlayerStatus();
+//		playerStatus = new PlayerStatus();
+		RenderableHolder.getInstance().add(player);
+//		RenderableHolder.getInstance().add(playerStatus);
+		Button button = new Button(1, 30, 480, 30, 30, 100);
+		onScreenButton.add(button);
+		RenderableHolder.getInstance().add(button);
+		spawnDelayCounter = 0;
+	}
+	
+	//Called after exit the game loop
+	public synchronized void onExit(){
+		onScreenObject.clear();
+		onScreenAttack.clear();
+		onScreenButton.clear();
+		RenderableHolder.getInstance().clear();
 	}
 	
 	public void logicUpdate() {
@@ -175,6 +194,7 @@ public class GameLogic {
 		targetButton = getButtonAt(InputUtility.getMouseX(), InputUtility.getMouseY());
 		if(targetButton != null && click ){
 			targetButton.click(onScreenObject, player, zCounter);
+//			Main.goToTitle();
 		}
 		
 		
