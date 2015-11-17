@@ -17,9 +17,9 @@ public class AttackObject extends TargetObject {
 	 */
 	
 	public int topBorder = 20;
-	public int bottomBorder = 580;
-	public int rightBorder = 1000;
-	public int leftBorder = 100;
+	public int bottomBorder = 650;
+	public int rightBorder = 1240;
+	public int leftBorder = 200;
 	
 	public AttackObject(double x, double y, int radius, int z, int attack, 
 			double xDes, double yDes, double speed, int attackType) {
