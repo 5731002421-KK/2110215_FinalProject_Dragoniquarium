@@ -69,7 +69,7 @@ public abstract class DamageableObject extends TargetObject {
 		this.yDestination = yDes;
 	}
 	
-	protected abstract void performStateAction();
+//	protected abstract void performStateAction();
 	
 	protected void moveIn() {
 		if(contains(xDestination,yDestination)) {

@@ -40,12 +40,5 @@ public abstract class EnemyObject extends DamageableObject {
 		}
 		
 	}
-	
-	@Override
-	protected void performStateAction() {
-		// TODO Auto-generated method stub
-		
-	}
-	
 
 }

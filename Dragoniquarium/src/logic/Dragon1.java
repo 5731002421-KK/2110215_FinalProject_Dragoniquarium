@@ -90,12 +90,4 @@ public class Dragon1 extends DamageableObject {
 		}
 	}
 
-	@Override
-	protected void performStateAction() {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	
-
 }
