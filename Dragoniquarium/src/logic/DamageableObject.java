@@ -30,7 +30,6 @@ public abstract class DamageableObject extends TargetObject {
 	 * movingType 2 for ground only units
 	 * movingType 3 for Enemy
 	*/
-	
 	public boolean isLeft;
 	
 	protected int tickCountX = 0;
@@ -114,6 +113,10 @@ public abstract class DamageableObject extends TargetObject {
 	protected void calculateXaxis(){
 		
 		if(tickCountX == tickNeedX) {
+			if(tickNeedX != 0) {
+				isLeft = !isLeft;
+			}
+			
 			if(isLeft) {
 				targetSpeedX = RandomUtility.random(-4.0, -1.5);
 			} else {
@@ -127,10 +130,10 @@ public abstract class DamageableObject extends TargetObject {
 			speedRisingX = true;
 			stableX = false;
 			tickCountX = 0;
-			isLeft = !isLeft;
+			
 		}
 		tickCountX++;
-		
+
 		if(tickCountX > 2*risingTickX) {
 			stableX = true;
 		} else if (tickCountX > risingTickX) {

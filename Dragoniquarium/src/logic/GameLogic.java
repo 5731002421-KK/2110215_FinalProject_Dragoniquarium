@@ -115,7 +115,7 @@ public class GameLogic {
 				Dragon1 temp = (Dragon1)obj; 
 				if(temp.layingEgg) {
 					temp.layingEgg = false;
-					createEgg(temp.x, temp.y);
+					createEgg(temp.x, temp.y-5);
 				}
 			} // else if( obj instanceof)
 		}
@@ -209,21 +209,23 @@ public class GameLogic {
 		}*/
 		if (spawnDelayCounter >= SPAWN_DELAY ) {
 			TargetObject newEnemy = new Enemy1(500, 300, 30, zCounter);
-			onScreenObject.add(newEnemy);
-			RenderableHolder.getInstance().add(newEnemy);
+//			onScreenObject.add(newEnemy);
+//			RenderableHolder.getInstance().add(newEnemy);
 		}
 		if (spawnDelayCounter >= SPAWN_DELAY ) {
 			spawnDelayCounter = 0;
 //			TargetObject egg = new Egg1(RandomUtility.random(0, 1000), 600, 10);
 			TargetObject egg = new Dragon1(RandomUtility.random(300, 700), 0, zCounter);
-			onScreenObject.add(egg);
-			RenderableHolder.getInstance().add(egg);
+//			onScreenObject.add(egg);
+//			RenderableHolder.getInstance().add(egg);
 		}
 		zCounter++;
 		if(zCounter == Integer.MAX_VALUE-1){
 			zCounter = Integer.MIN_VALUE+1;
 		}
 	}
+	
+	
 	
 	private Button getButtonAt(int x, int y) {
 		Button but = null;
@@ -293,7 +295,7 @@ public class GameLogic {
 	}
 	
 	public void createEgg(double x, double y) {
-		TargetObject egg = new Egg1((int)x, (int)y, zCounter);
+		TargetObject egg = new Egg1((int)x, (int)y);
 		onScreenObject.add(egg);
 		RenderableHolder.getInstance().add(egg);
 	}
