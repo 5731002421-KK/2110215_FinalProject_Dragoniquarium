@@ -32,10 +32,10 @@ public class Dragon1 extends DamageableObject {
 			layingAnimation.updateAnimation();
 		}
 		
-		if(GameLogic.enemyOnScreen) {
-			performStateAction();
-			return ;
-		}
+//		if(GameLogic.enemyOnScreen) {
+//			performStateAction();
+//			return ;
+//		}
 		if(hasDestination) {
 			if(contains(xDestination,yDestination)) {
 				hasDestination = false;
