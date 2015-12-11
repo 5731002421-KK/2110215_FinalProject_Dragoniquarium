@@ -14,7 +14,7 @@ public class PlayerStatus implements IRenderable{
 	
 	public PlayerStatus() {
 		super();
-		this.egg = 200;
+		this.egg = 20000;
 	}
 	
 	public boolean isPause() {

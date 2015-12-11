@@ -103,6 +103,8 @@ public class GameLogic {
 				((EnemyObject)obj).attack(onScreenAttack, zCounter);
 			} else if(obj instanceof Dragon2) {
 				((Dragon2)obj).attack(onScreenAttack, targetEnemy, zCounter);
+			} else if(obj instanceof Dragon4) {
+				((Dragon4)obj).attack(onScreenAttack, targetEnemy, zCounter);
 			}
 			
 		}

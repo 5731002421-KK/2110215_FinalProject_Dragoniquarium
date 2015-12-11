@@ -39,32 +39,22 @@ public class Button implements IRenderable{
 				player.subtractEgg(cost);
 			}
 		}
-		TargetObject dragon;
+		TargetObject dragon = null;
 		switch (type) {
 		case 1:
-			
 			dragon = new Dragon1(RandomUtility.random(300, 700), 0, zCounter);
-			onScreenObject.add(dragon);
-			RenderableHolder.getInstance().add(dragon);
 			break;
-			
 		case 2:
-			
 			dragon = new Dragon2(RandomUtility.random(300, 700), 0, zCounter);
-			onScreenObject.add(dragon);
-			RenderableHolder.getInstance().add(dragon);
 			break;
-			
 		case 3:
-			
 			break;
 		
 		case 4:
-			
+			dragon = new Dragon4(RandomUtility.random(300, 700), 0, zCounter);
 			break;
 			
 		case 5:
-	
 			break;
 			
 		case 6:
@@ -73,6 +63,11 @@ public class Button implements IRenderable{
 		
 		default:
 			break;
+		}
+		
+		if(dragon != null) {
+			onScreenObject.add(dragon);
+			RenderableHolder.getInstance().add(dragon);
 		}
 	}
 	
