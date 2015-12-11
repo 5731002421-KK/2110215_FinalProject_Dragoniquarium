@@ -166,6 +166,7 @@ public class GameLogic {
 	
 	
 	// TODO end logic update
+	
 	private void checkEnemyOnScreen() {
 		if(targetEnemy != null && !targetEnemy.isDestroyed()) {
 			return ;
