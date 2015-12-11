@@ -65,14 +65,18 @@ public class Dragon2 extends DamageableObject {
 				} else {
 					state = 1;
 					stateTime = 100;
+					isLeft = RandomUtility.random(0, 1) == 0 ? true : false;
 					tickCountX = tickNeedX-1;
 				}
 				
 			}
-			return ;
+//			return ;
 		}
 		
-		calculateXaxis();
+		if(state == 1) {
+			calculateXaxis();
+		}
+		
 		calculateYaxis();
 	}
 	
