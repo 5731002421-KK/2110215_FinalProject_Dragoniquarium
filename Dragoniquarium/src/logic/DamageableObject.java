@@ -71,43 +71,35 @@ public abstract class DamageableObject extends TargetObject {
 	
 	protected abstract void performStateAction();
 	
+	protected void moveIn() {
+		if(contains(xDestination,yDestination)) {
+			hasDestination = false;
+			reachDestination();
+			return ;
+		}
+		
+//		x += (xDestination - x)/ Math.hypot(xDestination - x, yDestination - y) * speed;
+		x += (xDestination - x) * speed;
+		y += (yDestination - y) * speed;
+	}
+	
 	@Override
 	public void move() {
 		if(destroyed) return;
-		if(GameLogic.enemyOnScreen) {
-			performStateAction();
-			return ;
-		}
+//		if(GameLogic.enemyOnScreen) {
+//			performStateAction();
+//			return ;
+//		}
 		if(hasDestination) {
-			if(contains(xDestination,yDestination)) {
-//				movingIn = false;
-				hasDestination = false;
-				reachDestination();
-				return ;
-			}
-			
-//			x += (xDestination - x)/ Math.hypot(xDestination - x, yDestination - y) * speed;
-			x += (xDestination - x) * speed;
-			y += (yDestination - y) * speed;
+			moveIn();
 			return ;
 		}
-		
-	/*	if(this instanceof Dragon1) {
-			if(state == 1) {
-				stateTime--;
-				if(stateTime == 0) {
-					state = 3;
-				}
-			}
-		}*/
-		
 		
 		if( movingType == 1) {
 			calculateYaxis();
 		}
 		
-		calculateXaxis();
-		
+		calculateXaxis();	
 	}
 	
 	protected void calculateXaxis(){

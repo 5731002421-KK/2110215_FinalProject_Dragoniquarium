@@ -97,7 +97,7 @@ public class GameLogic {
 		// move and attack
 		for(TargetObject obj : onScreenObject) {
 			obj.move();
-			enemyOnScreen = false;
+//			enemyOnScreen = false;
 			if(obj instanceof EnemyObject) {
 //				enemyOnScreen = true;
 				((EnemyObject)obj).attack(onScreenAttack, zCounter);
@@ -140,6 +140,7 @@ public class GameLogic {
 			RenderableHolder.getInstance().add(atk);
 		}*/
 		if (spawnDelayCounter >= SPAWN_DELAY ) {
+			spawnDelayCounter = -1000;
 			TargetObject newEnemy = new Enemy1(500, 300, 30, zCounter);
 			onScreenObject.add(newEnemy);
 			RenderableHolder.getInstance().add(newEnemy);
@@ -162,13 +163,15 @@ public class GameLogic {
 	
 	// TODO end logic update
 	private void checkEnemyOnScreen() {
-		if(targetEnemy != null && targetEnemy.isDestroyed()) {
+		if(targetEnemy != null && !targetEnemy.isDestroyed()) {
 			return ;
 		}
 		targetEnemy = null;
+		enemyOnScreen = false;
 		for(TargetObject obj : onScreenObject) {
 			if (obj instanceof EnemyObject) {
 				targetEnemy = obj;
+				enemyOnScreen = true;
 				break ;
 			}
 		}
@@ -310,9 +313,9 @@ public class GameLogic {
 				target.setPointerOver(false);
 			}
 		}
-		if(obj != null || !enemyOnScreen) {
-			return obj;
-		}
+//		if(obj != null || !enemyOnScreen) {
+//			return obj;
+//		}
 		// find enemy
 	/*	TargetObject target = targetEnemy;
 		if(target.contains(x, y)){
