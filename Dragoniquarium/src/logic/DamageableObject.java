@@ -189,9 +189,9 @@ public abstract class DamageableObject extends TargetObject {
 		if(y < topBorder) {
 			if(tickCountY < 2*risingTickY) tickCountY = 2*risingTickY;
 			y = topBorder;
-		} else if( y > bottomBorder - 2*radius) {
+		} else if( y > bottomBorder - 50) {
 			if(tickCountY < 2*risingTickY) tickCountY = 2*risingTickY;
-			y = bottomBorder - 2*radius;
+			y = bottomBorder - 50;
 		}
 	}
 	
@@ -201,7 +201,7 @@ public abstract class DamageableObject extends TargetObject {
 			yDestination = RandomUtility.random(150, 500);
 		} else if(movingType == 2) {
 			xDestination = RandomUtility.random(leftBorder+radius, rightBorder-radius);
-			yDestination = bottomBorder-radius;
+			yDestination = bottomBorder;
 		}
 		hasDestination = true;
 	}
@@ -234,7 +234,7 @@ public abstract class DamageableObject extends TargetObject {
 	
 	public void hit(int damage) {
 		//TODO
-		damage = Math.max(damage-defense, 1);
+		damage = Math.max(damage-defense, 0);
 		life -= damage;
 		if(life <= 0) {
 			destroyed = true;

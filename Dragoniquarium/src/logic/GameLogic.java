@@ -207,10 +207,10 @@ public class GameLogic {
 						((DamageableObject)target).hit(obj.getAttack());
 						
 						// if hit guardian dragon 
-						/*if(target instanceof Dragon3 || target instanceof Dragon4) {
+						if(target instanceof Dragon3 || target instanceof Dragon4) {
 							obj.destroyed = true;
 							break;
-						}*/
+						}
 					}
 				}
 				
