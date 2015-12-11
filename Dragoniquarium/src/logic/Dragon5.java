@@ -7,8 +7,8 @@ import render.DrawingUtility;
 import render.GameAnimation;
 import render.RenderableHolder;
 
-public class Dragon4 extends DamageableObject{
-
+public class Dragon5 extends DamageableObject{
+	
 	private GameAnimation flyingAnimation;
 	private GameAnimation attackingAnimation;
 	
@@ -17,7 +17,7 @@ public class Dragon4 extends DamageableObject{
 	
 	private boolean attacking = false;
 	
-	public Dragon4(int x, int y, int z) {
+	public Dragon5(int x, int y, int z) {
 		super(x, y, 25, z, 1, 10, 1);
 		stateTime = 200;
 		flyingAnimation = DrawingUtility.createDragon1Animation();
@@ -45,7 +45,7 @@ public class Dragon4 extends DamageableObject{
 			if(stateTime == 0) {
 				if(GameLogic.enemyOnScreen) {
 					state = 3;
-					stateTime = 100;
+					stateTime = 150;
 					attackingAnimation.setCurrentFrame(0);
 				} else {
 					stateTime = 100;
@@ -60,7 +60,7 @@ public class Dragon4 extends DamageableObject{
 			
 			if(stateTime == 0) {
 				if(GameLogic.enemyOnScreen) {
-					stateTime = 100;
+					stateTime = 150;
 				} else {
 					state = 1;
 					stateTime = 100;
@@ -92,7 +92,7 @@ public class Dragon4 extends DamageableObject{
 			return ;
 		}
 		
-		AttackObject atk = new AttackObject(x, y, 15, zCounter, 5, targetEnemy.x, targetEnemy.y, 4, 3);
+		AttackObject atk = new AttackObject(x, y, 5, zCounter, 1, targetEnemy.x, targetEnemy.y, 2, 4);
 		onScreenAttack.add(atk);
 		RenderableHolder.getInstance().add(atk);
 
@@ -113,5 +113,4 @@ public class Dragon4 extends DamageableObject{
 			attackingAnimation.draw(g2d, temp, (int)y-radius-8, isLeft);
 		}
 	}
-
 }

@@ -105,6 +105,8 @@ public class GameLogic {
 				((Dragon2)obj).attack(onScreenAttack, targetEnemy, zCounter);
 			} else if(obj instanceof Dragon4) {
 				((Dragon4)obj).attack(onScreenAttack, targetEnemy, zCounter);
+			} else if(obj instanceof Dragon5) {
+				((Dragon5)obj).attack(onScreenAttack, targetEnemy, zCounter);
 			}
 			
 		}
@@ -204,27 +206,26 @@ public class GameLogic {
 						((DamageableObject)target).hit(obj.getAttack());
 						
 						// if hit guardian dragon 
-						/*if(target instanceof Dragon3) {
+						/*if(target instanceof Dragon3 || target instanceof Dragon4) {
 							obj.destroyed = true;
 							break;
 						}*/
 					}
 				}
 				
-			} else if(obj.attackType == 2) {
+			} else if(obj.attackType == 2 || obj.attackType == 3 || obj.attackType == 4) {
 				for(TargetObject target : onScreenObject) {
 					if(target.destroyed ) continue;
 					if(target instanceof EnemyObject && target.contains(obj.x, obj.y)) {
 						((DamageableObject)target).hit(obj.getAttack());
 						obj.destroyed = true;
+						if(obj.attackType == 4) {
+							createEgg(obj.x, obj.y);
+						}
 						break;
 					}
 				}
-				/*if( enemy.contains(obj.x, obj.y)) {
-					// TODO
-					obj.destroyed = true;
-				}*/
-			}
+			} 
 		}
 	}
 	

@@ -55,6 +55,7 @@ public class Button implements IRenderable{
 			break;
 			
 		case 5:
+			dragon = new Dragon5(RandomUtility.random(300, 700), 0, zCounter);
 			break;
 			
 		case 6:
