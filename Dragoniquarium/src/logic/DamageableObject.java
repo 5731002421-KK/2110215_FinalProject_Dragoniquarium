@@ -60,7 +60,7 @@ public abstract class DamageableObject extends TargetObject {
 //		this.movingIn = true;
 		generateFirstDestination();
 		this.speed = RandomUtility.random(0.03, 0.07);
-			
+		
 	}
 	
 	public void setDestination(double xDes, double yDes) {
@@ -197,9 +197,9 @@ public abstract class DamageableObject extends TargetObject {
 		if(y < topBorder) {
 			if(tickCountY < 2*risingTickY) tickCountY = 2*risingTickY;
 			y = topBorder;
-		} else if( y > bottomBorder) {
+		} else if( y > bottomBorder - 2*radius) {
 			if(tickCountY < 2*risingTickY) tickCountY = 2*risingTickY;
-			y = bottomBorder;
+			y = bottomBorder - 2*radius;
 		}
 	}
 	

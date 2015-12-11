@@ -2,6 +2,8 @@ package logic;
 
 import java.awt.Graphics2D;
 
+import javax.swing.Box.Filler;
+
 import render.DrawingUtility;
 import render.GameAnimation;
 import render.Resource;
@@ -17,7 +19,6 @@ public class Dragon1 extends DamageableObject {
 		stateTime = 200;
 		walkingAnimation = DrawingUtility.createDragon1Animation();
 		layingAnimation = DrawingUtility.createDragon1AnimationLayingEgg();
-		// TODO Auto-generated constructor stub
 	}
 	
 	@Override
@@ -73,6 +74,7 @@ public class Dragon1 extends DamageableObject {
 	
 	@Override
 	public void draw(Graphics2D g2d) {
+		
 		// TODO
 //		g2d.drawImage(Resource.egg1Sprite, null, (int)x-radius, (int)y-radius);
 		if(state == 1) {
