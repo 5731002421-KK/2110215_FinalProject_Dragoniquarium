@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.swing.Box.Filler;
 
+import render.DrawingUtility;
 import render.IRenderable;
 import render.RenderableHolder;
 
@@ -38,16 +39,38 @@ public class Button implements IRenderable{
 				player.subtractEgg(cost);
 			}
 		}
+		TargetObject dragon;
 		switch (type) {
 		case 1:
-			TargetObject dragon = new Dragon1(RandomUtility.random(300, 700), 0, zCounter);
+			
+			dragon = new Dragon1(RandomUtility.random(300, 700), 0, zCounter);
 			onScreenObject.add(dragon);
 			RenderableHolder.getInstance().add(dragon);
 			break;
 			
 		case 2:
 			
+			dragon = new Dragon2(RandomUtility.random(300, 700), 0, zCounter);
+			onScreenObject.add(dragon);
+			RenderableHolder.getInstance().add(dragon);
 			break;
+			
+		case 3:
+			
+			break;
+		
+		case 4:
+			
+			break;
+			
+		case 5:
+	
+			break;
+			
+		case 6:
+			
+			break;
+		
 		default:
 			break;
 		}
@@ -63,8 +86,14 @@ public class Button implements IRenderable{
 	
 	@Override
 	public void draw(Graphics2D g2d) {
-		g2d.setColor(Color.GREEN);
+		if(isPointerOver) {
+			g2d.setColor(Color.RED);
+		} else {
+			g2d.setColor(Color.GREEN);
+		}
+		
 		g2d.fillRect(x, y, width, height);
+//		DrawingUtility.drawButton(type);
 	}
 
 	@Override
