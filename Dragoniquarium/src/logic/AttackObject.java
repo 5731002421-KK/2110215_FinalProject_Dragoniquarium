@@ -12,8 +12,8 @@ public class AttackObject extends TargetObject {
 	
 	public int attackType;
 	/*
-	 * type 1 : dragon to monster
-	 * type 2 : monster to dragon
+	 * type 1 : monster to dragon
+	 * type 2 : dragon to monster
 	 */
 	
 	public int topBorder = 20;
@@ -59,7 +59,11 @@ public class AttackObject extends TargetObject {
 	
 	@Override
 	public void draw(Graphics2D g2d) {
-		g2d.setColor(Color.ORANGE);
+		if(attackType == 2) {
+			g2d.setColor(Color.BLACK);
+		} else {
+			g2d.setColor(Color.ORANGE);
+		}
 		g2d.fillOval((int)(x-radius), (int)(y-radius), 2*radius, 2*radius);
 		
 	}
