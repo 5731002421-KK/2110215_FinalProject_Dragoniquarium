@@ -5,8 +5,8 @@ import java.awt.Graphics2D;
 
 public class Egg1 extends CollectibleObject {
 	
-	public Egg1(int x, int y, int z) {
-		super(x, y, 20, z, 30);
+	public Egg1(int x, int y) {
+		super(x, y, 20, Integer.MAX_VALUE-2, 30);
 	}
 
 	@Override
