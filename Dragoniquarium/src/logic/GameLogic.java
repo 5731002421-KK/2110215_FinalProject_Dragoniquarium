@@ -109,79 +109,13 @@ public class GameLogic {
 //			}
 		}
 		
-		// lay Egg
-		for(TargetObject obj : onScreenObject) {
-			if( obj instanceof Dragon1 ) {
-				Dragon1 temp = (Dragon1)obj; 
-				if(temp.layingEgg) {
-					temp.layingEgg = false;
-					createEgg(temp.x, temp.y-5);
-				}
-			} // else if( obj instanceof)
-		}
 		
-		// attack objects do damage
-		for(AttackObject obj : onScreenAttack) {
-			obj.move();
-			if(obj.attackType == 1) {
-				for(TargetObject target : onScreenObject) {
-					if(target.destroyed || target instanceof EnemyObject) continue;
-					if(target instanceof DamageableObject && target.contains(obj.x, obj.y)) {
-						((DamageableObject)target).hit(obj.getAttack());
-						
-						// if hit guardian dragon 
-						/*if(target instanceof Dragon3) {
-							obj.destroyed = true;
-							break;
-						}*/
-					}
-				}
-				
-			} else if(obj.attackType == 2) {
-				for(TargetObject target : onScreenObject) {
-					if(target.destroyed ) continue;
-					if(target instanceof EnemyObject && target.contains(obj.x, obj.y)) {
-						((DamageableObject)target).hit(obj.getAttack());
-					}
-				}
-				/*if( enemy.contains(obj.x, obj.y)) {
-					// TODO
-					obj.destroyed = true;
-				}*/
-			}
-		}
+		dragon1CreateEgg();
 		
-		// attack object type 1 is clicked
-		// check shoot and grab
-		TargetObject target = null;
-//		TargetObject grabbedObject = null;
-		if(!player.isDisplayingArea(InputUtility.getMouseX(), InputUtility.getMouseY())){
-			boolean shoot = false;
-			if(input.InputUtility.isMouseLeftClicked() ){
-				shoot = true;
-			}
-			
-			target = getTopMostTargetAt(InputUtility.getMouseX(), InputUtility.getMouseY());
-			if(target != null && shoot ){
-				
-				if(target instanceof CollectibleObject)	{
-					((CollectibleObject)target).grab(player);
-				}
-				else if(target instanceof AttackObject) {
-					((AttackObject)target).hitByPlayer();
-				}
-				else if(target instanceof EnemyObject) {
-					((EnemyObject)target).isChased(InputUtility.getMouseX(), InputUtility.getMouseY());
-					((EnemyObject)target).hit(1);
-					// target instance of Monster
-				}
-				
-			} else if (enemyOnScreen && shoot) {
-				// shoot animation
-//				onScreenAnimation.add(DrawingUtility.createShootingAnimationAt(
-//				input.InputUtility.getMouseX(), input.InputUtility.getMouseY()));
-			}
-		}
+		processAttack();
+		
+		processShootAndCollect();
+		
 		
 		// dragon attack
 		// update fire ball
@@ -226,6 +160,85 @@ public class GameLogic {
 	}
 	
 	
+	private void dragon1CreateEgg() {
+		// lay Egg
+		for(TargetObject obj : onScreenObject) {
+			if( obj instanceof Dragon1 ) {
+				Dragon1 temp = (Dragon1)obj; 
+				if(temp.layingEgg) {
+					temp.layingEgg = false;
+					createEgg(temp.x, temp.y-5);
+				}
+			} // else if( obj instanceof)
+		}
+	}
+	
+	private void processAttack() {
+		// attack objects do damage
+		for(AttackObject obj : onScreenAttack) {
+			obj.move();
+			if(obj.attackType == 1) {
+				for(TargetObject target : onScreenObject) {
+					if(target.destroyed || target instanceof EnemyObject) continue;
+					if(target instanceof DamageableObject && target.contains(obj.x, obj.y)) {
+						((DamageableObject)target).hit(obj.getAttack());
+						
+						// if hit guardian dragon 
+						/*if(target instanceof Dragon3) {
+							obj.destroyed = true;
+							break;
+						}*/
+					}
+				}
+				
+			} else if(obj.attackType == 2) {
+				for(TargetObject target : onScreenObject) {
+					if(target.destroyed ) continue;
+					if(target instanceof EnemyObject && target.contains(obj.x, obj.y)) {
+						((DamageableObject)target).hit(obj.getAttack());
+					}
+				}
+				/*if( enemy.contains(obj.x, obj.y)) {
+					// TODO
+					obj.destroyed = true;
+				}*/
+			}
+		}
+	}
+	
+	private void processShootAndCollect() {
+		// attack object type 1 is clicked
+		// check shoot and grab
+		TargetObject target = null;
+//				TargetObject grabbedObject = null;
+		if(!player.isDisplayingArea(InputUtility.getMouseX(), InputUtility.getMouseY())){
+			boolean shoot = false;
+			if(input.InputUtility.isMouseLeftClicked() ){
+				shoot = true;
+			}
+			
+			target = getTopMostTargetAt(InputUtility.getMouseX(), InputUtility.getMouseY());
+			if(target != null && shoot ){
+				
+				if(target instanceof CollectibleObject)	{
+					((CollectibleObject)target).grab(player);
+				}
+				else if(target instanceof AttackObject) {
+					((AttackObject)target).hitByPlayer();
+				}
+				else if(target instanceof EnemyObject) {
+					((EnemyObject)target).isChased(InputUtility.getMouseX(), InputUtility.getMouseY());
+					((EnemyObject)target).hit(1);
+					// target instance of Monster
+				}
+				
+			} else if (enemyOnScreen && shoot) {
+				// shoot animation
+//						onScreenAnimation.add(DrawingUtility.createShootingAnimationAt(
+//						input.InputUtility.getMouseX(), input.InputUtility.getMouseY()));
+			}
+		}
+	}
 	
 	private Button getButtonAt(int x, int y) {
 		Button but = null;
