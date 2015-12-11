@@ -6,8 +6,9 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 
+
+import render.GameAnimation;
 import main.Main;
-//import lib.DrawingUtility;
 import input.InputUtility;
 import render.RenderableHolder;
 
@@ -18,6 +19,7 @@ public class GameLogic {
 	protected List <TargetObject> onScreenObject =  new CopyOnWriteArrayList<TargetObject>();
 	protected List <AttackObject> onScreenAttack = new CopyOnWriteArrayList<AttackObject>();
 	protected List <Button> onScreenButton = new ArrayList<Button>();
+	protected List <GameAnimation> onScreenAnimation = new ArrayList<GameAnimation>();
 	
 	private static final int SPAWN_DELAY = 100;
 	private int spawnDelayCounter ;
@@ -198,14 +200,13 @@ public class GameLogic {
 		}
 		
 		
-		
 		spawnDelayCounter++;
-		if (spawnDelayCounter >= SPAWN_DELAY ) {
+		/*if (spawnDelayCounter >= SPAWN_DELAY ) {
 			AttackObject atk = new AttackObject(RandomUtility.random(300, 700), 200, 10, 
 										zCounter, 1, RandomUtility.random(300, 700), 600, 3, 1);
 			onScreenAttack.add(atk);
 			RenderableHolder.getInstance().add(atk);
-		}
+		}*/
 		if (spawnDelayCounter >= SPAWN_DELAY ) {
 			TargetObject newEnemy = new Enemy1(500, 300, 30, zCounter);
 			onScreenObject.add(newEnemy);

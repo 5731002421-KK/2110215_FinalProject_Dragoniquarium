@@ -206,7 +206,7 @@ public abstract class DamageableObject extends TargetObject {
 			yDestination = RandomUtility.random(150, 500);
 		} else if(movingType == 2) {
 			xDestination = RandomUtility.random(leftBorder+radius, rightBorder-radius);
-			yDestination = bottomBorder;
+			yDestination = bottomBorder-radius;
 		}
 		hasDestination = true;
 	}

@@ -27,6 +27,7 @@ public class DrawingUtility {
 	}
 	
 	protected static final BufferedImage bg = getImage("res/background.jpg");
+	protected static final BufferedImage dragon1 = getImage("res/dragon1.png");
 //	protected static final BufferedImage gun = getImage("res/img/gun.png");
 //	protected static final BufferedImage gun_inf = getImage("res/img/gun_inf.png");
 //	protected static final BufferedImage shootAnim = getImage("res/img/shootAnim.png");
@@ -128,6 +129,12 @@ public class DrawingUtility {
 			g2.setFont(standardFont);
 //			g2.drawString("PAUSE", ConfigurableOption.screenWidth/2-40, ConfigurableOption.screenHeight/2);
 		}
+	}
+	
+	public static GameAnimation createDragon1Animation() {
+		GameAnimation anim = new GameAnimation(DrawingUtility.dragon1,12,3);
+		anim.play();
+		return anim;
 	}
 	
 /*	public static GameAnimation createShootingAnimationAt(int x,int y){

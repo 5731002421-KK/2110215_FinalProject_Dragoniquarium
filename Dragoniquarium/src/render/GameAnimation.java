@@ -1,17 +1,17 @@
 package render;
 
 import java.awt.Graphics2D;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 
-import render.IRenderable;;
-
-public class GameAnimation implements IRenderable {
+public class GameAnimation {
 
 	private BufferedImage image = null;
 	private int frameCount,frameDelay;
 	private int currentFrame,frameDelayCount;
-	private int x,y,frameWidth,frameHeight;
-	private boolean visible = false, playing = false;
+	private int frameWidth,frameHeight;
+	private boolean playing = false;
 	
 	public GameAnimation(BufferedImage image,int frameCount,int frameDelay){
 		this.image = image;
@@ -19,8 +19,6 @@ public class GameAnimation implements IRenderable {
 		this.frameDelay = frameDelay;
 		this.currentFrame = 0;
 		this.frameDelayCount = 0;
-		this.x = 0;
-		this.y = 0;
 		if (image != null) {
 			this.frameWidth = image.getWidth()/frameCount;
 			this.frameHeight = image.getHeight();
@@ -31,7 +29,7 @@ public class GameAnimation implements IRenderable {
 	}
 	
 	
-	protected void topLeftAnimationAt(int x,int y){
+/*	protected void topLeftAnimationAt(int x,int y){
 		this.x = x;
 		this.y = y;
 	}
@@ -39,18 +37,16 @@ public class GameAnimation implements IRenderable {
 	protected void centerAnimationAt(int x,int y){
 		this.x = x-frameWidth/2;
 		this.y = y-frameHeight/2;
-	}
+	}*/
 	
 	public void play(){
 		currentFrame = 0;
 		playing = true;
-		visible = true;
 	}
 	
 	public void stop(){
 		currentFrame = 0;
 		playing = false;
-		visible = false;
 	}
 	
 	public void updateAnimation(){
@@ -66,28 +62,25 @@ public class GameAnimation implements IRenderable {
 		currentFrame++;
 		
 		if( currentFrame == frameCount) {
-			stop();
+			currentFrame = 0;
+//			stop();
 		}
 	}
 
-	@Override
-	public boolean isVisible() {
-		return visible;
-	}
-
-	@Override
-	public int getZ() {
-		return Integer.MAX_VALUE-1;
-	}
-
-	@Override
-	public void draw(Graphics2D g2) {
-		if(!visible || image == null) {
+	public void draw(Graphics2D g2, int x, int y, boolean reflex) {
+		if(image == null) {
 			return ;
 		}
 		
 		BufferedImage currentAnimation = image.getSubimage(currentFrame * frameWidth, 0,
 											frameWidth, frameHeight);
+		if(reflex) {
+			// Flip the image horizontally
+			AffineTransform tx = AffineTransform.getScaleInstance(-1, 1);
+			tx.translate(-currentAnimation.getWidth(null), 0);
+			AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
+			currentAnimation = op.filter(currentAnimation, null);
+		}
 		g2.drawImage(currentAnimation, null, x, y);
 	}
 
@@ -140,27 +133,6 @@ public class GameAnimation implements IRenderable {
 		this.frameDelayCount = frameDelayCount;
 	}
 
-
-	public int getX() {
-		return x;
-	}
-
-
-	public void setX(int x) {
-		this.x = x;
-	}
-
-
-	public int getY() {
-		return y;
-	}
-
-
-	public void setY(int y) {
-		this.y = y;
-	}
-
-
 	public int getFrameWidth() {
 		return frameWidth;
 	}
@@ -189,10 +161,4 @@ public class GameAnimation implements IRenderable {
 	public void setPlaying(boolean playing) {
 		this.playing = playing;
 	}
-
-
-	public void setVisible(boolean visible) {
-		this.visible = visible;
-	}
-
 }

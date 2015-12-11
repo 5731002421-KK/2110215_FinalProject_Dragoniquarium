@@ -2,21 +2,27 @@ package logic;
 
 import java.awt.Graphics2D;
 
+import render.DrawingUtility;
+import render.GameAnimation;
 import render.Resource;
 
 public class Dragon1 extends DamageableObject {
 	
 	public boolean layingEgg = false;
+	private GameAnimation animation;
 	
 	public Dragon1(int x, int y, int z) {
-		super(x, y, 20, z, 2, 1, 0);
+		super(x, y, 25, z, 2, 1, 0);
 		stateTime = 200;
+		animation = DrawingUtility.createDragon1Animation();
 		// TODO Auto-generated constructor stub
 	}
 	
 	@Override
 	public void move() {
 		if(destroyed) return;
+		
+		animation.updateAnimation();
 		
 		if(GameLogic.enemyOnScreen) {
 			performStateAction();
@@ -57,7 +63,8 @@ public class Dragon1 extends DamageableObject {
 	@Override
 	public void draw(Graphics2D g2d) {
 		// TODO
-		g2d.drawImage(Resource.egg1Sprite, null, (int)x-radius, (int)y-radius);
+//		g2d.drawImage(Resource.egg1Sprite, null, (int)x-radius, (int)y-radius);
+		animation.draw(g2d, (int)x-radius, (int)y-radius, !isLeft);
 	}
 
 	@Override
