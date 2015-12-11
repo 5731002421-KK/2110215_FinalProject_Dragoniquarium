@@ -25,7 +25,7 @@ public class GameLogic {
 	private int spawnDelayCounter ;
 	
 	public static boolean enemyOnScreen = false; 
-	public EnemyObject enemy ; //MonsterObject
+	public TargetObject targetEnemy ; //MonsterObject
 	
 	public static GameLogic getInstance() {
 		return instance;
@@ -41,14 +41,14 @@ public class GameLogic {
 	
 
 	public GameLogic() {
-		player = new PlayerStatus();
+//		player = new PlayerStatus();
 //		playerStatus = new PlayerStatus();
-		RenderableHolder.getInstance().add(player);
+//		RenderableHolder.getInstance().add(player);
 //		RenderableHolder.getInstance().add(playerStatus);
-		Button button = new Button(1, 30, 480, 30, 30, 100);
-		onScreenButton.add(button);
-		RenderableHolder.getInstance().add(button);
-		spawnDelayCounter = 0;
+//		Button button = new Button(1, 30, 480, 30, 30, 100);
+//		onScreenButton.add(button);
+//		RenderableHolder.getInstance().add(button);
+//		spawnDelayCounter = 0;
 		
 	}
 	
@@ -58,9 +58,7 @@ public class GameLogic {
 //		playerStatus = new PlayerStatus();
 		RenderableHolder.getInstance().add(player);
 //		RenderableHolder.getInstance().add(playerStatus);
-		Button button = new Button(1, 30, 480, 30, 30, 100);
-		onScreenButton.add(button);
-		RenderableHolder.getInstance().add(button);
+		createButton();
 		spawnDelayCounter = 0;
 	}
 	
@@ -93,20 +91,20 @@ public class GameLogic {
 			}
 		}
 		
+		// check if any enemy on screen
+		checkEnemyOnScreen();
 		
-		// move
+		// move and attack
 		for(TargetObject obj : onScreenObject) {
 			obj.move();
 			enemyOnScreen = false;
 			if(obj instanceof EnemyObject) {
 //				enemyOnScreen = true;
 				((EnemyObject)obj).attack(onScreenAttack, zCounter);
+			} else if(obj instanceof Dragon2) {
+				((Dragon2)obj).attack(onScreenAttack, targetEnemy, zCounter);
 			}
 			
-			// check out of screen
-//			if (obj.x < 0 || obj.x > 1024 || obj.y < 0 || obj.y >= 900 ) {
-//				obj.destroyed = true;
-//			}
 		}
 		
 		
@@ -143,19 +141,36 @@ public class GameLogic {
 		}*/
 		if (spawnDelayCounter >= SPAWN_DELAY ) {
 			TargetObject newEnemy = new Enemy1(500, 300, 30, zCounter);
-//			onScreenObject.add(newEnemy);
-//			RenderableHolder.getInstance().add(newEnemy);
+			onScreenObject.add(newEnemy);
+			RenderableHolder.getInstance().add(newEnemy);
 		}
 		if (spawnDelayCounter >= SPAWN_DELAY ) {
 			spawnDelayCounter = 0;
 //			TargetObject egg = new Egg1(RandomUtility.random(0, 1000), 600, 10);
 			TargetObject egg = new Dragon1(RandomUtility.random(300, 700), 0, zCounter);
-//			onScreenObject.add(egg);
-//			RenderableHolder.getInstance().add(egg);
+			onScreenObject.add(egg);
+			RenderableHolder.getInstance().add(egg);
 		}
 		zCounter++;
 		if(zCounter == Integer.MAX_VALUE-1){
 			zCounter = Integer.MIN_VALUE+1;
+		}
+	}
+	
+	
+	
+	
+	// TODO end logic update
+	private void checkEnemyOnScreen() {
+		if(targetEnemy != null && targetEnemy.isDestroyed()) {
+			return ;
+		}
+		targetEnemy = null;
+		for(TargetObject obj : onScreenObject) {
+			if (obj instanceof EnemyObject) {
+				targetEnemy = obj;
+				break ;
+			}
 		}
 	}
 	
@@ -196,6 +211,8 @@ public class GameLogic {
 					if(target.destroyed ) continue;
 					if(target instanceof EnemyObject && target.contains(obj.x, obj.y)) {
 						((DamageableObject)target).hit(obj.getAttack());
+						obj.destroyed = true;
+						break;
 					}
 				}
 				/*if( enemy.contains(obj.x, obj.y)) {
@@ -276,9 +293,9 @@ public class GameLogic {
 		if(obj != null) {
 			return obj;
 		}
-		// find egg
+		// find other object
 		for(TargetObject target : onScreenObject){
-			if(/*target instanceof Egg1 &&*/ target.contains(x, y)){
+			if(target.contains(x, y)){
 				if(obj != null){
 					if(target.getZ() > obj.getZ()){
 						obj.setPointerOver(false);
@@ -297,13 +314,13 @@ public class GameLogic {
 			return obj;
 		}
 		// find enemy
-		TargetObject target = enemy;
+	/*	TargetObject target = targetEnemy;
 		if(target.contains(x, y)){
 			obj = target;
 			obj.setPointerOver(true);
 		} else{
 			target.setPointerOver(false);
-		}
+		}*/
 		return obj;
 	}
 	
@@ -313,5 +330,26 @@ public class GameLogic {
 		RenderableHolder.getInstance().add(egg);
 	}
 	
-	
+	private void createButton() {
+		
+		Button button = new Button(1, 15, 432, 30, 30, 100);
+		onScreenButton.add(button);
+		RenderableHolder.getInstance().add(button);
+		
+		button = new Button(2, 15, 330, 30, 30, 100);
+		onScreenButton.add(button);
+		RenderableHolder.getInstance().add(button);
+		
+		button = new Button(3, 15, 228, 30, 30, 100);
+		onScreenButton.add(button);
+		RenderableHolder.getInstance().add(button);
+		
+		button = new Button(4, 15, 126, 30, 30, 100);
+		onScreenButton.add(button);
+		RenderableHolder.getInstance().add(button);
+		
+		button = new Button(5, 15, 27, 30, 30, 100);
+		onScreenButton.add(button);
+		RenderableHolder.getInstance().add(button);
+	}
 }
