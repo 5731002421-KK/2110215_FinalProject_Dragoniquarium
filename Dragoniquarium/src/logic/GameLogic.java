@@ -75,6 +75,17 @@ public class GameLogic {
 //		player.update();
 //		System.out.println("logic update");
 		
+		
+		//Paused
+//		if(InputUtility.getKeyTriggered(KeyEvent.VK_ENTER)){
+//			if(player.isPause()) player.setPause(false);
+//			else player.setPause(true);
+//		}
+		if(player.isPause()){
+			return;
+		}
+		player.increaseTimeSpent(1);
+		
 		// clear destroyed object
 		for(TargetObject obj : onScreenObject) {
 			if (obj.isDestroyed()) {
@@ -356,6 +367,11 @@ public class GameLogic {
 		RenderableHolder.getInstance().add(button);
 		
 		button = new Button(5, 15, 27, 30, 30, 100);
+		onScreenButton.add(button);
+		RenderableHolder.getInstance().add(button);
+		
+		// end game button
+		button = new Button(6, 15, 540, 30, 30, 100);
 		onScreenButton.add(button);
 		RenderableHolder.getInstance().add(button);
 	}

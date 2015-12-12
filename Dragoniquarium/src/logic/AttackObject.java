@@ -3,12 +3,17 @@ package logic;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
+import render.DrawingUtility;
+import render.GameAnimation;
+
 public class AttackObject extends TargetObject {
 
 	
 	private int attack;
 	private int life = 3;
 	private double speed;
+	
+	private GameAnimation attackAnimation;
 	
 	public int attackType;
 	/*
@@ -32,6 +37,19 @@ public class AttackObject extends TargetObject {
 		this.xDestination = xDes;
 		this.yDestination = yDes;
 		generateSpeed();
+		
+		switch (attackType) {
+		case 1:
+			attackAnimation = DrawingUtility.createAttackAnimation();
+			break;
+		case 2:
+			attackAnimation = DrawingUtility.createAttackAnimation();
+			break;
+		default:
+			attackAnimation = DrawingUtility.createAttackAnimation();
+			break;
+		}
+		
 	}
 	
 	public void hitByPlayer() {
@@ -66,7 +84,8 @@ public class AttackObject extends TargetObject {
 		} else {
 			g2d.setColor(Color.ORANGE);
 		}
-		g2d.fillOval((int)(x-radius), (int)(y-radius), 2*radius, 2*radius);
+//		g2d.fillOval((int)(x-radius), (int)(y-radius), 2*radius, 2*radius);
+		attackAnimation.draw(g2d, (int)(x-radius), (int)(y-radius), false);
 		
 	}
 	

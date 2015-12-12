@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.swing.Box.Filler;
 
+import ui.HighScoreUtility;
+import main.Main;
 import render.DrawingUtility;
 import render.IRenderable;
 import render.RenderableHolder;
@@ -20,7 +22,8 @@ public class Button implements IRenderable{
 	
 	private int type;
 	/* type 1 to 5 - create dragon 1-5
-	 * type 6 pause
+	 * type 6 complete game
+	 * type 7 pause
 	*/
 	public Button(int type, int x, int y, int width, int height,int cost) {
 		super();
@@ -58,7 +61,10 @@ public class Button implements IRenderable{
 			break;
 			
 		case 6:
-			
+			if( player.getEgg() >= 10000) {
+				HighScoreUtility.recordHighScore(player.getTimeSpent()/50);
+				Main.goToTitle();
+			}
 			break;
 		
 		default:
@@ -87,7 +93,27 @@ public class Button implements IRenderable{
 			g2d.setColor(Color.GREEN);
 		}
 		
-		g2d.fillRect(x, y, width, height);
+		switch (type) {
+/*		case 1:
+			
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		case 4:
+			break;
+		case 5:
+			break;*/
+		case 6:
+			g2d.fillRect(x, y, width, height);
+			break;
+		default:
+			g2d.fillRect(x, y, width, height);
+			break;
+		}
+		
+		
 //		DrawingUtility.drawButton(type);
 	}
 

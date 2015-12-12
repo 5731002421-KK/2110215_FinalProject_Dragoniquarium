@@ -114,14 +114,14 @@ public class DrawingUtility {
 		}
 	}*/
 	
-	public static void drawStatusBar(Graphics2D g2, int currentEgg, boolean pause){
+	public static void drawStatusBar(Graphics2D g2, int currentEgg, boolean pause, int timeSpent){
 
 		g2.setColor(Color.BLACK);
 		g2.fillRect(20, 600, 80, 60);
 		
 		g2.setColor(Color.WHITE);
 		g2.setFont(standardFont);
-		g2.drawString( "" + currentEgg, 20, 650);
+		g2.drawString( "" + currentEgg + " " + timeSpent, 20, 650);
 		
 //		g2.drawString("SOCRE : "+score, ConfigurableOption.screenWidth/2 + 40, 35);
 		
@@ -130,6 +130,12 @@ public class DrawingUtility {
 			g2.setFont(standardFont);
 //			g2.drawString("PAUSE", ConfigurableOption.screenWidth/2-40, ConfigurableOption.screenHeight/2);
 		}
+	}
+	
+	public static GameAnimation createAttackAnimation() {
+		GameAnimation anim = new GameAnimation(DrawingUtility.dragon1,12,3);
+		anim.play();
+		return anim;
 	}
 	
 	public static GameAnimation createDragon1Animation() {
