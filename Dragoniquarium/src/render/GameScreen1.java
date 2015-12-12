@@ -4,6 +4,7 @@ import input.InputUtility;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyAdapter;
@@ -13,6 +14,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 
 import javax.swing.JComponent;
+import javax.swing.UIManager;
 
 public class GameScreen1 extends JComponent{
 
@@ -25,6 +27,8 @@ public class GameScreen1 extends JComponent{
 		setVisible(true);
 		
 		addListener();
+//		UIManager.put("OptionPane.buttonFont", new Font("Monospaced", Font.PLAIN, 20));
+		UIManager.put("OptionPane.messageFont", new Font("Monospaced", Font.PLAIN, 15));
 	}
 	
 	private void addListener(){

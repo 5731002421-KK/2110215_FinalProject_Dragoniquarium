@@ -9,6 +9,7 @@ import render.Resource;
 
 public class PlayerStatus implements IRenderable{
 	
+	private int timeSpent = 0;
 	private int egg;
 	private boolean pause = false;
 	
@@ -29,6 +30,14 @@ public class PlayerStatus implements IRenderable{
 		return x < 50;
 	}
 	
+	public int getTimeSpent() {
+		return timeSpent;
+	}
+	
+	public void increaseTimeSpent(int time) {
+		this.timeSpent += time;
+	}
+	
 	public void addEgg(int a) {
 		egg += a;
 	}
@@ -44,7 +53,7 @@ public class PlayerStatus implements IRenderable{
 	@Override
 	public void draw(Graphics2D g2d) {
 		
-		DrawingUtility.drawStatusBar(g2d, egg, pause);
+		DrawingUtility.drawStatusBar(g2d, egg, pause, timeSpent/50);
 		/*g2d.setColor(Color.BLACK);
 		g2d.fillRect(0, 420, 640, 60);
 		g2d.setColor(Color.white);

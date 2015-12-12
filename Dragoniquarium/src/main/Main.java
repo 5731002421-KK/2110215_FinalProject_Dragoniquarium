@@ -1,10 +1,13 @@
 package main;
 
+import java.awt.Font;
+
 import input.InputUtility;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
 
 import render.GameScreen1;
 import render.GameTitle;
@@ -19,8 +22,6 @@ public class Main {
 	private static JComponent nextScene = null;
 	
 	public static void main(String[] args) {
-		
-		
 		
 		/*JFrame frame = new JFrame("Dragoniquarium");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

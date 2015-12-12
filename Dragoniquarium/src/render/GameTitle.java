@@ -20,6 +20,7 @@ import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 
+import ui.HighScoreUtility;
 import main.Main;
 
 
@@ -78,8 +79,8 @@ public class GameTitle extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//				HighScoreUtility.displayTop10();
-				JOptionPane.showMessageDialog(null, "High Score");
+				HighScoreUtility.displayTop10();
+//				JOptionPane.showMessageDialog(null, "High Score");
 				
 			}
 		});
