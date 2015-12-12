@@ -30,6 +30,7 @@ public class DrawingUtility {
 	protected static final BufferedImage titleBackGround = getImage("res/titleBackGround.jpg");
 	protected static final BufferedImage startButton = getImage("res/Egg1.png");
 	protected static final BufferedImage highScoreButton = getImage("res/Egg1.png");
+	public static final BufferedImage egg = getImage("res/Egg.png");
 	protected static final BufferedImage dragon1 = getImage("res/dragon1.png");
 	protected static final BufferedImage dragon1_egg = getImage("res/dragon1_egg.png");
 	
@@ -146,19 +147,19 @@ public class DrawingUtility {
 	}
 	
 	public static GameAnimation createAttackAnimation() {
-		GameAnimation anim = new GameAnimation(DrawingUtility.dragon1,12,3);
+		GameAnimation anim = new GameAnimation(DrawingUtility.dragon1,12,1,12,3);
 		anim.play();
 		return anim;
 	}
 	
 	public static GameAnimation createDragon1Animation() {
-		GameAnimation anim = new GameAnimation(DrawingUtility.dragon1,12,3);
+		GameAnimation anim = new GameAnimation(DrawingUtility.dragon1,12,1,12,3);
 		anim.play();
 		return anim;
 	}
 	
 	public static GameAnimation createDragon1AnimationLayingEgg() {
-		GameAnimation anim = new GameAnimation(DrawingUtility.dragon1_egg,12,4);
+		GameAnimation anim = new GameAnimation(DrawingUtility.dragon1_egg,12,1,12,4);
 		anim.play();
 		return anim;
 	}

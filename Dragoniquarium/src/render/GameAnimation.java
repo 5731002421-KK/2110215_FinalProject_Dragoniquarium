@@ -9,19 +9,25 @@ public class GameAnimation {
 
 	private BufferedImage image = null;
 	private int frameCount,frameDelay;
+	private int row,column;
 	private int currentFrame,frameDelayCount;
+	private int currentRow, currentColumn;
 	private int frameWidth,frameHeight;
 	private boolean playing = false;
 	
-	public GameAnimation(BufferedImage image,int frameCount,int frameDelay){
+	public GameAnimation(BufferedImage image,int frameCount, int row, int column,int frameDelay){
 		this.image = image;
 		this.frameCount = frameCount;
+		this.row = row;
+		this.column = column;
 		this.frameDelay = frameDelay;
 		this.currentFrame = 0;
+		this.currentRow = 0;
+		this.currentColumn = 0;
 		this.frameDelayCount = 0;
 		if (image != null) {
-			this.frameWidth = image.getWidth()/frameCount;
-			this.frameHeight = image.getHeight();
+			this.frameWidth = image.getWidth()/column;
+			this.frameHeight = image.getHeight()/row;
 		} else {
 			this.frameWidth = 0;
 			this.frameHeight = 0;
@@ -41,11 +47,15 @@ public class GameAnimation {
 	
 	public void play(){
 		currentFrame = 0;
+		currentRow = 0;
+		currentColumn = 0;
 		playing = true;
 	}
 	
 	public void stop(){
 		currentFrame = 0;
+		currentRow = 0;
+		currentColumn = 0;
 		playing = false;
 	}
 	
@@ -60,9 +70,17 @@ public class GameAnimation {
 		
 		frameDelayCount = frameDelay;
 		currentFrame++;
+		currentColumn++;
+		
+		if(currentColumn == column) {
+			currentColumn = 0;
+			currentRow++;
+		}
 		
 		if( currentFrame == frameCount) {
 			currentFrame = 0;
+			currentColumn = 0;
+			currentRow = 0;
 //			stop();
 		}
 	}
@@ -72,8 +90,8 @@ public class GameAnimation {
 			return ;
 		}
 		
-		BufferedImage currentAnimation = image.getSubimage(currentFrame * frameWidth, 0,
-											frameWidth, frameHeight);
+		BufferedImage currentAnimation = image.getSubimage(currentColumn * frameWidth, 
+											currentRow * frameHeight, frameWidth, frameHeight);
 		if(reflex) {
 			// Flip the image horizontally
 			AffineTransform tx = AffineTransform.getScaleInstance(-1, 1);
@@ -99,9 +117,9 @@ public class GameAnimation {
 	}
 
 
-	public void setFrameCount(int frameCount) {
-		this.frameCount = frameCount;
-	}
+//	public void setFrameCount(int frameCount) {
+//		this.frameCount = frameCount;
+//	}
 
 
 	public int getFrameDelay() {
@@ -121,6 +139,8 @@ public class GameAnimation {
 
 	public void setCurrentFrame(int currentFrame) {
 		this.currentFrame = currentFrame;
+		this.currentRow = currentFrame/column;
+		this.currentColumn = currentFrame%column;
 	}
 
 
