@@ -3,6 +3,8 @@ package logic;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
+import render.DrawingUtility;
+
 public class Egg1 extends CollectibleObject {
 	
 	public Egg1(int x, int y) {
@@ -14,6 +16,7 @@ public class Egg1 extends CollectibleObject {
 //		g2d.drawImage(Resource.egg1Sprite, null, (int)x-radius, (int)y-radius);
 		g2d.setColor(Color.YELLOW);
 		g2d.fillOval((int)x-radius, (int)y-radius, 2*radius, 2*radius);
+		g2d.drawImage(DrawingUtility.egg, null, (int)x-radius, (int)y-radius);
 		// TODO
 	}
 
