@@ -1,24 +1,14 @@
 package render;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.image.TileObserver;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JSpinner;
-import javax.swing.JTextField;
-import javax.swing.SpinnerNumberModel;
-import javax.swing.SwingConstants;
 
 import ui.HighScoreUtility;
 import main.Main;
@@ -26,99 +16,97 @@ import main.Main;
 
 public class GameTitle extends JPanel {
 	
-	private JPanel optionPanel;
-	private JButton newGame;
-	private JButton viewScore;
+	private static final long serialVersionUID = 1L;
+
+	public static class TitleButton extends JPanel {
+		
+		private static final long serialVersionUID = 1L;
+		private BufferedImage image;
+		private Color color = Color.RED;
+		
+		public TitleButton(String name, int x, int y) {
+			image = DrawingUtility.getButton(name);
+			this.setBounds(x, y, image.getWidth(), image.getHeight());
+		}
+		
+		@Override
+		public void paintComponent(Graphics g){
+			super.paintComponent(g);
+			Graphics2D g2d = (Graphics2D)g;
+			
+			
+			g2d.setBackground(color);
+			g2d.clearRect(0, 0, getWidth(), getHeight());
+			g2d.drawImage(image, null, 0, 0);
+			
+//			g2d.fillRect(x, y, width, height);
+		}
+		
+		
+	}
 	
 	public GameTitle() {
 		
 		this.setPreferredSize(new Dimension(1280, 700));
-		this.setLayout(new BorderLayout());
+		this.setLayout(null);
 		
-		JLabel title = new JLabel("Shoot the bullet", SwingConstants.CENTER);
-		this.add(title, BorderLayout.NORTH);
-		title.setFont(new Font("Tahoma", Font.BOLD + Font.ITALIC, 30));
-		title.setForeground(Color.BLACK);
-		title.setBackground(Color.BLUE);
-		title.setOpaque(true);
-		
-		
-		JPanel buttonPanel = new JPanel();
-		this.add(buttonPanel, BorderLayout.SOUTH);
-		FlowLayout flayout = new FlowLayout();
-		flayout.setHgap(1280/8);
-		flayout.setVgap(5);
-		buttonPanel.setLayout(flayout);
-		buttonPanel.setBackground(Color.GREEN);
-		
-		// Button
-		JButton newGame = new JButton("New Game");
-		buttonPanel.add(newGame);
-		
-		newGame.addActionListener(new ActionListener() {
+		TitleButton startButton = new TitleButton("start", 400, 200);
+		startButton.addMouseListener(new MouseAdapter() {
 			
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				String txt = "New Game\n";
-				txt += "objectCreationMinDelay=";
-				txt += "objectCreationMaxDelay=" ;
-				txt += "objectMinDuration=" ;
-				txt += "objectMaxDuration=";
-				txt += "timelimit=";
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
 				Main.newGame();
-//				JOptionPane.showMessageDialog(null, txt);
 			}
-		});
-		
-		
-		JButton viewScore = new JButton("High Score");
-		buttonPanel.add(viewScore);
-		
-		viewScore.addActionListener(new ActionListener() {
 			
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				HighScoreUtility.displayTop10();
-//				JOptionPane.showMessageDialog(null, "High Score");
-				
+			public void mouseExited(MouseEvent e) {
+				startButton.color = Color.RED;
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				startButton.color = Color.YELLOW;
 			}
 		});
+		this.add(startButton);
 		
-		// end Button
 		
+		TitleButton highScoreButton = new TitleButton("high score", 400, 500);
+		highScoreButton.addMouseListener(new MouseAdapter() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				HighScoreUtility.displayTop10();
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				highScoreButton.color = Color.RED;
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				highScoreButton.color = Color.YELLOW;
+			}
+		});
+		this.add(highScoreButton);
 		
-		JPanel optionPanel = new JPanel(new BorderLayout());
-		JPanel rSet = new JPanel();
-		JPanel oSet = new JPanel();
-		
-		optionPanel.add(rSet, BorderLayout.NORTH);
-		optionPanel.add(oSet, BorderLayout.CENTER);
-		this.add(optionPanel, BorderLayout.CENTER);
-		
-		///// rSet
-		rSet.setLayout(new FlowLayout());
-		
-		JLabel wi = new JLabel("WIDTH");
-		rSet.add(wi);
-		
-		JTextField textW = new JTextField(""+1280);
-		textW.setPreferredSize(new Dimension(100, 20));
-		rSet.add(textW);
-		
-		JLabel he = new JLabel("HEIGHT");
-		rSet.add(he);
-		
-		JTextField textH = new JTextField(""+700);
-		textH.setPreferredSize(new Dimension(100, 20));
-		rSet.add(textH);
-		
-		JButton apply = new JButton("Apply");
-		rSet.add(apply);
-		
-//		frame.setVisible(true);
 	}
 	
+	@Override
+	public void paintComponent(Graphics g){
+		super.paintComponent(g);
+		
+		Graphics2D g2d = (Graphics2D)g;
+		g2d.setBackground(Color.WHITE);
+		g2d.clearRect(0, 0, 1280, 700);
+		
+		// draw background
+		g2d.drawImage(DrawingUtility.titleBackGround, null, 0, 0);
 	
-
+//		System.out.println("-----");
+		
+	}
+	
 }

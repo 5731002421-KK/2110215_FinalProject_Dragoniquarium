@@ -1,5 +1,11 @@
 package render;
 
+import java.awt.Cursor;
+import java.awt.Image;
+import java.awt.Point;
+import java.awt.Toolkit;
+
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -18,6 +24,14 @@ public class GameWindow extends JFrame{
 		pack();
 		setVisible(true);
 		currentScene.requestFocus();
+		
+		Toolkit toolkit = Toolkit.getDefaultToolkit();
+//		Image image = toolkit.getImage("res/AncientCursor.png");
+		Image image = new ImageIcon("src/res/AncientCursor.png").getImage();
+		Cursor c = toolkit.createCustomCursor(image , new Point(0, 0), "custom cursor");
+		this.setCursor (c);
+		
+//		this.setCursor(new Cursor(Cursor.HAND_CURSOR));
 	}
 	
 	public void switchScene(JComponent scene){

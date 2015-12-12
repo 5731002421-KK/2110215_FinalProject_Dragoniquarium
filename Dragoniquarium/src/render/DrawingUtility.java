@@ -27,8 +27,12 @@ public class DrawingUtility {
 	}
 	
 	protected static final BufferedImage bg = getImage("res/background.jpg");
+	protected static final BufferedImage titleBackGround = getImage("res/titleBackGround.jpg");
+	protected static final BufferedImage startButton = getImage("res/Egg1.png");
+	protected static final BufferedImage highScoreButton = getImage("res/Egg1.png");
 	protected static final BufferedImage dragon1 = getImage("res/dragon1.png");
 	protected static final BufferedImage dragon1_egg = getImage("res/dragon1_egg.png");
+	
 //	protected static final BufferedImage gun = getImage("res/img/gun.png");
 //	protected static final BufferedImage gun_inf = getImage("res/img/gun_inf.png");
 //	protected static final BufferedImage shootAnim = getImage("res/img/shootAnim.png");
@@ -39,6 +43,15 @@ public class DrawingUtility {
 //	public static BufferedImage getShootanim() {
 //		return shootAnim;
 //	}
+	
+	public static BufferedImage getButton(String name) {
+		if(name.equalsIgnoreCase("start")) {
+			return startButton;
+		} else if(name.equalsIgnoreCase("high score")) {
+			return highScoreButton;
+		}
+		return null;
+	}
 	
 	public static void drawShootableObject(Graphics2D g2,int x,int y,int radius,String name,boolean isPointerOver){
 		
