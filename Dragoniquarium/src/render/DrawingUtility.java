@@ -8,6 +8,8 @@ import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
 
+import logic.PlayerStatus;
+
 
 public class DrawingUtility {
 
@@ -140,7 +142,7 @@ public class DrawingUtility {
 		
 		g2.setColor(Color.WHITE);
 		g2.setFont(standardFont);
-		g2.drawString( "" + currentEgg + " " + timeSpent/50, 20, 650);
+		g2.drawString( "" + currentEgg + " " + (timeSpent*PlayerStatus.TIME_CLOCK)/1000, 20, 650);
 		
 //		g2.drawString("SOCRE : "+score, ConfigurableOption.screenWidth/2 + 40, 35);
 		
@@ -152,8 +154,8 @@ public class DrawingUtility {
 //		start at 260 
 //		end at 1000
 //		one time line equals to 740 time spent
-//		timeLineAnimation.draw(g2, 260 + (int)((timeSpent%(180*50))*740.0/(180*50)), 19, false);
-		timeLineAnimation.draw(g2, 260 + (int)(((179*50)%(180*50))*740.0/(180*50)), 19, false);
+		timeLineAnimation.draw(g2, 260 + (int)((timeSpent%(180*100))*740.0/(180*100)), 19, false);
+//		timeLineAnimation.draw(g2, 260 + (int)(((179*50)%(180*50))*740.0/(180*50)), 19, false);
 	}
 	public static GameAnimation createTimeLineAnimation() {
 		GameAnimation anim = new GameAnimation(DrawingUtility.timeLineDragon,12,1,12,6);

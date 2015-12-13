@@ -84,7 +84,7 @@ public class GameLogic {
 		if(player.isPause()){
 			return;
 		}
-		player.increaseTimeSpent(1);
+//		player.increaseTimeSpent(1);
 		
 		// clear destroyed object
 		for(TargetObject obj : onScreenObject) {
@@ -155,7 +155,7 @@ public class GameLogic {
 			RenderableHolder.getInstance().add(atk);
 		}*/
 		if (spawnDelayCounter >= SPAWN_DELAY ) {
-			spawnDelayCounter = -1000;
+			spawnDelayCounter = -10000;
 			TargetObject newEnemy = new Enemy1(500, 300, 30, zCounter);
 			onScreenObject.add(newEnemy);
 			RenderableHolder.getInstance().add(newEnemy);

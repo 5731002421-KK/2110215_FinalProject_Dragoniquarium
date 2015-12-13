@@ -10,15 +10,22 @@ import render.Resource;
 
 public class PlayerStatus implements IRenderable{
 	
+	public static final int TIME_CLOCK = 10;
+	
 	private int timeSpent = 0;
 	private int egg;
 	private boolean pause = false;
 	private GameAnimation timeLineAnimation;
 	
+	private TimeRunnable time;
+	
 	public PlayerStatus() {
 		super();
 		this.egg = 20000;
 		timeLineAnimation = DrawingUtility.createTimeLineAnimation();
+		
+		time = new TimeRunnable(this);
+		new Thread(time).start();
 	}
 	
 	public boolean isPause() {
@@ -37,7 +44,7 @@ public class PlayerStatus implements IRenderable{
 		return timeSpent;
 	}
 	
-	public void increaseTimeSpent(int time) {
+	public synchronized void increaseTimeSpent(int time) {
 		this.timeSpent += time;
 	}
 	
