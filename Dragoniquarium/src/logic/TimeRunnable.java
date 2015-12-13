@@ -13,11 +13,18 @@ public class TimeRunnable implements Runnable {
 	public void run() {
 		
 		while(true) {
+			
 			try {
+				if(player.isPause()) {
+					synchronized (player) {
+						player.wait();
+					}
+				}
 				Thread.sleep(PlayerStatus.TIME_CLOCK);
 				synchronized (player) {
 					player.increaseTimeSpent(1);
 				}
+				
 			} catch (InterruptedException e) {
 				
 				e.printStackTrace();

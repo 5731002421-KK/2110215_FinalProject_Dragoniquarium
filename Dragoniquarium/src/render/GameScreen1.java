@@ -16,6 +16,9 @@ import java.awt.event.MouseMotionListener;
 import javax.swing.JComponent;
 import javax.swing.UIManager;
 
+import logic.PlayerStatus;
+import main.Main;
+
 public class GameScreen1 extends JComponent{
 
 	private static final long serialVersionUID = -8381015030266312089L;
@@ -27,8 +30,39 @@ public class GameScreen1 extends JComponent{
 		setVisible(true);
 		
 		addListener();
+		addPauseButton();
 //		UIManager.put("OptionPane.buttonFont", new Font("Monospaced", Font.PLAIN, 20));
 		UIManager.put("OptionPane.messageFont", new Font("Monospaced", Font.PLAIN, 15));
+	}
+	
+	private void addPauseButton() {
+		TitleButton pauseButton = new TitleButton("start", 400, 400);
+		pauseButton.addMouseListener(new MouseAdapter() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				pauseButton.color = Color.RED;
+				if(PlayerStatus.instance.isPause()) {
+					PlayerStatus.instance.setPause(false);
+					synchronized (PlayerStatus.instance) {
+						PlayerStatus.instance.notifyAll();
+					}
+				} else {
+					PlayerStatus.instance.setPause(true);
+				}
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				pauseButton.color = Color.RED;
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				pauseButton.color = Color.YELLOW;
+			}
+		});
+		this.add(pauseButton);
 	}
 	
 	private void addListener(){

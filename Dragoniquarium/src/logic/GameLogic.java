@@ -84,7 +84,6 @@ public class GameLogic {
 		if(player.isPause()){
 			return;
 		}
-//		player.increaseTimeSpent(1);
 		
 		// clear destroyed object
 		for(TargetObject obj : onScreenObject) {

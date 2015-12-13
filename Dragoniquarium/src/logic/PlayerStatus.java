@@ -11,6 +11,7 @@ import render.Resource;
 public class PlayerStatus implements IRenderable{
 	
 	public static final int TIME_CLOCK = 10;
+	public static PlayerStatus instance;
 	
 	private int timeSpent = 0;
 	private int egg;
@@ -23,6 +24,8 @@ public class PlayerStatus implements IRenderable{
 		super();
 		this.egg = 20000;
 		timeLineAnimation = DrawingUtility.createTimeLineAnimation();
+		
+		instance = this;
 		
 		time = new TimeRunnable(this);
 		new Thread(time).start();
@@ -63,7 +66,9 @@ public class PlayerStatus implements IRenderable{
 	@Override
 	public void draw(Graphics2D g2d) {
 		
-		timeLineAnimation.updateAnimation();
+		if(!pause) {
+			timeLineAnimation.updateAnimation();
+		}
 		DrawingUtility.drawStatusBar(g2d, egg, pause, timeSpent, timeLineAnimation);
 		/*g2d.setColor(Color.BLACK);
 		g2d.fillRect(0, 420, 640, 60);
