@@ -50,7 +50,7 @@ public class GameTitle extends JPanel {
 		this.setPreferredSize(new Dimension(1280, 700));
 		this.setLayout(null);
 		
-		TitleButton startButton = new TitleButton("start", 400, 200);
+		TitleButton startButton = new TitleButton("start", 400, 400);
 		startButton.addMouseListener(new MouseAdapter() {
 			
 			@Override

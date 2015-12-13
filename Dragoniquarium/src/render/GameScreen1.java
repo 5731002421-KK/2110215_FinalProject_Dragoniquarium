@@ -110,7 +110,7 @@ public class GameScreen1 extends JComponent{
 		
 		// draw background
 		g2d.drawImage(DrawingUtility.bg, null, 0, 0);
-		
+		g2d.drawImage(DrawingUtility.ui, null, 0, 0);
 		//Preventing thread interference
 		synchronized(RenderableHolder.getInstance()){
 			for(IRenderable entity : RenderableHolder.getInstance().getRenderableList()){

@@ -26,8 +26,8 @@ public class GameWindow extends JFrame{
 		currentScene.requestFocus();
 		
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
-//		Image image = toolkit.getImage("res/AncientCursor.png");
 		Image image = new ImageIcon("src/res/AncientCursor.png").getImage();
+//		Image image = new ImageIcon("src/res/Cursor.png").getImage();
 		Cursor c = toolkit.createCustomCursor(image , new Point(0, 0), "custom cursor");
 		this.setCursor (c);
 		

@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 
 import render.DrawingUtility;
+import render.GameAnimation;
 import render.IRenderable;
 import render.Resource;
 
@@ -12,10 +13,12 @@ public class PlayerStatus implements IRenderable{
 	private int timeSpent = 0;
 	private int egg;
 	private boolean pause = false;
+	private GameAnimation timeLineAnimation;
 	
 	public PlayerStatus() {
 		super();
 		this.egg = 20000;
+		timeLineAnimation = DrawingUtility.createTimeLineAnimation();
 	}
 	
 	public boolean isPause() {
@@ -53,7 +56,8 @@ public class PlayerStatus implements IRenderable{
 	@Override
 	public void draw(Graphics2D g2d) {
 		
-		DrawingUtility.drawStatusBar(g2d, egg, pause, timeSpent/50);
+		timeLineAnimation.updateAnimation();
+		DrawingUtility.drawStatusBar(g2d, egg, pause, timeSpent, timeLineAnimation);
 		/*g2d.setColor(Color.BLACK);
 		g2d.fillRect(0, 420, 640, 60);
 		g2d.setColor(Color.white);

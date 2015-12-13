@@ -26,11 +26,15 @@ public class DrawingUtility {
 		}
 	}
 	
-	protected static final BufferedImage bg = getImage("res/background.jpg");
+	public static final BufferedImage egg = getImage("res/Egg.png");
+	
+	protected static final BufferedImage bg = getImage("res/Background.jpg");
+	protected static final BufferedImage ui = getImage("res/UI.png");
 	protected static final BufferedImage titleBackGround = getImage("res/titleBackGround.jpg");
 	protected static final BufferedImage startButton = getImage("res/Egg1.png");
 	protected static final BufferedImage highScoreButton = getImage("res/Egg1.png");
-	public static final BufferedImage egg = getImage("res/Egg.png");
+	protected static final BufferedImage timeLineDragon = getImage("res/TimeLineDragon.png");
+	
 	protected static final BufferedImage dragon1 = getImage("res/dragon1.png");
 	protected static final BufferedImage dragon1_egg = getImage("res/dragon1_egg.png");
 	
@@ -128,14 +132,15 @@ public class DrawingUtility {
 		}
 	}*/
 	
-	public static void drawStatusBar(Graphics2D g2, int currentEgg, boolean pause, int timeSpent){
+	public static void drawStatusBar(Graphics2D g2, int currentEgg, boolean pause, 
+										int timeSpent, GameAnimation timeLineAnimation){
 
 		g2.setColor(Color.BLACK);
 		g2.fillRect(20, 600, 80, 60);
 		
 		g2.setColor(Color.WHITE);
 		g2.setFont(standardFont);
-		g2.drawString( "" + currentEgg + " " + timeSpent, 20, 650);
+		g2.drawString( "" + currentEgg + " " + timeSpent/50, 20, 650);
 		
 //		g2.drawString("SOCRE : "+score, ConfigurableOption.screenWidth/2 + 40, 35);
 		
@@ -144,6 +149,16 @@ public class DrawingUtility {
 			g2.setFont(standardFont);
 //			g2.drawString("PAUSE", ConfigurableOption.screenWidth/2-40, ConfigurableOption.screenHeight/2);
 		}
+//		start at 260 
+//		end at 1000
+//		one time line equals to 740 time spent
+//		timeLineAnimation.draw(g2, 260 + (int)((timeSpent%(180*50))*740.0/(180*50)), 19, false);
+		timeLineAnimation.draw(g2, 260 + (int)(((179*50)%(180*50))*740.0/(180*50)), 19, false);
+	}
+	public static GameAnimation createTimeLineAnimation() {
+		GameAnimation anim = new GameAnimation(DrawingUtility.timeLineDragon,12,1,12,6);
+		anim.play();
+		return anim;
 	}
 	
 	public static GameAnimation createAttackAnimation() {
