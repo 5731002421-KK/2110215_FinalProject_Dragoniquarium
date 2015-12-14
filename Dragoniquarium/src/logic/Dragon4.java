@@ -20,8 +20,8 @@ public class Dragon4 extends DamageableObject{
 	public Dragon4(int x, int y, int z) {
 		super(x, y, 25, z, 1, 10, 1);
 		stateTime = 200;
-		flyingAnimation = DrawingUtility.createDragon1Animation();
-		attackingAnimation = DrawingUtility.createDragon1AnimationLayingEgg();
+		flyingAnimation = DrawingUtility.createDragon4Animation();
+		attackingAnimation = DrawingUtility.createDragon4AnimationAttack();
 	}
 
 	@Override
@@ -92,7 +92,8 @@ public class Dragon4 extends DamageableObject{
 			return ;
 		}
 		
-		AttackObject atk = new AttackObject(x, y, 15, zCounter, 5, targetEnemy.x, targetEnemy.y, 4, 3);
+		AttackObject atk = new AttackObject(x, y, 15, zCounter, 5, targetEnemy.x, targetEnemy.y, 5, 3);
+//		AttackObject atk = new AttackObject(x, y, 5, zCounter, 1, targetEnemy.x, targetEnemy.y, 4, 4);
 		onScreenAttack.add(atk);
 		RenderableHolder.getInstance().add(atk);
 

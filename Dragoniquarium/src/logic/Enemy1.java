@@ -79,7 +79,7 @@ public class Enemy1 extends EnemyObject {
 		
 		attackTickCount = 0;
 		for(int i=0;i<3;i++) {
-			AttackObject atk = new AttackObject(x, y, 10, zCounter, 1,
+			AttackObject atk = new AttackObject(x, y, 20, zCounter, 1,
 					RandomUtility.random(leftBorder, rightBorder), bottomBorder, 3, 1);
 			onScreenAttack.add(atk);
 			RenderableHolder.getInstance().add(atk);

@@ -155,6 +155,14 @@ public class GameScreen1 extends JComponent{
 			}
 			
 		}
+		
+		synchronized(RenderableHolder.getInstance()){
+			for(GameAnimation anim : RenderableHolder.getInstance().getAnimationList()){
+				if(anim.isPlaying()){
+					anim.draw(g2d);
+				}
+			}
+		}
 //		System.out.println("-----");
 		
 	}

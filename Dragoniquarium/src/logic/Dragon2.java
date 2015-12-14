@@ -21,8 +21,8 @@ public class Dragon2 extends DamageableObject {
 	public Dragon2(int x, int y, int z) {
 		super(x, y, 25, z, 1, 1, 0);
 		stateTime = 200;
-		flyingAnimation = DrawingUtility.createDragon1Animation();
-		attackingAnimation = DrawingUtility.createDragon1AnimationLayingEgg();
+		flyingAnimation = DrawingUtility.createDragon2Animation();
+		attackingAnimation = DrawingUtility.createDragon2AnimationAttack();
 	}
 	
 	@Override
@@ -40,13 +40,12 @@ public class Dragon2 extends DamageableObject {
 		}
 		
 		attacking = false;
-		
 		if(state == 1) {
 			stateTime--;
 			if(stateTime == 0) {
 				if(GameLogic.enemyOnScreen) {
 					state = 3;
-					stateTime = 30;
+					stateTime = 48;
 					attackingAnimation.setCurrentFrame(0);
 				} else {
 					stateTime = 100;
@@ -55,13 +54,15 @@ public class Dragon2 extends DamageableObject {
 			}
 		} else if(state == 3) {
 			stateTime--;
-			if(stateTime == 15) {
-				attacking = true;
-			}
+		/*	if(stateTime == 15) {
+				
+			}*/
 			
 			if(stateTime == 0) {
+				attacking = true;
 				if(GameLogic.enemyOnScreen) {
-					stateTime = 30;
+					stateTime = 48;
+					attackingAnimation.setCurrentFrame(0);
 				} else {
 					state = 1;
 					stateTime = 100;
@@ -112,7 +113,7 @@ public class Dragon2 extends DamageableObject {
 	@Override
 	public void draw(Graphics2D g2d) {
 //		g2d.setColor(Color.GREEN);
-//		g2d.drawOval((int)x-radius, (int)y-radius, 2*radius, 2*radius);	
+		g2d.drawOval((int)x-radius, (int)y-radius, 2*radius, 2*radius);	
 		
 		if(state == 1) {
 			flyingAnimation.draw(g2d, (int)x-radius, (int)y-radius, isLeft);

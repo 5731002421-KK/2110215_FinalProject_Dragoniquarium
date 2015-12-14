@@ -40,19 +40,28 @@ public class AttackObject extends TargetObject {
 		
 		switch (attackType) {
 		case 1:
-			attackAnimation = DrawingUtility.createAttackAnimation();
+//			attackAnimation = DrawingUtility.createAttackAnimation();
 			break;
 		case 2:
-			attackAnimation = DrawingUtility.createAttackAnimation();
+			attackAnimation = DrawingUtility.createAttack2Animation();
+			break;
+		case 3:
+			attackAnimation = DrawingUtility.createAttack3Animation();
+			break;
+		case 4:
+			attackAnimation = DrawingUtility.createAttack4Animation();
 			break;
 		default:
-			attackAnimation = DrawingUtility.createAttackAnimation();
+			attackAnimation = DrawingUtility.createAttack3Animation();
 			break;
 		}
 		
 	}
 	
 	public void hitByPlayer() {
+		if(attackType != 1) {
+			return ;
+		}
 		life--;
 		if(life <= 0) {
 			destroyed = true;
@@ -70,6 +79,10 @@ public class AttackObject extends TargetObject {
 	
 	@Override
 	public void move() {
+		if(attackType != 1) {
+			attackAnimation.updateAnimation();
+		}
+		
 		x += xSpeed;
 		y += ySpeed;
 		if(x > rightBorder || x < leftBorder || y < topBorder || y > bottomBorder) {
@@ -84,8 +97,16 @@ public class AttackObject extends TargetObject {
 		} else {
 			g2d.setColor(Color.ORANGE);
 		}
-//		g2d.fillOval((int)(x-radius), (int)(y-radius), 2*radius, 2*radius);
-		attackAnimation.draw(g2d, (int)(x-radius), (int)(y-radius), false);
+		g2d.fillOval((int)(x-radius), (int)(y-radius), 2*radius, 2*radius);
+		
+		if(attackType == 1) {
+			DrawingUtility.drawAttack1(g2d, (int)(x-radius)-8, (int)(y-radius)-8, isPointerOver);
+		} else {
+			int tempX = (int)(x-radius);
+			int tempY = (int)(y-radius);
+			
+			attackAnimation.draw(g2d, tempX-20, tempY-20, false);
+		}
 		
 	}
 	

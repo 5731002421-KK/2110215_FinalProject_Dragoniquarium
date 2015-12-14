@@ -16,7 +16,7 @@ public class Dragon1 extends DamageableObject {
 	
 	public Dragon1(int x, int y, int z) {
 		super(x, y, 25, z, 2, 1, 0);
-		stateTime = 200;
+		stateTime = RandomUtility.random(150, 250);
 		walkingAnimation = DrawingUtility.createDragon1Animation();
 		layingAnimation = DrawingUtility.createDragon1AnimationLayingEgg();
 	}
@@ -51,7 +51,7 @@ public class Dragon1 extends DamageableObject {
 			
 			if(stateTime == 0) {
 				state = 1;
-				stateTime = 500;
+				stateTime = RandomUtility.random(400, 600);
 			}
 			return ;
 		}
@@ -64,8 +64,9 @@ public class Dragon1 extends DamageableObject {
 		
 		// TODO
 //		g2d.drawImage(Resource.egg1Sprite, null, (int)x-radius, (int)y-radius);
+		g2d.fillOval((int)x-radius, (int)y-radius, radius*2, radius*2);
 		if(state == 1) {
-			walkingAnimation.draw(g2d, (int)x-radius, (int)y-radius, isLeft);
+			walkingAnimation.draw(g2d, (int)x-radius-5, (int)y-radius*2, isLeft);
 		} else if(state == 3) {
 			int temp = (int)x-radius;
 			if(isLeft) {

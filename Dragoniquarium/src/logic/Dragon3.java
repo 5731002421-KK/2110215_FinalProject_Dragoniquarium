@@ -15,8 +15,8 @@ public class Dragon3 extends DamageableObject {
 	public Dragon3(int x, int y, int z) {
 		super(x, y, 55, z, 2, 1, 0);
 		stateTime = 200;
-		walkingAnimation = DrawingUtility.createDragon1Animation();
-		guardingAnimation = DrawingUtility.createDragon1AnimationLayingEgg();
+		walkingAnimation = DrawingUtility.createDragon3Animation();
+		guardingAnimation = DrawingUtility.createDragon3AnimationDef();
 	}
 	
 	
@@ -25,10 +25,12 @@ public class Dragon3 extends DamageableObject {
 		if(destroyed) return;
 		
 		
-		walkingAnimation.updateAnimation();
-		if(state == 3) {
+		if(state == 1) {
+			walkingAnimation.updateAnimation();
+		} else if(state == 3) {
+			if(guardingAnimation.getCurrentFrame()!= guardingAnimation.getFrameCount()-1)
 			guardingAnimation.updateAnimation();
-		}
+		} 
 		
 		if(hasDestination) {
 			if(contains(xDestination,yDestination)) {
@@ -47,7 +49,9 @@ public class Dragon3 extends DamageableObject {
 				state = 3;
 				stateTime = RandomUtility.random(150, 400);
 				defense = 5;
+				guardingAnimation.setCurrentFrame(0);
 			}
+			calculateXaxis();
 		} else if(state == 3) {
 			stateTime--;
 			if(stateTime == 0) {
@@ -57,17 +61,23 @@ public class Dragon3 extends DamageableObject {
 			}
 		}
 		
-		calculateXaxis();
+		
 	}
 	
 	@Override
 	public void draw(Graphics2D g2d) {
 		
-		if(state == 3) {
+//		if(state == 3) {
 			g2d.setColor(Color.BLUE);
 			g2d.fillOval((int)x-radius, (int)y-radius, radius*2, radius*2);
 //			guardingAnimation.draw(g2d, (int)x-radius, (int)y-radius-8, isLeft);
+//		}
+		
+		if(state == 1) {
+			walkingAnimation.draw(g2d, (int)x-radius, (int)y-radius, isLeft);
+		} else if(state == 3) {
+			guardingAnimation.draw(g2d, (int)x-radius, (int)y-radius-8, isLeft);
 		}
-		walkingAnimation.draw(g2d, (int)x-radius, (int)y-radius, isLeft);
+//		walkingAnimation.draw(g2d, (int)x-radius, (int)y-radius, isLeft);
 	}
 }

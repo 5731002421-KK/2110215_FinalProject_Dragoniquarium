@@ -8,7 +8,7 @@ import render.DrawingUtility;
 public class Egg1 extends CollectibleObject {
 	
 	public Egg1(int x, int y) {
-		super(x, y, 20, Integer.MAX_VALUE-2, 30);
+		super(x, y, 21, Integer.MAX_VALUE-2, 30);
 	}
 
 	@Override
@@ -16,7 +16,7 @@ public class Egg1 extends CollectibleObject {
 //		g2d.drawImage(Resource.egg1Sprite, null, (int)x-radius, (int)y-radius);
 		g2d.setColor(Color.YELLOW);
 		g2d.fillOval((int)x-radius, (int)y-radius, 2*radius, 2*radius);
-		g2d.drawImage(DrawingUtility.egg, null, (int)x-radius, (int)y-radius);
+		g2d.drawImage(DrawingUtility.egg, null, (int)x-radius+2, (int)y-radius-4);
 		// TODO
 	}
 

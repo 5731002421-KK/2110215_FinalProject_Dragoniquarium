@@ -14,6 +14,8 @@ public class GameAnimation {
 	private int currentRow, currentColumn;
 	private int frameWidth,frameHeight;
 	private boolean playing = false;
+	private boolean oneTime = false;
+	private int x, y;
 	
 	public GameAnimation(BufferedImage image,int frameCount, int row, int column,int frameDelay){
 		this.image = image;
@@ -34,16 +36,37 @@ public class GameAnimation {
 		}
 	}
 	
-	
+	public GameAnimation(BufferedImage image,int frameCount, int row, int column,
+							int frameDelay, int x, int y){
+		this.image = image;
+		this.frameCount = frameCount;
+		this.row = row;
+		this.column = column;
+		this.frameDelay = frameDelay;
+		this.currentFrame = 0;
+		this.currentRow = 0;
+		this.currentColumn = 0;
+		this.frameDelayCount = 0;
+		this.x = x;
+		this.y = y;
+		this.oneTime = true;
+		if (image != null) {
+			this.frameWidth = image.getWidth()/column;
+			this.frameHeight = image.getHeight()/row;
+		} else {
+			this.frameWidth = 0;
+			this.frameHeight = 0;
+		}
+	}
 /*	protected void topLeftAnimationAt(int x,int y){
 		this.x = x;
 		this.y = y;
-	}
+	}*/
 	
 	protected void centerAnimationAt(int x,int y){
 		this.x = x-frameWidth/2;
 		this.y = y-frameHeight/2;
-	}*/
+	}
 	
 	public void play(){
 		currentFrame = 0;
@@ -70,17 +93,26 @@ public class GameAnimation {
 		
 		frameDelayCount = frameDelay;
 		currentFrame++;
-		currentColumn++;
+//		currentColumn++;
+		currentRow++;
 		
-		if(currentColumn == column) {
-			currentColumn = 0;
-			currentRow++;
+//		if(currentColumn == column) {
+//			currentColumn = 0;
+//			currentRow++;
+//		}
+		
+		if(currentRow == row) {
+			currentRow = 0;
+			currentColumn++;
 		}
 		
 		if( currentFrame == frameCount) {
 			currentFrame = 0;
 			currentColumn = 0;
 			currentRow = 0;
+			if(oneTime) {
+				stop();
+			}
 //			stop();
 		}
 	}
@@ -101,7 +133,18 @@ public class GameAnimation {
 		}
 		g2.drawImage(currentAnimation, null, x, y);
 	}
-
+	
+	public void draw(Graphics2D g2) {
+		if(image == null) {
+			return ;
+		}
+		
+		BufferedImage currentAnimation = image.getSubimage(currentColumn * frameWidth, 
+				currentRow * frameHeight, frameWidth, frameHeight);
+		
+		g2.drawImage(currentAnimation, null, x, y);
+	}
+	
 	public BufferedImage getImage() {
 		return image;
 	}
@@ -139,8 +182,8 @@ public class GameAnimation {
 
 	public void setCurrentFrame(int currentFrame) {
 		this.currentFrame = currentFrame;
-		this.currentRow = currentFrame/column;
-		this.currentColumn = currentFrame%column;
+		this.currentColumn = currentFrame/row;
+		this.currentRow = currentFrame%row;
 	}
 
 

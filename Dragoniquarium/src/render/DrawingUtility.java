@@ -39,10 +39,26 @@ public class DrawingUtility {
 	
 	protected static final BufferedImage dragon1 = getImage("res/dragon1.png");
 	protected static final BufferedImage dragon1_egg = getImage("res/dragon1_egg.png");
+	protected static final BufferedImage dragon2 = getImage("res/Dragon2.png");
+	protected static final BufferedImage dragon2_attack = getImage("res/Dragon2_Attack.png");
+	protected static final BufferedImage dragon3 = getImage("res/Dragon3.png");
+	protected static final BufferedImage dragon3_def = getImage("res/Dragon3_Def.png");
+	protected static final BufferedImage dragon4 = getImage("res/Dragon4.png");
+	protected static final BufferedImage dragon4_attack = getImage("res/Dragon4_Attack.png");
+	protected static final BufferedImage dragon5 = getImage("res/Dragon5.png");
+	protected static final BufferedImage dragon5_attack = getImage("res/Dragon5_Attack.png");
+	
+	protected static final BufferedImage attack1 = getImage("res/FireBall1.png");
+	protected static final BufferedImage attack2 = getImage("res/FireBall2.png");
+	protected static final BufferedImage attack3 = getImage("res/FireBall3.png");
+	protected static final BufferedImage attack4 = getImage("res/FireBall4.png");
 	
 //	protected static final BufferedImage gun = getImage("res/img/gun.png");
 //	protected static final BufferedImage gun_inf = getImage("res/img/gun_inf.png");
-//	protected static final BufferedImage shootAnim = getImage("res/img/shootAnim.png");
+	protected static final BufferedImage attack1_boom = getImage("res/FireBall1_Boom.png");
+	protected static final BufferedImage attack2_boom = getImage("res/FireBall2_Boom.png");
+	protected static final BufferedImage attack3_boom = getImage("res/FireBall3_Boom.png");
+	protected static final BufferedImage attack4_boom = getImage("res/FireBall4_Boom.png");
 	
 	protected static final AlphaComposite transcluentWhite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.7f);
 	protected static final AlphaComposite opaque = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1);
@@ -102,6 +118,12 @@ public class DrawingUtility {
 			g2.setComposite(opaque);
 		}
 	}*/
+	public static void drawAttack1(Graphics2D g2,int x,int y, boolean isPointerOver){
+		g2.drawImage(attack1, null, x, y);
+		if(isPointerOver) {
+			
+		}
+	}
 	
 	public static void drawItemBullet(Graphics2D g2,int x,int y,int radius,boolean isPointerOver){
 
@@ -168,7 +190,28 @@ public class DrawingUtility {
 		anim.play();
 		return anim;
 	}
+
+	// atk 2
+	public static GameAnimation createAttack2Animation() {
+		GameAnimation anim = new GameAnimation(DrawingUtility.attack2,13,1,13,2);
+		anim.play();
+		return anim;
+	}
+	// atk 3
+	public static GameAnimation createAttack3Animation() {
+		GameAnimation anim = new GameAnimation(DrawingUtility.attack3,13,1,13,3);
+		anim.play();
+		return anim;
+	}
+	// atk 4
+	public static GameAnimation createAttack4Animation() {
+		GameAnimation anim = new GameAnimation(DrawingUtility.attack4,12,1,12,3);
+		anim.play();
+		return anim;
+	}
+	// TODO
 	
+	// 1
 	public static GameAnimation createDragon1Animation() {
 		GameAnimation anim = new GameAnimation(DrawingUtility.dragon1,12,1,12,3);
 		anim.play();
@@ -180,10 +223,89 @@ public class DrawingUtility {
 		anim.play();
 		return anim;
 	}
+	
+	// 2
+	public static GameAnimation createDragon2Animation() {
+		GameAnimation anim = new GameAnimation(DrawingUtility.dragon2,12,1,12,3);
+		anim.play();
+		return anim;
+	}
+	
+	public static GameAnimation createDragon2AnimationAttack() {
+		GameAnimation anim = new GameAnimation(DrawingUtility.dragon2_attack,12,2,6,4);
+		anim.play();
+		return anim;
+	}
+	
+	// 3
+	public static GameAnimation createDragon3Animation() {
+		GameAnimation anim = new GameAnimation(DrawingUtility.dragon3,15,5,3,5);
+		anim.play();
+		return anim;
+	}
+	
+	public static GameAnimation createDragon3AnimationDef() {
+		GameAnimation anim = new GameAnimation(DrawingUtility.dragon3_def,12,3,4,3);
+		anim.play();
+		return anim;
+	}
+	// 4
+	public static GameAnimation createDragon4Animation() {
+		GameAnimation anim = new GameAnimation(DrawingUtility.dragon4,13,1,13,3);
+		anim.play();
+		return anim;
+	}
+	
+	public static GameAnimation createDragon4AnimationAttack() {
+		GameAnimation anim = new GameAnimation(DrawingUtility.dragon4_attack,13,1,13,4);
+		anim.play();
+		return anim;
+	}
+	
+	// 5
+	public static GameAnimation createDragon5Animation() {
+		GameAnimation anim = new GameAnimation(DrawingUtility.dragon5,15,8,2,3);
+		anim.play();
+		return anim;
+	}
+	
+	public static GameAnimation createDragon5AnimationAttack() {
+		GameAnimation anim = new GameAnimation(DrawingUtility.dragon5_attack,15,2,8,4);
+		anim.play();
+		return anim;
+	}
 /*	public static GameAnimation createShootingAnimationAt(int x,int y){
 		GameAnimation anim = new GameAnimation(DrawingUtility.shootAnim,7,1);
 		anim.centerAnimationAt(x,y);
 		anim.play();
 		return anim;
 	}*/
+	
+	public static GameAnimation createAttack1DestroyAt(int x,int y){
+		GameAnimation anim = new GameAnimation(DrawingUtility.attack1_boom,8,1, 8, 3, x, y);
+		anim.centerAnimationAt(x,y);
+		anim.play();
+		return anim;
+	}
+	
+	public static GameAnimation createAttack2DestroyAt(int x,int y){
+		GameAnimation anim = new GameAnimation(DrawingUtility.attack2_boom,8,1, 8, 3, x, y);
+		anim.centerAnimationAt(x,y);
+		anim.play();
+		return anim;
+	}
+	
+	public static GameAnimation createAttack3DestroyAt(int x,int y){
+		GameAnimation anim = new GameAnimation(DrawingUtility.attack3_boom,8,1, 8, 3, x, y);
+		anim.centerAnimationAt(x,y);
+		anim.play();
+		return anim;
+	}
+	
+	public static GameAnimation createAttack4DestroyAt(int x,int y){
+		GameAnimation anim = new GameAnimation(DrawingUtility.attack4_boom,8,1, 8, 3, x, y);
+		anim.centerAnimationAt(x,y);
+		anim.play();
+		return anim;
+	}
 }

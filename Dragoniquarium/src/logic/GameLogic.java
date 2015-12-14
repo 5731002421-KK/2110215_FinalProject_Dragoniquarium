@@ -7,6 +7,8 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 
 
+
+import render.DrawingUtility;
 import render.GameAnimation;
 import main.Main;
 import input.InputUtility;
@@ -19,7 +21,7 @@ public class GameLogic {
 	protected List <TargetObject> onScreenObject =  new CopyOnWriteArrayList<TargetObject>();
 	protected List <AttackObject> onScreenAttack = new CopyOnWriteArrayList<AttackObject>();
 	protected List <Button> onScreenButton = new ArrayList<Button>();
-	protected List <GameAnimation> onScreenAnimation = new ArrayList<GameAnimation>();
+	protected List <GameAnimation> onScreenAnimation = new CopyOnWriteArrayList<GameAnimation>();
 	
 	private static final int SPAWN_DELAY = 100;
 	private int spawnDelayCounter ;
@@ -67,6 +69,7 @@ public class GameLogic {
 		onScreenObject.clear();
 		onScreenAttack.clear();
 		onScreenButton.clear();
+		onScreenAnimation.clear();
 		RenderableHolder.getInstance().clear();
 	}
 	
@@ -101,6 +104,15 @@ public class GameLogic {
 			}
 		}
 		
+		// clear and update animation attack
+		for(GameAnimation anim : onScreenAnimation) {
+			if (!anim.isPlaying()) {
+				onScreenAnimation.remove(anim);
+				RenderableHolder.getInstance().getAnimationList().remove(anim);
+			}
+			anim.updateAnimation();
+		}
+			
 		// check if any enemy on screen
 		checkEnemyOnScreen();
 		
@@ -154,7 +166,7 @@ public class GameLogic {
 			RenderableHolder.getInstance().add(atk);
 		}*/
 		if (spawnDelayCounter >= SPAWN_DELAY ) {
-			spawnDelayCounter = -10000;
+			spawnDelayCounter = -500;
 			TargetObject newEnemy = new Enemy1(500, 300, 30, zCounter);
 			onScreenObject.add(newEnemy);
 			RenderableHolder.getInstance().add(newEnemy);
@@ -219,6 +231,9 @@ public class GameLogic {
 						// if hit guardian dragon 
 						if(target instanceof Dragon3 || target instanceof Dragon4) {
 							obj.destroyed = true;
+							GameAnimation anim = DrawingUtility.createAttack1DestroyAt((int)obj.x, (int)obj.y);
+							onScreenAnimation.add(anim);
+							RenderableHolder.getInstance().add(anim);
 							break;
 						}
 					}
@@ -230,9 +245,18 @@ public class GameLogic {
 					if(target instanceof EnemyObject && target.contains(obj.x, obj.y)) {
 						((DamageableObject)target).hit(obj.getAttack());
 						obj.destroyed = true;
-						if(obj.attackType == 4) {
+						GameAnimation anim;
+						if(obj.attackType == 2) {
+							anim = DrawingUtility.createAttack2DestroyAt((int)obj.x, (int)obj.y);
+						} else if(obj.attackType == 3) {
 							createEgg(obj.x, obj.y);
+							anim = DrawingUtility.createAttack3DestroyAt((int)obj.x, (int)obj.y);
+						} else {
+							anim = DrawingUtility.createAttack4DestroyAt((int)obj.x, (int)obj.y);
 						}
+						
+						onScreenAnimation.add(anim);
+						RenderableHolder.getInstance().add(anim);
 						break;
 					}
 				}
