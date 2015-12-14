@@ -18,12 +18,45 @@ public class GameTitle extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
 	
+	public class TitleButton extends JPanel {
+		
+		private static final long serialVersionUID = 1L;
+		private BufferedImage image;
+		private boolean isPointerOver = false;
+		public Color color = Color.RED;
+		
+		public TitleButton(String name, int x, int y) {
+			image = DrawingUtility.getButton(name);
+			this.setBounds(x, y, image.getWidth(), image.getHeight());
+		}
+		
+		@Override
+		public void paintComponent(Graphics g){
+			super.paintComponent(g);
+			Graphics2D g2d = (Graphics2D)g;
+			
+			
+			g2d.setBackground(color);
+			g2d.clearRect(0, 0, getWidth(), getHeight());
+			g2d.drawImage(image, null, 0, 0);
+			if(isPointerOver) {
+//				g2d.drawImage(underline, null, 0, 0);
+			}
+			
+//			g2d.fillRect(x, y, width, height);
+		}
+		
+		
+	}
+	
+	
+	
 	public GameTitle() {
 		
 		this.setPreferredSize(new Dimension(1280, 700));
 		this.setLayout(null);
 		
-		TitleButton startButton = new TitleButton("start", 400, 400);
+		TitleButton startButton = new TitleButton("start", 500, 360);
 		startButton.addMouseListener(new MouseAdapter() {
 			
 			@Override
@@ -46,7 +79,7 @@ public class GameTitle extends JPanel {
 		this.add(startButton);
 		
 		
-		TitleButton highScoreButton = new TitleButton("high score", 400, 500);
+		TitleButton highScoreButton = new TitleButton("high score", 500, 460);
 		highScoreButton.addMouseListener(new MouseAdapter() {
 			
 			@Override
