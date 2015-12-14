@@ -170,6 +170,9 @@ public class GameLogic {
 			TargetObject newEnemy = new Enemy1(500, 300, 30, zCounter);
 			onScreenObject.add(newEnemy);
 			RenderableHolder.getInstance().add(newEnemy);
+			GameAnimation anim = DrawingUtility.createWarppingAnimation(500, 300);
+			onScreenAnimation.add(anim);
+			RenderableHolder.getInstance().add(anim);
 		}
 		if (spawnDelayCounter >= SPAWN_DELAY ) {
 			spawnDelayCounter = 0;

@@ -35,7 +35,10 @@ public class DrawingUtility {
 	protected static final BufferedImage titleBackGround = getImage("res/titleBackGround.jpg");
 	protected static final BufferedImage startButton = getImage("res/Egg1.png");
 	protected static final BufferedImage highScoreButton = getImage("res/Egg1.png");
+	protected static final BufferedImage playButton = getImage("res/PlayButton.png");
+	protected static final BufferedImage pauseButton = getImage("res/PauseButton.png");
 	protected static final BufferedImage timeLineDragon = getImage("res/TimeLineDragon.png");
+	protected static final BufferedImage underline = getImage("res/Underline.png");
 	
 	protected static final BufferedImage dragon1 = getImage("res/dragon1.png");
 	protected static final BufferedImage dragon1_egg = getImage("res/dragon1_egg.png");
@@ -53,26 +56,26 @@ public class DrawingUtility {
 	protected static final BufferedImage attack3 = getImage("res/FireBall3.png");
 	protected static final BufferedImage attack4 = getImage("res/FireBall4.png");
 	
-//	protected static final BufferedImage gun = getImage("res/img/gun.png");
-//	protected static final BufferedImage gun_inf = getImage("res/img/gun_inf.png");
 	protected static final BufferedImage attack1_boom = getImage("res/FireBall1_Boom.png");
 	protected static final BufferedImage attack2_boom = getImage("res/FireBall2_Boom.png");
 	protected static final BufferedImage attack3_boom = getImage("res/FireBall3_Boom.png");
 	protected static final BufferedImage attack4_boom = getImage("res/FireBall4_Boom.png");
 	
+	protected static final BufferedImage warpping = getImage("res/Warpping.png");
+	
 	protected static final AlphaComposite transcluentWhite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.7f);
 	protected static final AlphaComposite opaque = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1);
-	
-//	public static BufferedImage getShootanim() {
-//		return shootAnim;
-//	}
-	
+		
 	public static BufferedImage getButton(String name) {
 		if(name.equalsIgnoreCase("start")) {
 			return startButton;
 		} else if(name.equalsIgnoreCase("high score")) {
 			return highScoreButton;
-		}
+		} else if(name.equalsIgnoreCase("play")) {
+			return playButton;
+		} else if(name.equalsIgnoreCase("pause")) {
+			return pauseButton;
+		} 
 		return null;
 	}
 	
@@ -185,11 +188,11 @@ public class DrawingUtility {
 		return anim;
 	}
 	
-	public static GameAnimation createAttackAnimation() {
+	/*public static GameAnimation createAttackAnimation() {
 		GameAnimation anim = new GameAnimation(DrawingUtility.dragon1,12,1,12,3);
 		anim.play();
 		return anim;
-	}
+	}*/
 
 	// atk 2
 	public static GameAnimation createAttack2Animation() {
@@ -304,6 +307,13 @@ public class DrawingUtility {
 	
 	public static GameAnimation createAttack4DestroyAt(int x,int y){
 		GameAnimation anim = new GameAnimation(DrawingUtility.attack4_boom,8,1, 8, 3, x, y);
+		anim.centerAnimationAt(x,y);
+		anim.play();
+		return anim;
+	}
+	
+	public static GameAnimation createWarppingAnimation(int x, int y) {
+		GameAnimation anim = new GameAnimation(DrawingUtility.warpping,31,2, 16, 2, x, y);
 		anim.centerAnimationAt(x,y);
 		anim.play();
 		return anim;
