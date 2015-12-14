@@ -18,11 +18,11 @@ public class Enemy1 extends EnemyObject {
 	
 	private boolean attacking = false;
 	
-	public Enemy1(int x, int y, int radius, int z) {
-		super(x, y, radius, z, 1, 20, 0, 100);
+	public Enemy1(int x, int y, int z) {
+		super(x, y, 35, z, 1, 40, 0, 100);
 		stateTime = 30;
-		flyingAnimation = DrawingUtility.createDragon1Animation();
-		attackingAnimation = DrawingUtility.createDragon1AnimationLayingEgg();
+		flyingAnimation = DrawingUtility.createEnemy1Animation();
+		attackingAnimation = DrawingUtility.createEnemy1AnimationAttack1();
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -46,18 +46,18 @@ public class Enemy1 extends EnemyObject {
 			stateTime--;
 			if(stateTime == 0) {
 				state = 3;
-				stateTime = 100;
+				stateTime = 60;
 				attackingAnimation.setCurrentFrame(0);
 			}
 		} else if(state == 3) {
 			stateTime--;
-			if(stateTime == 40) {
+			if(stateTime == 10) {
 				attacking = true;
 			}
 			
 			if(stateTime == 0) {
 				state = 1;
-				stateTime = 100;
+				stateTime = RandomUtility.random(100, 200);
 			}
 		}
 		
@@ -89,17 +89,11 @@ public class Enemy1 extends EnemyObject {
 	@Override
 	public void draw(Graphics2D g2d) {
 //		g2d.setColor(Color.BLUE);
-//		g2d.fillOval((int)(x-radius), (int)(y-radius), 2*radius, 2*radius);
+		g2d.fillOval((int)(x-radius), (int)(y-radius), 2*radius, 2*radius);
 		if(state == 1) {
-			flyingAnimation.draw(g2d, (int)x-radius, (int)y-radius, isLeft);
+			flyingAnimation.draw(g2d, (int)x-radius*2-10, (int)y-radius, isLeft);
 		} else if(state == 3) {
-			int temp = (int)x-radius;
-			if(isLeft) {
-				temp += 7;				
-			} else {
-				temp -= 7;
-			}
-			attackingAnimation.draw(g2d, temp, (int)y-radius-8, isLeft);
+			attackingAnimation.draw(g2d, (int)x-radius*2-35, (int)y-radius-10, isLeft);
 		}
 	}
 
