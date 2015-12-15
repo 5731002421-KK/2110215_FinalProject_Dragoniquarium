@@ -10,6 +10,9 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 
 
+
+import javax.swing.JOptionPane;
+
 import main.Main;
 import render.DrawingUtility;
 import render.GameAnimation;
@@ -137,6 +140,7 @@ public class GameLogic {
 			}
 		}
 		if(lose) {
+			JOptionPane.showMessageDialog(null, "All Babigone is dead...", "Game Over", JOptionPane.DEFAULT_OPTION);
 			Main.goToTitle();
 		}
 		
@@ -181,6 +185,7 @@ public class GameLogic {
 		
 		// spawn enemy
 		spawnDelayCounter++;
+		
 		if(spawnDelayCounter == 24*50 || spawnDelayCounter == 53*50 || spawnDelayCounter == 82*50 ||
 			spawnDelayCounter == 110*50 || spawnDelayCounter == 143*50 || spawnDelayCounter == 170*50 ||
 			spawnDelayCounter == 174*50 || spawnDelayCounter == 179*50) {
@@ -195,6 +200,7 @@ public class GameLogic {
 				RenderableHolder.getInstance().add(newEnemy);
 			}
 		}
+		spawnDelayCounter %= 179*50;
 		
 		createWarpHole();
 		

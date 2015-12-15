@@ -11,7 +11,7 @@ public class AttackObject extends TargetObject {
 
 	
 	private int attack;
-	private int life = 2;
+	private int life = 1;
 	private double speed;
 	
 	private GameAnimation attackAnimation;
