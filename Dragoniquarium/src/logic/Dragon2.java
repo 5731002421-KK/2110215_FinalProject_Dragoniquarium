@@ -98,7 +98,7 @@ public class Dragon2 extends DamageableObject {
 			tempX += 40;
 		}
 		
-		AttackObject atk = new AttackObject(tempX, y, 10, zCounter, 1, targetEnemy.x, targetEnemy.y, 7, 2);
+		AttackObject atk = new AttackObject(tempX, y, 10, zCounter, 2, targetEnemy.x, targetEnemy.y, 7, 2);
 		onScreenAttack.add(atk);
 		RenderableHolder.getInstance().add(atk);
 
