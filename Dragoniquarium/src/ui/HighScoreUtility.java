@@ -43,13 +43,12 @@ public class HighScoreUtility {
 		
 		private String getRecordFormated(){
 			return String.format("%-20s %s%02d", name.trim(), score/60 + ":", score%60) ;
-//			(String.format("%s, %-20s %s",firstName, lastName, phoneNumber));
 		}
 		
 		private static String[] defaultRecord(){
-			return new String[]{"A:800","B:350","C:300",
-					"D:250","E:200","F:100",
-					"G:40","H:30","I:20","J:10"};
+			return new String[]{"A:800","B:750","C:700",
+					"D:650","E:600","F:500",
+					"G:400","H:300","I:200","J:100"};
 		}
 
 		@Override
@@ -99,7 +98,6 @@ public class HighScoreUtility {
 			}
 			highScoreRecord[index] = new HighScoreRecord(name, score);
 			
-//			System.out.println("index = " + index + " score = " + highScoreRecord[index].score);
 			try {
 				
 				BufferedWriter out = new BufferedWriter(new FileWriter("highscore"));

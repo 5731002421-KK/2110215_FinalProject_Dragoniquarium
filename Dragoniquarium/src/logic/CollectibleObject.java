@@ -2,8 +2,6 @@ package logic;
 
 import java.awt.AlphaComposite;
 
-//import lib.AudioUtility;
-
 public abstract class CollectibleObject extends TargetObject{
 	
 	protected int xBucket, yBucket;
@@ -22,25 +20,12 @@ public abstract class CollectibleObject extends TargetObject{
 	
 	@Override
 	public void generateMovingDestination(double curX, double curY) {
-//		System.out.println("In generate x = " + curX + " y = " + curY);
 		if(movingUp) {
 			xDestination = curX;
 			yDestination = RandomUtility.random(200, 202);
 		} else {
 			yDestination = 800;
 		}
-//		int timeSpent = 10;
-//		xSpeed = (xDestination - curX)/timeSpent;
-//		ySpeed = (yDestination - curY)/timeSpent;
-//		if (xSpeed == 0) {
-//			if(xDestination > curX) xSpeed = 1;
-//			else if (xDestination < curX) xSpeed = -1;
-//		}
-//		if (ySpeed == 0) {
-//			if (yDestination > curY) ySpeed = 1;
-//			else if(yDestination < curY) ySpeed = -1;
-//		}
-//		
 	}
 	
 	@Override
@@ -59,9 +44,9 @@ public abstract class CollectibleObject extends TargetObject{
 	}
 	
 	public void grab(PlayerStatus player){
-		if(destroyed) return;
-		
-//		AudioUtility.playSound("collect");
+		if(destroyed) {
+			return;
+		}
 		collect(player);
 		destroyed = true;
 	}

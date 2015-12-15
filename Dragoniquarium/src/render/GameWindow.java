@@ -8,7 +8,6 @@ import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 public class GameWindow extends JFrame{
 
@@ -27,11 +26,9 @@ public class GameWindow extends JFrame{
 		
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		Image image = new ImageIcon("src/res/AncientCursor.png").getImage();
-//		Image image = new ImageIcon("src/res/Cursor.png").getImage();
 		Cursor c = toolkit.createCustomCursor(image , new Point(0, 0), "custom cursor");
 		this.setCursor (c);
 		
-//		this.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		Resource.backgroundSound.loop();
 	}
 	

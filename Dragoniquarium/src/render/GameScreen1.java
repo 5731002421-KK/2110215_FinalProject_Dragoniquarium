@@ -16,9 +16,6 @@ import java.awt.event.MouseMotionListener;
 import javax.swing.JComponent;
 import javax.swing.UIManager;
 
-import logic.PlayerStatus;
-import main.Main;
-
 public class GameScreen1 extends JComponent{
 
 	private static final long serialVersionUID = -8381015030266312089L;
@@ -31,8 +28,6 @@ public class GameScreen1 extends JComponent{
 		
 		addListener();
 		this.add(new PauseButton(1218, 0));
-//		addPauseButton();
-//		UIManager.put("OptionPane.buttonFont", new Font("Monospaced", Font.PLAIN, 20));
 		UIManager.put("OptionPane.messageFont", new Font("Monospaced", Font.PLAIN, 15));
 	}
 	
@@ -119,7 +114,6 @@ public class GameScreen1 extends JComponent{
 		//Preventing thread interference
 		synchronized(RenderableHolder.getInstance()){
 			for(IRenderable entity : RenderableHolder.getInstance().getRenderableList()){
-//				System.out.println(entity.getZ());
 				if(entity.isVisible()){
 					entity.draw(g2d);
 				}
@@ -134,7 +128,6 @@ public class GameScreen1 extends JComponent{
 				}
 			}
 		}
-//		System.out.println("-----");
 		g2d.drawImage(DrawingUtility.grass, null, 0, 0);
 		g2d.drawImage(DrawingUtility.lightRay, null, 0, 0);
 	}

@@ -97,7 +97,6 @@ public class Dragon5 extends DamageableObject{
 		}
 		
 		AttackObject atk = new AttackObject(tempX, y+10, 22, zCounter, 5, targetEnemy.x, targetEnemy.y, 3, 4);
-//		AttackObject atk = new AttackObject(x, y, 15, zCounter, 5, targetEnemy.x, targetEnemy.y, 4, 3);
 		onScreenAttack.add(atk);
 		RenderableHolder.getInstance().add(atk);
 
@@ -114,7 +113,7 @@ public class Dragon5 extends DamageableObject{
 			flyingAnimation.draw(g2d, tempX-57, tempY, isLeft);
 		} else if(state == 3) {
 			if(isLeft) {
-//				tempX += 7;				
+				
 			} else {
 				tempX += 43;
 			}

@@ -37,10 +37,6 @@ public class GameTitle extends JPanel {
 			super.paintComponent(g);
 			Graphics2D g2d = (Graphics2D)g;
 			
-			
-//			g2d.setBackground(color);
-//			g2d.clearRect(0, 0, getWidth(), getHeight());
-			
 			if(isPointerOver) {
 				g2d.drawImage(imagePressed, null, 0, 0);
 			} else {
@@ -64,8 +60,6 @@ public class GameTitle extends JPanel {
 			
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-//				startButton.color = Color.RED;
 				startButton.isPointerOver = false;
 				Resource.coinSound.play();
 				Main.newGame();
@@ -73,13 +67,11 @@ public class GameTitle extends JPanel {
 			
 			@Override
 			public void mouseExited(MouseEvent e) {
-//				startButton.color = Color.RED;
 				startButton.isPointerOver = false;
 			}
 			
 			@Override
 			public void mouseEntered(MouseEvent e) {
-//				startButton.color = Color.YELLOW;
 				startButton.isPointerOver = true;
 			}
 		});
@@ -91,19 +83,16 @@ public class GameTitle extends JPanel {
 			
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				highScoreButton.isPointerOver = false;
 				HighScoreUtility.displayTop10();
 			}
 			
 			@Override
 			public void mouseExited(MouseEvent e) {
-				highScoreButton.color = Color.RED;
 				highScoreButton.isPointerOver = false;
 			}
 			
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				highScoreButton.color = Color.YELLOW;
 				highScoreButton.isPointerOver = true;
 			}
 		});
@@ -122,7 +111,6 @@ public class GameTitle extends JPanel {
 		// draw background
 		g2d.drawImage(DrawingUtility.titleBackGround, null, 0, 0);
 	
-//		System.out.println("-----");
 		
 	}
 	

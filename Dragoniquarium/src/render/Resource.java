@@ -3,9 +3,6 @@ package render;
 import java.applet.Applet;
 import java.applet.AudioClip;
 import java.awt.Font;
-import java.awt.image.BufferedImage;
-
-import javax.imageio.ImageIO;
 
 public class Resource {
 	

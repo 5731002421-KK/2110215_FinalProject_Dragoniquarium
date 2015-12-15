@@ -39,7 +39,6 @@ public class AttackObject extends TargetObject {
 		
 		switch (attackType) {
 		case 1:
-//			attackAnimation = DrawingUtility.createAttackAnimation();
 			break;
 		case 2:
 			attackAnimation = DrawingUtility.createAttack2Animation();

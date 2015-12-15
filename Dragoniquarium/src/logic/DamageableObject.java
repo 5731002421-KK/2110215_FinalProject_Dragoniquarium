@@ -50,14 +50,12 @@ public abstract class DamageableObject extends TargetObject {
 	
 	public DamageableObject(int x,int y, int radius, int z, int movingType, int life, int defense) {
 		super(x, y, radius, z);
-		// TODO Auto-generated constructor stub
 		this.movingType = movingType;
 		this.life = life;
 		this.defense = defense;
 		
 		this.isLeft = RandomUtility.random(0, 1) == 0 ? true : false;
 		this.state = 1;
-//		this.movingIn = true;
 		generateFirstDestination();
 		this.speed = RandomUtility.random(0.03, 0.07);
 		
@@ -78,29 +76,9 @@ public abstract class DamageableObject extends TargetObject {
 			return ;
 		}
 		
-//		x += (xDestination - x)/ Math.hypot(xDestination - x, yDestination - y) * speed;
 		x += (xDestination - x) * speed;
 		y += (yDestination - y) * speed;
 	}
-	
-//	@Override
-//	public void move() {
-//		if(destroyed) return;
-////		if(GameLogic.enemyOnScreen) {
-////			performStateAction();
-////			return ;
-////		}
-//		if(hasDestination) {
-//			moveIn();
-//			return ;
-//		}
-//		
-//		if( movingType == 1) {
-//			calculateYaxis();
-//		}
-//		
-//		calculateXaxis();	
-//	}
 	
 	protected void calculateXaxis(){
 		
@@ -209,14 +187,8 @@ public abstract class DamageableObject extends TargetObject {
 		hasDestination = true;
 	}
 	
-//	private void generateSpeed() {
-//		// TODO
-//	}
-
 	@Override
 	public void generateMovingDestination(double curX, double curY) {
-		// TODO check start and end point
-//		this.speed = RandomUtility.random(0.005, 0.05);
 		if (movingType == 1) {
 			xDestination = RandomUtility.random(Math.max(30, curX-200),Math.min(990, curX+200));
 			yDestination = RandomUtility.random(Math.max(40, curY-100), Math.min(500, curY+100));
@@ -230,13 +202,9 @@ public abstract class DamageableObject extends TargetObject {
 
 	@Override
 	public void reachDestination() {
-		// TODO Auto-generated method stub
-//		generateMovingDestination(x, y);
-		
 	}
 	
 	public void hit(int damage) {
-		//TODO
 		damage = Math.max(damage-defense, 0);
 		life -= damage;
 		if(life <= 0) {

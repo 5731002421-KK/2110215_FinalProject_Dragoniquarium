@@ -8,9 +8,6 @@ import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
 
-import logic.PlayerStatus;
-
-
 public class DrawingUtility {
 
 	protected static final Font standardFont = new Font("Tahoma",Font.BOLD,30);
@@ -92,48 +89,6 @@ public class DrawingUtility {
 		return null;
 	}
 	
-	public static void drawShootableObject(Graphics2D g2,int x,int y,int radius,String name,boolean isPointerOver){
-		
-		g2.setColor(Color.BLACK);
-		g2.fillOval(x-radius-2, y-radius-2, radius*2+4, radius*2+4);
-		
-		if(name.equalsIgnoreCase("simple")) {
-			g2.setColor(Color.BLUE);
-		} else if(name.equalsIgnoreCase("splitter")) {
-			g2.setColor(Color.RED);
-		} else if(name.equalsIgnoreCase("small")) {
-			g2.setColor(Color.YELLOW);
-		}
-		
-		g2.fillOval(x-radius, y-radius, radius*2, radius*2);
-		
-		if(isPointerOver){
-			g2.setComposite(transcluentWhite);
-			g2.setColor(Color.WHITE);
-			g2.fillOval(x-radius, y-radius, radius*2, radius*2);
-			g2.setComposite(opaque);
-		}
-	}
-	
-/*	public static void drawItemGun(Graphics2D g2,int x,int y,int radius,String name,boolean isPointerOver){
-		g2.setColor(Color.BLACK);
-		g2.fillOval(x-radius-2, y-radius-2, radius*2+4, radius*2+4);
-		g2.setColor(Color.GRAY);
-		g2.fillOval(x-radius, y-radius, radius*2, radius*2);
-		
-		if(name.equalsIgnoreCase("gun")) {
-			g2.drawImage(gun, null, x-15, y-15);
-		} else if(name.equalsIgnoreCase("“gun_inf")) {
-			g2.drawImage(gun_inf, null, x-15, y-15);
-		}
-		
-		if(isPointerOver){
-			g2.setComposite(transcluentWhite);
-			g2.setColor(Color.WHITE);
-			g2.fillOval(x-radius-2, y-radius-2, radius*2+4, radius*2+4);
-			g2.setComposite(opaque);
-		}
-	}*/
 	public static void drawAttack1(Graphics2D g2,int x,int y, boolean isPointerOver){
 		g2.drawImage(attack1, null, x, y);
 		if(isPointerOver) {
@@ -141,59 +96,19 @@ public class DrawingUtility {
 		}
 	}
 	
-	public static void drawItemBullet(Graphics2D g2,int x,int y,int radius,boolean isPointerOver){
-
-		g2.setColor(Color.BLACK);
-		g2.fillOval(x-radius-2, y-radius-2, radius*2+4, radius*2+4);
-		g2.setColor(Color.GRAY);
-		g2.fillOval(x-radius, y-radius, radius*2, radius*2);
-		
-		g2.setColor(Color.BLACK);
-		g2.fillRect(x-20, y-10, 20, 20);
-		g2.fillOval(x-20, y-10, 40, 20);
-		
-		if(isPointerOver){
-			g2.setComposite(transcluentWhite);
-			g2.setColor(Color.WHITE);
-			g2.fillOval(x-radius-2, y-radius-2, radius*2+4, radius*2+4);
-			g2.setComposite(opaque);
-		}
-	}
-	
-/*	public static void drawIconGun(Graphics2D g2,int bulletQuantity,int maxBullet,boolean isInfiniteBullet){
-		if(gun == null || (isInfiniteBullet && gun_inf == null)) return;
-		g2.setFont(DrawingUtility.smallFont);
-		if(isInfiniteBullet){
-			g2.drawImage(gun_inf,null,ConfigurableOption.screenWidth/2-15,5);
-		}else{
-			g2.drawImage(gun,null,ConfigurableOption.screenWidth/2-15,5);
-			g2.setColor(Color.WHITE);
-			g2.drawString(bulletQuantity+"/"+maxBullet,ConfigurableOption.screenWidth/2,35);
-		}
-	}*/
-	
 	public static void drawStatusBar(Graphics2D g2, int currentEgg, boolean pause, 
 										int timeSpent, GameAnimation timeLineAnimation){
-
-//		g2.setColor(Color.BLACK);
-//		g2.fillRect(20, 600, 80, 60);
-		
 		g2.setColor(Color.WHITE);
 		g2.setFont(standardFont);
 		g2.drawString( "  " + currentEgg  /*+ " : " + (timeSpent*PlayerStatus.TIME_CLOCK)/1000*/, 20, 650);
 		
-//		g2.drawString("SOCRE : "+score, ConfigurableOption.screenWidth/2 + 40, 35);
-		
-		
 		if(pause) {
 			g2.setFont(standardFont);
-//			g2.drawString("PAUSE", ConfigurableOption.screenWidth/2-40, ConfigurableOption.screenHeight/2);
 		}
 //		start at 260 
 //		end at 1000
 //		one time line equals to 740 time spent
 		timeLineAnimation.draw(g2, 260 + (int)((timeSpent%(180*100))*740.0/(180*100)), 19, false);
-//		timeLineAnimation.draw(g2, 260 + (int)(((179*50)%(180*50))*740.0/(180*50)), 19, false);
 	}
 	public static GameAnimation createTimeLineAnimation() {
 		GameAnimation anim = new GameAnimation(DrawingUtility.timeLineDragon,12,1,12,6);
@@ -201,12 +116,6 @@ public class DrawingUtility {
 		return anim;
 	}
 	
-	/*public static GameAnimation createAttackAnimation() {
-		GameAnimation anim = new GameAnimation(DrawingUtility.dragon1,12,1,12,3);
-		anim.play();
-		return anim;
-	}*/
-
 	// atk 2
 	public static GameAnimation createAttack2Animation() {
 		GameAnimation anim = new GameAnimation(DrawingUtility.attack2,13,1,13,2);
@@ -315,13 +224,6 @@ public class DrawingUtility {
 		anim.play();
 		return anim;
 	}
-	
-/*	public static GameAnimation createShootingAnimationAt(int x,int y){
-		GameAnimation anim = new GameAnimation(DrawingUtility.shootAnim,7,1);
-		anim.centerAnimationAt(x,y);
-		anim.play();
-		return anim;
-	}*/
 	
 	public static GameAnimation createAttack1DestroyAt(int x,int y){
 		GameAnimation anim = new GameAnimation(DrawingUtility.attack1_boom,8,1, 8, 3, x, y);

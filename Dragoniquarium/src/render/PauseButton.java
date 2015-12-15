@@ -83,8 +83,6 @@ public class PauseButton extends JPanel {
 			g2d.setComposite(opaque);
 		}
 		
-		
-//		g2d.fillRect(x, y, width, height);
 	}
 	
 	

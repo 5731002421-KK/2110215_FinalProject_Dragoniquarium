@@ -50,10 +50,6 @@ public class Dragon2 extends DamageableObject {
 			}
 		} else if(state == 3) {
 			stateTime--;
-		/*	if(stateTime == 15) {
-				
-			}*/
-			
 			if(stateTime == 0) {
 				attacking = true;
 				if(GameLogic.enemyOnScreen) {
@@ -67,7 +63,6 @@ public class Dragon2 extends DamageableObject {
 				}
 				
 			}
-//			return ;
 		}
 		
 		if(state == 1) {

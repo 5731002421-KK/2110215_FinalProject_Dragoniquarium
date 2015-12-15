@@ -58,10 +58,6 @@ public class GameAnimation {
 			this.frameHeight = 0;
 		}
 	}
-/*	protected void topLeftAnimationAt(int x,int y){
-		this.x = x;
-		this.y = y;
-	}*/
 	
 	protected void centerAnimationAt(int x,int y){
 		this.x = x-frameWidth/2;
@@ -93,13 +89,7 @@ public class GameAnimation {
 		
 		frameDelayCount = frameDelay;
 		currentFrame++;
-//		currentColumn++;
 		currentRow++;
-		
-//		if(currentColumn == column) {
-//			currentColumn = 0;
-//			currentRow++;
-//		}
 		
 		if(currentRow == row) {
 			currentRow = 0;
@@ -113,7 +103,6 @@ public class GameAnimation {
 			if(oneTime) {
 				stop();
 			}
-//			stop();
 		}
 	}
 
@@ -158,12 +147,6 @@ public class GameAnimation {
 	public int getFrameCount() {
 		return frameCount;
 	}
-
-
-//	public void setFrameCount(int frameCount) {
-//		this.frameCount = frameCount;
-//	}
-
 
 	public int getFrameDelay() {
 		return frameDelay;

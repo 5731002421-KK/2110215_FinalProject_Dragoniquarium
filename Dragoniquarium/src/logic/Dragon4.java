@@ -104,7 +104,6 @@ public class Dragon4 extends DamageableObject{
 	
 	@Override
 	public void draw(Graphics2D g2d) {
-		// TODO Auto-generated method stub
 //		g2d.fillOval((int)x-radius, (int)y-radius, 2*radius, 2*radius);	
 		
 		int tempX = (int)x-radius;

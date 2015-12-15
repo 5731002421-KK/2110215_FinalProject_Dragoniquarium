@@ -45,23 +45,12 @@ public class GameLogic {
 	
 
 	public GameLogic() {
-//		player = new PlayerStatus();
-//		playerStatus = new PlayerStatus();
-//		RenderableHolder.getInstance().add(player);
-//		RenderableHolder.getInstance().add(playerStatus);
-//		Button button = new Button(1, 30, 480, 30, 30, 100);
-//		onScreenButton.add(button);
-//		RenderableHolder.getInstance().add(button);
-//		spawnDelayCounter = 0;
-		
 	}
 	
 	//Called before enter the game loop
 	public synchronized void onStart(){
 		player = new PlayerStatus();
-//		playerStatus = new PlayerStatus();
 		RenderableHolder.getInstance().add(player);
-//		RenderableHolder.getInstance().add(playerStatus);
 		createButton();
 		spawnDelayCounter = 0;
 		
@@ -134,9 +123,7 @@ public class GameLogic {
 		// move and attack
 		for(TargetObject obj : onScreenObject) {
 			obj.move();
-//			enemyOnScreen = false;
 			if(obj instanceof EnemyObject) {
-//				enemyOnScreen = true;
 				((EnemyObject)obj).attack(onScreenAttack, zCounter);
 			} else if(obj instanceof Dragon2) {
 				((Dragon2)obj).attack(onScreenAttack, targetEnemy, zCounter);
@@ -194,9 +181,7 @@ public class GameLogic {
 	}
 	
 	
-	
-	
-	// TODO end logic update
+	// end logic update
 	private void createWarpHole() {
 		GameAnimation anim;
 
@@ -248,9 +233,8 @@ public class GameLogic {
 		}
 	}
 	
-	
+	// lay Egg
 	private void dragon1CreateEgg() {
-		// lay Egg
 		for(TargetObject obj : onScreenObject) {
 			if( obj instanceof Dragon1 ) {
 				Dragon1 temp = (Dragon1)obj; 
@@ -258,7 +242,7 @@ public class GameLogic {
 					temp.layingEgg = false;
 					createEgg(temp.x, temp.y-obj.radius);
 				}
-			} // else if( obj instanceof)
+			} 
 		}
 	}
 	
@@ -274,7 +258,6 @@ public class GameLogic {
 						GameAnimation anim = DrawingUtility.createAttack1DestroyAt((int)obj.x, (int)obj.y);
 						onScreenAnimation.add(anim);
 						RenderableHolder.getInstance().add(anim);
-						// if hit guardian dragon 
 						if(target instanceof Dragon3 || target instanceof Dragon4 || 
 							target instanceof Dragon5 || target instanceof Dragon2) {
 							obj.destroyed = true;
@@ -312,7 +295,6 @@ public class GameLogic {
 		// attack object type 1 is clicked
 		// check shoot and grab
 		TargetObject target = null;
-//				TargetObject grabbedObject = null;
 		if(!player.isDisplayingArea(InputUtility.getMouseX(), InputUtility.getMouseY())){
 			boolean shoot = false;
 			if(input.InputUtility.isMouseLeftClicked() ){
@@ -331,14 +313,9 @@ public class GameLogic {
 				else if(target instanceof EnemyObject) {
 					((EnemyObject)target).isChased(InputUtility.getMouseX(), InputUtility.getMouseY());
 					((EnemyObject)target).hit(1);
-					// target instance of Monster
 				}
 				
-			} else if (enemyOnScreen && shoot) {
-				// shoot animation
-//						onScreenAnimation.add(DrawingUtility.createShootingAnimationAt(
-//						input.InputUtility.getMouseX(), input.InputUtility.getMouseY()));
-			}
+			} 
 		}
 	}
 	
@@ -395,17 +372,6 @@ public class GameLogic {
 				target.setPointerOver(false);
 			}
 		}
-//		if(obj != null || !enemyOnScreen) {
-//			return obj;
-//		}
-		// find enemy
-	/*	TargetObject target = targetEnemy;
-		if(target.contains(x, y)){
-			obj = target;
-			obj.setPointerOver(true);
-		} else{
-			target.setPointerOver(false);
-		}*/
 		return obj;
 	}
 	

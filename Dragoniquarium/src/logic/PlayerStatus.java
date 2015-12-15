@@ -68,14 +68,6 @@ public class PlayerStatus implements IRenderable{
 			timeLineAnimation.updateAnimation();
 		}
 		DrawingUtility.drawStatusBar(g2d, egg, pause, timeSpent, timeLineAnimation);
-		/*g2d.setColor(Color.BLACK);
-		g2d.fillRect(0, 420, 640, 60);
-		g2d.setColor(Color.white);
-		
-		String scoreText = "EGG: " + this.egg;
-		g2d.setFont(Resource.standardFont);
-		g2d.drawString(scoreText, 10, 455);*/
-		
 	}
 
 	@Override
