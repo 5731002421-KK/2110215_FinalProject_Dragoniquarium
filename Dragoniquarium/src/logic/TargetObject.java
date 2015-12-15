@@ -1,11 +1,8 @@
 package logic;
 
 import java.awt.AlphaComposite;
-import java.awt.Graphics2D;
 
 import render.IRenderable;
-//import lib.ConfigurableOption;
-import logic.RandomUtility;;
 
 public abstract class TargetObject implements IRenderable{
 
@@ -22,8 +19,6 @@ public abstract class TargetObject implements IRenderable{
 	
 	protected static final AlphaComposite transcluentWhite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f);
 	protected static final AlphaComposite opaque = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1);
-//	protected int xDistance;
-//	protected int yDistance;
 	
 	protected boolean isPointerOver = false;
 
@@ -35,15 +30,6 @@ public abstract class TargetObject implements IRenderable{
 		this.y = y;
 		this.z = z;
 		this.radius = radius;
-//		this.xSpeed = xSpeed;
-//		this.ySpeed = ySpeed;
-//		this.movingType = movingType;
-		
-		//TODO - generate first destination - maybe in subclass
-		//TODO - how to fade in ?
-		
-//		this.x = movingParameter[0];
-//		this.y = movingParameter[1];
 		
 	}
 	

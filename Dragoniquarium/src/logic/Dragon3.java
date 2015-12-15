@@ -47,7 +47,7 @@ public class Dragon3 extends DamageableObject {
 			if (GameLogic.enemyOnScreen) {
 				state = 3;
 				radius = 95;
-				stateTime = RandomUtility.random(150, 300);
+				stateTime = RandomUtility.random(100, 200);
 				guardingAnimation.setCurrentFrame(0);
 				return ;
 			}
@@ -60,7 +60,7 @@ public class Dragon3 extends DamageableObject {
 			
 			if(stateTime == 0 || GameLogic.enemyOnScreen) {
 				if(GameLogic.enemyOnScreen) {
-					stateTime = RandomUtility.random(150, 300);
+					stateTime = RandomUtility.random(100, 200);
 				} else {
 					radius = 55;
 					state = 1;

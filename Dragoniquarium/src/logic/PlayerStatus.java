@@ -1,12 +1,10 @@
 package logic;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 
 import render.DrawingUtility;
 import render.GameAnimation;
 import render.IRenderable;
-import render.Resource;
 
 public class PlayerStatus implements IRenderable{
 	
@@ -22,7 +20,7 @@ public class PlayerStatus implements IRenderable{
 	
 	public PlayerStatus() {
 		super();
-		this.egg = 300;
+		this.egg = 500;
 		timeLineAnimation = DrawingUtility.createTimeLineAnimation();
 		
 		instance = this;

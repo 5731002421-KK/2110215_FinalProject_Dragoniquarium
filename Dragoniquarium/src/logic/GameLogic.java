@@ -169,7 +169,7 @@ public class GameLogic {
 		// spawn enemy
 		spawnDelayCounter++;
 		
-		if(spawnDelayCounter == 24*50 || spawnDelayCounter == 53*50 || spawnDelayCounter == 82*50 ||
+		if(spawnDelayCounter == 5*50 || spawnDelayCounter == 53*50 || spawnDelayCounter == 82*50 ||
 			spawnDelayCounter == 110*50 || spawnDelayCounter == 143*50 || spawnDelayCounter == 170*50 ||
 			spawnDelayCounter == 174*50 || spawnDelayCounter == 179*50) {
 			TargetObject newEnemy;
@@ -200,7 +200,7 @@ public class GameLogic {
 	private void createWarpHole() {
 		GameAnimation anim;
 
-		if( spawnDelayCounter == 24*50-50 || spawnDelayCounter == 53*50-50 ||
+		if( spawnDelayCounter == 5*50-50 || spawnDelayCounter == 53*50-50 ||
 				spawnDelayCounter == 170*50-50) {
 			spawnNumber = 1;
 			spawnX[0] = RandomUtility.random(300, 1000);
@@ -418,28 +418,28 @@ public class GameLogic {
 	private void createButton() {
 		
 		Button button ;
-		button = new Button(5, 15, 432, 80, 80, 1000);
+		button = new Button(5, 15, 432, 80, 80, 500);
 		onScreenButton.add(button);
 		RenderableHolder.getInstance().add(button);
 		
-		button = new Button(4, 15, 330, 80, 80, 900);
+		button = new Button(4, 15, 330, 80, 80, 500);
 		onScreenButton.add(button);
 		RenderableHolder.getInstance().add(button);
 		
-		button = new Button(3, 15, 228, 80, 80, 700);
+		button = new Button(3, 15, 228, 80, 80, 400);
 		onScreenButton.add(button);
 		RenderableHolder.getInstance().add(button);
 		
-		button = new Button(2, 15, 126, 80, 80, 400);
+		button = new Button(2, 15, 126, 80, 80, 300);
 		onScreenButton.add(button);
 		RenderableHolder.getInstance().add(button);
 		
-		button = new Button(1, 15, 27, 80, 80, 300);
+		button = new Button(1, 15, 27, 80, 80, 200);
 		onScreenButton.add(button);
 		RenderableHolder.getInstance().add(button);
 		
 		// end game button
-		button = new Button(6, 15, 540, 147, 52, 4000);
+		button = new Button(6, 15, 540, 147, 52, 2000);
 		onScreenButton.add(button);
 		RenderableHolder.getInstance().add(button);
 	}
