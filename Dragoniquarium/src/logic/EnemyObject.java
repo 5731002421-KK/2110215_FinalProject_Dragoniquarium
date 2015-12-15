@@ -1,6 +1,5 @@
 package logic;
 
-import java.awt.Graphics2D;
 import java.util.List;
 
 public abstract class EnemyObject extends DamageableObject {	
@@ -14,7 +13,6 @@ public abstract class EnemyObject extends DamageableObject {
 	
 	public void isChased(double xClick, double yClick) {
 		
-//		targetSpeedY = (y - yClick)/ Math.hypot(x - xClick, y - yClick) * 4;
 		ySpeed = (y - yClick)/ Math.hypot(x - xClick, y - yClick) * 4;
 		risingTickY = 50;
 		tickNeedY = risingTickY;
@@ -24,7 +22,6 @@ public abstract class EnemyObject extends DamageableObject {
 		stableY = false;
 		tickCountY = 0;
 		
-//		targetSpeedX = (x - xClick)/ Math.hypot(x - xClick, y - yClick) * 4;
 		xSpeed = (x - xClick)/ Math.hypot(x - xClick, y - yClick) * 4;
 		risingTickX = 50;
 		tickNeedX = risingTickX;

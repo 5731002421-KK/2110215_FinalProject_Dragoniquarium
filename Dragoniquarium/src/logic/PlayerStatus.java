@@ -22,7 +22,7 @@ public class PlayerStatus implements IRenderable{
 	
 	public PlayerStatus() {
 		super();
-		this.egg = 20000;
+		this.egg = 300;
 		timeLineAnimation = DrawingUtility.createTimeLineAnimation();
 		
 		instance = this;

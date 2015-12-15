@@ -1,6 +1,5 @@
 package logic;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 
 import render.DrawingUtility;
@@ -76,12 +75,6 @@ public class Dragon3 extends DamageableObject {
 	@Override
 	public void draw(Graphics2D g2d) {
 		
-//		if(state == 3) {
-//			g2d.setColor(Color.BLUE);
-//			g2d.fillOval((int)x-radius, (int)y-radius, radius*2, radius*2);
-//			guardingAnimation.draw(g2d, (int)x-radius, (int)y-radius-8, isLeft);
-//		}
-			
 		int tempX = (int)x-radius;
 		int tempY = (int)y-radius;
 		
@@ -90,6 +83,5 @@ public class Dragon3 extends DamageableObject {
 		} else if(state == 3) {
 			guardingAnimation.draw(g2d, tempX-75, tempY+30, isLeft);
 		}
-//		walkingAnimation.draw(g2d, (int)x-radius, (int)y-radius, isLeft);
 	}
 }

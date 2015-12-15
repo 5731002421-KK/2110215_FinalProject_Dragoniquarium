@@ -2,11 +2,8 @@ package logic;
 
 import java.awt.Graphics2D;
 
-import javax.swing.Box.Filler;
-
 import render.DrawingUtility;
 import render.GameAnimation;
-import render.Resource;
 
 public class Dragon1 extends DamageableObject {
 	
@@ -62,8 +59,6 @@ public class Dragon1 extends DamageableObject {
 	@Override
 	public void draw(Graphics2D g2d) {
 		
-		// TODO
-//		g2d.drawImage(Resource.egg1Sprite, null, (int)x-radius, (int)y-radius);
 //		g2d.fillOval((int)x-radius, (int)y-radius, radius*2, radius*2);
 		
 		int tempX = (int)x-radius;

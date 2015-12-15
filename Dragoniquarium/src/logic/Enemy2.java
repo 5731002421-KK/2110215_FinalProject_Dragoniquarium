@@ -1,6 +1,5 @@
 package logic;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.List;
 
@@ -20,7 +19,6 @@ public class Enemy2 extends EnemyObject {
 		stateTime = 30;
 		flyingAnimation = DrawingUtility.createEnemy2Animation();
 		attackingAnimation = DrawingUtility.createEnemy2AnimationAttack1();
-		// TODO Auto-generated constructor stub
 	}
 	
 	@Override
@@ -77,6 +75,7 @@ public class Enemy2 extends EnemyObject {
 			RenderableHolder.getInstance().add(atk);
 		}
 		
+		// down
 		// 1
 		AttackObject atk = new AttackObject(x+110, y+50, 20, zCounter, 1,
 								RandomUtility.random(leftBorder, rightBorder), bottomBorder,
@@ -115,7 +114,6 @@ public class Enemy2 extends EnemyObject {
 
 	@Override
 	public void draw(Graphics2D g2d) {
-//		g2d.setColor(Color.BLUE);
 //		g2d.fillOval((int)(x-radius), (int)(y-radius), 2*radius, 2*radius);
 		int tempX = (int)x-radius;
 		int tempY = (int)y-radius;

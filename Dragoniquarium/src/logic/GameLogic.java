@@ -4,13 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-
-
-
-
-
-
-
 import javax.swing.JOptionPane;
 
 import main.Main;
@@ -28,7 +21,6 @@ public class GameLogic {
 	protected List <Button> onScreenButton = new ArrayList<Button>();
 	protected List <GameAnimation> onScreenAnimation = new CopyOnWriteArrayList<GameAnimation>();
 	
-	private static final int SPAWN_DELAY = 100;
 	private int spawnDelayCounter ;
 	
 	public static boolean enemyOnScreen = false; 
@@ -426,28 +418,28 @@ public class GameLogic {
 	private void createButton() {
 		
 		Button button ;
-		button = new Button(5, 15, 432, 80, 80, 100);
+		button = new Button(5, 15, 432, 80, 80, 1000);
 		onScreenButton.add(button);
 		RenderableHolder.getInstance().add(button);
 		
-		button = new Button(4, 15, 330, 80, 80, 100);
+		button = new Button(4, 15, 330, 80, 80, 900);
 		onScreenButton.add(button);
 		RenderableHolder.getInstance().add(button);
 		
-		button = new Button(3, 15, 228, 80, 80, 100);
+		button = new Button(3, 15, 228, 80, 80, 700);
 		onScreenButton.add(button);
 		RenderableHolder.getInstance().add(button);
 		
-		button = new Button(2, 15, 126, 80, 80, 100);
+		button = new Button(2, 15, 126, 80, 80, 400);
 		onScreenButton.add(button);
 		RenderableHolder.getInstance().add(button);
 		
-		button = new Button(1, 15, 27, 80, 80, 100);
+		button = new Button(1, 15, 27, 80, 80, 300);
 		onScreenButton.add(button);
 		RenderableHolder.getInstance().add(button);
 		
 		// end game button
-		button = new Button(6, 15, 540, 147, 52, 100);
+		button = new Button(6, 15, 540, 147, 52, 4000);
 		onScreenButton.add(button);
 		RenderableHolder.getInstance().add(button);
 	}

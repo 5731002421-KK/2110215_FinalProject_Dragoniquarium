@@ -5,11 +5,8 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.List;
 
-import javax.swing.Box.Filler;
-
 import ui.HighScoreUtility;
 import main.Main;
-import render.DrawingUtility;
 import render.IRenderable;
 import render.RenderableHolder;
 
