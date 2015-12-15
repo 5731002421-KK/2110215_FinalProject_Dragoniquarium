@@ -80,27 +80,24 @@ public class HighScoreUtility {
 			}
 		}
 		if(index >= highScoreRecord.length){
-			String t = "Game Over\n";
+			String t = "Congratulations, you got the golden egg!\n";
 			t += "Your time is " + score/60 + ":" + String.format("%02d", score%60) + "\n";
-			JOptionPane.showMessageDialog(null, t, "Game over", JOptionPane.DEFAULT_OPTION);
+			JOptionPane.showMessageDialog(null, t, "You Won", JOptionPane.DEFAULT_OPTION);
 			
 		}else{
 			for(int i=highScoreRecord.length-1; i>=index+1; i--){
 				highScoreRecord[i] = highScoreRecord[i-1];
 			}
 			String t = "	Your time is " + score/60 + ":" + String.format("%02d", score%60) + "\n";
-			t += "Congratulation, you are ranked " + (index+1) + "! \n";
+			t += "Congratulations, you are ranked " + (index+1) + "! \n";
 			t += "Please enter your name";
 
 			String name = JOptionPane.showInputDialog(null,t,
-					"High score", JOptionPane.INFORMATION_MESSAGE);
-//			System.out.println(name.length());
+					"High Score", JOptionPane.INFORMATION_MESSAGE);
 			if(name == null || name.equalsIgnoreCase("")) {
-//				System.out.println("null");
 				return ;
 			}
 			highScoreRecord[index] = new HighScoreRecord(name, score);
-			// TODO
 			
 //			System.out.println("index = " + index + " score = " + highScoreRecord[index].score);
 			try {
