@@ -15,8 +15,9 @@ public class DrawingUtility {
 	
 	private static BufferedImage getImage(String directory){
 		try {
-			ClassLoader loader = DrawingUtility.class.getClassLoader();
-			BufferedImage image = ImageIO.read(loader.getResource(directory));
+//			ClassLoader loader = DrawingUtility.class.getClassLoader();
+//			BufferedImage image = ImageIO.read(loader.getResource(directory));
+			BufferedImage image = ImageIO.read(DrawingUtility.class.getResource(directory));
 			return image;
 					
 		} catch (Exception e) {
@@ -25,50 +26,50 @@ public class DrawingUtility {
 		}
 	}
 	
-	public static final BufferedImage egg = getImage("res/Egg.png");
-	public static final BufferedImage cursor = getImage("res/AncientCursor.png");
+	public static final BufferedImage egg = getImage("/res/Egg.png");
+	public static final BufferedImage cursor = getImage("/res/AncientCursor.png");
 	
-	protected static final BufferedImage bg = getImage("res/Background.jpg");
-	protected static final BufferedImage grass = getImage("res/Grass.png");
-	protected static final BufferedImage lightRay = getImage("res/LightRay.png");
-	protected static final BufferedImage ui = getImage("res/UI.png");
-	protected static final BufferedImage titleBackGround = getImage("res/titleBackGround.jpg");
-	protected static final BufferedImage startButton = getImage("res/NewGame.png");
-	protected static final BufferedImage highScoreButton = getImage("res/Scoreboard.png");
-	protected static final BufferedImage startButton_pressed = getImage("res/NewGamePressed.png");
-	protected static final BufferedImage highScoreButton_pressed = getImage("res/ScoreboardPressed.png");
+	protected static final BufferedImage bg = getImage("/res/Background.jpg");
+	protected static final BufferedImage grass = getImage("/res/Grass.png");
+	protected static final BufferedImage lightRay = getImage("/res/LightRay.png");
+	protected static final BufferedImage ui = getImage("/res/UI.png");
+	protected static final BufferedImage titleBackGround = getImage("/res/titleBackGround.jpg");
+	protected static final BufferedImage startButton = getImage("/res/NewGame.png");
+	protected static final BufferedImage highScoreButton = getImage("/res/Scoreboard.png");
+	protected static final BufferedImage startButton_pressed = getImage("/res/NewGamePressed.png");
+	protected static final BufferedImage highScoreButton_pressed = getImage("/res/ScoreboardPressed.png");
 	
-	protected static final BufferedImage playButton = getImage("res/PlayButton.png");
-	protected static final BufferedImage pauseButton = getImage("res/PauseButton.png");
-	protected static final BufferedImage timeLineDragon = getImage("res/TimeLineDragon.png");
+	protected static final BufferedImage playButton = getImage("/res/PlayButton.png");
+	protected static final BufferedImage pauseButton = getImage("/res/PauseButton.png");
+	protected static final BufferedImage timeLineDragon = getImage("/res/TimeLineDragon.png");
 	
-	protected static final BufferedImage dragon1 = getImage("res/dragon1.png");
-	protected static final BufferedImage dragon1_egg = getImage("res/dragon1_egg.png");
-	protected static final BufferedImage dragon2 = getImage("res/Dragon2.png");
-	protected static final BufferedImage dragon2_attack = getImage("res/Dragon2_Attack.png");
-	protected static final BufferedImage dragon3 = getImage("res/Dragon3.png");
-	protected static final BufferedImage dragon3_def = getImage("res/Dragon3_Def.png");
-	protected static final BufferedImage dragon4 = getImage("res/Dragon4.png");
-	protected static final BufferedImage dragon4_attack = getImage("res/Dragon4_Attack.png");
-	protected static final BufferedImage dragon5 = getImage("res/Dragon5.png");
-	protected static final BufferedImage dragon5_attack = getImage("res/Dragon5_Attack.png");
+	protected static final BufferedImage dragon1 = getImage("/res/dragon1.png");
+	protected static final BufferedImage dragon1_egg = getImage("/res/dragon1_egg.png");
+	protected static final BufferedImage dragon2 = getImage("/res/Dragon2.png");
+	protected static final BufferedImage dragon2_attack = getImage("/res/Dragon2_Attack.png");
+	protected static final BufferedImage dragon3 = getImage("/res/Dragon3.png");
+	protected static final BufferedImage dragon3_def = getImage("/res/Dragon3_Def.png");
+	protected static final BufferedImage dragon4 = getImage("/res/Dragon4.png");
+	protected static final BufferedImage dragon4_attack = getImage("/res/Dragon4_Attack.png");
+	protected static final BufferedImage dragon5 = getImage("/res/Dragon5.png");
+	protected static final BufferedImage dragon5_attack = getImage("/res/Dragon5_Attack.png");
 	
-	protected static final BufferedImage Enemy1 = getImage("res/Enemy1.png");
-	protected static final BufferedImage Enemy1_attack = getImage("res/Enemy1_attack1.png");
-	protected static final BufferedImage Enemy2 = getImage("res/Enemy2.png");
-	protected static final BufferedImage Enemy2_attack = getImage("res/Enemy2_attack1.png");
+	protected static final BufferedImage Enemy1 = getImage("/res/Enemy1.png");
+	protected static final BufferedImage Enemy1_attack = getImage("/res/Enemy1_Attack1.png");
+	protected static final BufferedImage Enemy2 = getImage("/res/Enemy2.png");
+	protected static final BufferedImage Enemy2_attack = getImage("/res/Enemy2_Attack1.png");
 	
-	protected static final BufferedImage attack1 = getImage("res/FireBall1.png");
-	protected static final BufferedImage attack2 = getImage("res/FireBall2.png");
-	protected static final BufferedImage attack3 = getImage("res/FireBall3.png");
-	protected static final BufferedImage attack4 = getImage("res/FireBall4.png");
+	protected static final BufferedImage attack1 = getImage("/res/FireBall1.png");
+	protected static final BufferedImage attack2 = getImage("/res/FireBall2.png");
+	protected static final BufferedImage attack3 = getImage("/res/FireBall3.png");
+	protected static final BufferedImage attack4 = getImage("/res/FireBall4.png");
 	
-	protected static final BufferedImage attack1_boom = getImage("res/FireBall1_Boom.png");
-	protected static final BufferedImage attack2_boom = getImage("res/FireBall2_Boom.png");
-	protected static final BufferedImage attack3_boom = getImage("res/FireBall3_Boom.png");
-	protected static final BufferedImage attack4_boom = getImage("res/FireBall4_Boom.png");
+	protected static final BufferedImage attack1_boom = getImage("/res/FireBall1_Boom.png");
+	protected static final BufferedImage attack2_boom = getImage("/res/FireBall2_Boom.png");
+	protected static final BufferedImage attack3_boom = getImage("/res/FireBall3_Boom.png");
+	protected static final BufferedImage attack4_boom = getImage("/res/FireBall4_Boom.png");
 	
-	protected static final BufferedImage warpping = getImage("res/Warpping.png");
+	protected static final BufferedImage warpping = getImage("/res/Warpping.png");
 	
 	protected static final AlphaComposite transcluentWhite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.7f);
 	protected static final AlphaComposite opaque = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1);
