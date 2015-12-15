@@ -135,7 +135,8 @@ public class GameScreen1 extends JComponent{
 			}
 		}
 //		System.out.println("-----");
-		
+		g2d.drawImage(DrawingUtility.grass, null, 0, 0);
+		g2d.drawImage(DrawingUtility.lightRay, null, 0, 0);
 	}
 	
 	

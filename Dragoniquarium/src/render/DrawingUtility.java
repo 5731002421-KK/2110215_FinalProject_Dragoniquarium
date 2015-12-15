@@ -31,6 +31,8 @@ public class DrawingUtility {
 	public static final BufferedImage egg = getImage("res/Egg.png");
 	
 	protected static final BufferedImage bg = getImage("res/Background.jpg");
+	protected static final BufferedImage grass = getImage("res/Grass.png");
+	protected static final BufferedImage lightRay = getImage("res/LightRay.png");
 	protected static final BufferedImage ui = getImage("res/UI.png");
 	protected static final BufferedImage titleBackGround = getImage("res/titleBackGround.jpg");
 	protected static final BufferedImage startButton = getImage("res/NewGame.png");

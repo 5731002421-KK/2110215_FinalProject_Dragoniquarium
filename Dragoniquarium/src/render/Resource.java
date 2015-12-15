@@ -17,7 +17,7 @@ public class Resource {
 		try {
 			ClassLoader loader = Resource.class.getClassLoader();
 			coinSound = Applet.newAudioClip((loader.getResource("res/coin.wav")).toURI().toURL());
-			backgroundSound = Applet.newAudioClip((loader.getResource("res/coin.wav")).toURI().toURL());
+			backgroundSound = Applet.newAudioClip((loader.getResource("res/PeacefulForest.wav")).toURI().toURL());
 			
 		} catch (Exception e) {
 			System.err.println("Cannot load resource");

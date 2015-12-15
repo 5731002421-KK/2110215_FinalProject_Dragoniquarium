@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 
 import render.DrawingUtility;
+import render.Resource;
 
 public class Egg1 extends CollectibleObject {
 	
@@ -27,6 +28,7 @@ public class Egg1 extends CollectibleObject {
 
 	@Override
 	public void collect(PlayerStatus player) {
+		Resource.coinSound.play();
 		player.addEgg(reward);
 	}
 
