@@ -176,7 +176,7 @@ public class DrawingUtility {
 		
 		g2.setColor(Color.WHITE);
 		g2.setFont(standardFont);
-		g2.drawString( "" + currentEgg + " : " + (timeSpent*PlayerStatus.TIME_CLOCK)/1000, 20, 650);
+		g2.drawString( "  " + currentEgg  /*+ " : " + (timeSpent*PlayerStatus.TIME_CLOCK)/1000*/, 20, 650);
 		
 //		g2.drawString("SOCRE : "+score, ConfigurableOption.screenWidth/2 + 40, 35);
 		
