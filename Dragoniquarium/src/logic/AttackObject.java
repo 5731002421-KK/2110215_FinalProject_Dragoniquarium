@@ -93,11 +93,11 @@ public class AttackObject extends TargetObject {
 	@Override
 	public void draw(Graphics2D g2d) {
 		if(attackType >= 2) {
-			g2d.setColor(Color.BLACK);
+//			g2d.setColor(Color.BLACK);
 		} else {
-			g2d.setColor(Color.ORANGE);
+//			g2d.setColor(Color.ORANGE);
 		}
-		g2d.fillOval((int)(x-radius), (int)(y-radius), 2*radius, 2*radius);
+//		g2d.fillOval((int)(x-radius), (int)(y-radius), 2*radius, 2*radius);
 		
 		if(attackType == 1) {
 			DrawingUtility.drawAttack1(g2d, (int)(x-radius)-8, (int)(y-radius)-8, isPointerOver);
