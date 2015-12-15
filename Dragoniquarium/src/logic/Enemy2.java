@@ -16,7 +16,7 @@ public class Enemy2 extends EnemyObject {
 	private boolean attacking = false;
 	
 	public Enemy2(int x, int y, int z) {
-		super(x, y, 70, z, 1, 20, 0, 100);
+		super(x, y, 70, z, 1, 60, 0, 100);
 		stateTime = 30;
 		flyingAnimation = DrawingUtility.createEnemy2Animation();
 		attackingAnimation = DrawingUtility.createEnemy2AnimationAttack1();

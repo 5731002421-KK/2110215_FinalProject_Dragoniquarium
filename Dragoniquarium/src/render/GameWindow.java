@@ -32,7 +32,7 @@ public class GameWindow extends JFrame{
 		this.setCursor (c);
 		
 //		this.setCursor(new Cursor(Cursor.HAND_CURSOR));
-//		Resource.coinSound.loop();
+//		Resource.backgroundSound.loop();
 	}
 	
 	public void switchScene(JComponent scene){

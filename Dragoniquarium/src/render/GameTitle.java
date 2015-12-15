@@ -67,6 +67,7 @@ public class GameTitle extends JPanel {
 				// TODO Auto-generated method stub
 //				startButton.color = Color.RED;
 				startButton.isPointerOver = false;
+				Resource.coinSound.play();
 				Main.newGame();
 			}
 			
