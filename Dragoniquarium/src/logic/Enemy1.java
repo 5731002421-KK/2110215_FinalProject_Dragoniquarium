@@ -16,7 +16,7 @@ public class Enemy1 extends EnemyObject {
 	private boolean attacking = false;
 	
 	public Enemy1(int x, int y, int z) {
-		super(x, y, 35, z, 1, 20, 0, 100);
+		super(x, y, 45, z, 1, 20, 0, 100);
 		stateTime = 30;
 		flyingAnimation = DrawingUtility.createEnemy1Animation();
 		attackingAnimation = DrawingUtility.createEnemy1AnimationAttack1();
@@ -57,8 +57,8 @@ public class Enemy1 extends EnemyObject {
 			}
 		}
 		
-		calculateXaxis();
-		calculateYaxis();
+//		calculateXaxis();
+//		calculateYaxis();
 	}
 	
 	@Override
@@ -100,12 +100,12 @@ public class Enemy1 extends EnemyObject {
 		int tempX = (int)x-radius;
 		int tempY = (int)y-radius;
 		if(state == 1) {
-			flyingAnimation.draw(g2d, (int)x-radius*2-10, (int)y-radius, isLeft);
+			flyingAnimation.draw(g2d, (int)x-radius-36, (int)y-radius, isLeft);
 		} else if(state == 3) {
 			if(isLeft) {
 				tempX += 4;
 			}
-			attackingAnimation.draw(g2d, tempX-73,tempY-10, isLeft);
+			attackingAnimation.draw(g2d, tempX-64,tempY-10, isLeft);
 		}
 	}
 
