@@ -21,6 +21,7 @@ public class RenderableHolder {
 	
 	public void clear() {
 		entities.clear();
+		animation.clear();
 	}
 	public void add(IRenderable obj) {
 		entities.add(obj);

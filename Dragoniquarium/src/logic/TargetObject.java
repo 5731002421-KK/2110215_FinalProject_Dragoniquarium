@@ -51,6 +51,10 @@ public abstract class TargetObject implements IRenderable{
 		return Math.hypot(x-this.x, y-this.y) <= radius+6;
 	}
 	
+	public boolean contains(double x, double y, double radius){
+		return Math.hypot(x-this.x, y-this.y) <= this.radius+radius+6;
+	}
+	
 	public void setPointerOver(boolean isPointerOver) {
 		this.isPointerOver = isPointerOver;
 	}

@@ -22,11 +22,13 @@ public class GameTitle extends JPanel {
 		
 		private static final long serialVersionUID = 1L;
 		private BufferedImage image;
+		private BufferedImage imagePressed;
 		private boolean isPointerOver = false;
 		public Color color = Color.RED;
 		
 		public TitleButton(String name, int x, int y) {
 			image = DrawingUtility.getButton(name);
+			imagePressed = DrawingUtility.getButton(name + " pressed");
 			this.setBounds(x, y, image.getWidth(), image.getHeight());
 		}
 		
@@ -36,14 +38,15 @@ public class GameTitle extends JPanel {
 			Graphics2D g2d = (Graphics2D)g;
 			
 			
-			g2d.setBackground(color);
-			g2d.clearRect(0, 0, getWidth(), getHeight());
-			g2d.drawImage(image, null, 0, 0);
+//			g2d.setBackground(color);
+//			g2d.clearRect(0, 0, getWidth(), getHeight());
+			
 			if(isPointerOver) {
-//				g2d.drawImage(underline, null, 0, 0);
+				g2d.drawImage(imagePressed, null, 0, 0);
+			} else {
+				g2d.drawImage(image, null, 0, 0);
 			}
 			
-//			g2d.fillRect(x, y, width, height);
 		}
 		
 		
@@ -56,45 +59,51 @@ public class GameTitle extends JPanel {
 		this.setPreferredSize(new Dimension(1280, 700));
 		this.setLayout(null);
 		
-		TitleButton startButton = new TitleButton("start", 500, 360);
+		TitleButton startButton = new TitleButton("start", 490, 360);
 		startButton.addMouseListener(new MouseAdapter() {
 			
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				// TODO Auto-generated method stub
-				startButton.color = Color.RED;
+//				startButton.color = Color.RED;
+				startButton.isPointerOver = false;
 				Main.newGame();
 			}
 			
 			@Override
 			public void mouseExited(MouseEvent e) {
-				startButton.color = Color.RED;
+//				startButton.color = Color.RED;
+				startButton.isPointerOver = false;
 			}
 			
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				startButton.color = Color.YELLOW;
+//				startButton.color = Color.YELLOW;
+				startButton.isPointerOver = true;
 			}
 		});
 		this.add(startButton);
 		
 		
-		TitleButton highScoreButton = new TitleButton("high score", 500, 460);
+		TitleButton highScoreButton = new TitleButton("high score", 490, 460);
 		highScoreButton.addMouseListener(new MouseAdapter() {
 			
 			@Override
 			public void mouseReleased(MouseEvent e) {
+				highScoreButton.isPointerOver = false;
 				HighScoreUtility.displayTop10();
 			}
 			
 			@Override
 			public void mouseExited(MouseEvent e) {
 				highScoreButton.color = Color.RED;
+				highScoreButton.isPointerOver = false;
 			}
 			
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				highScoreButton.color = Color.YELLOW;
+				highScoreButton.isPointerOver = true;
 			}
 		});
 		this.add(highScoreButton);

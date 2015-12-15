@@ -30,7 +30,7 @@ public class GameScreen1 extends JComponent{
 		setVisible(true);
 		
 		addListener();
-		this.add(new PauseButton(1215, 0));
+		this.add(new PauseButton(1218, 0));
 //		addPauseButton();
 //		UIManager.put("OptionPane.buttonFont", new Font("Monospaced", Font.PLAIN, 20));
 		UIManager.put("OptionPane.messageFont", new Font("Monospaced", Font.PLAIN, 15));

@@ -12,13 +12,10 @@ public class Dragon5 extends DamageableObject{
 	private GameAnimation flyingAnimation;
 	private GameAnimation attackingAnimation;
 	
-	private int attackTickCount = 0;
-	private int attackDelay = 100;
-	
 	private boolean attacking = false;
 	
 	public Dragon5(int x, int y, int z) {
-		super(x, y, 25, z, 1, 10, 1);
+		super(x, y, 50, z, 1, 3, 0);
 		stateTime = 200;
 		flyingAnimation = DrawingUtility.createDragon5Animation();
 		attackingAnimation = DrawingUtility.createDragon5AnimationAttack();
@@ -72,9 +69,9 @@ public class Dragon5 extends DamageableObject{
 		}
 		
 		if(state == 1) {
-			calculateXaxis();
+//			calculateXaxis();
 		}
-		calculateYaxis();
+//		calculateYaxis();
 	}
 	
 	public void attack(List <AttackObject> onScreenAttack, TargetObject targetEnemy, int zCounter ) {
@@ -92,7 +89,14 @@ public class Dragon5 extends DamageableObject{
 			return ;
 		}
 		
-		AttackObject atk = new AttackObject(x, y, 5, zCounter, 1, targetEnemy.x, targetEnemy.y, 2, 4);
+		double tempX = x;
+		if(isLeft) {
+			tempX -= 80;
+		} else {
+			tempX += 80;
+		}
+		
+		AttackObject atk = new AttackObject(tempX, y+10, 22, zCounter, 5, targetEnemy.x, targetEnemy.y, 2, 4);
 //		AttackObject atk = new AttackObject(x, y, 15, zCounter, 5, targetEnemy.x, targetEnemy.y, 4, 3);
 		onScreenAttack.add(atk);
 		RenderableHolder.getInstance().add(atk);
@@ -101,17 +105,20 @@ public class Dragon5 extends DamageableObject{
 	
 	@Override
 	public void draw(Graphics2D g2d) {
-		// TODO Auto-generated method stub
+//		g2d.fillOval((int)x-radius, (int)y-radius, 2*radius, 2*radius);	
+		
+		int tempX = (int)x-radius;
+		int tempY = (int)y-radius;
+		
 		if(state == 1) {
-			flyingAnimation.draw(g2d, (int)x-radius, (int)y-radius, isLeft);
+			flyingAnimation.draw(g2d, tempX-57, tempY, isLeft);
 		} else if(state == 3) {
-			int temp = (int)x-radius;
 			if(isLeft) {
-				temp += 7;				
+//				tempX += 7;				
 			} else {
-				temp -= 7;
+				tempX += 43;
 			}
-			attackingAnimation.draw(g2d, temp, (int)y-radius-8, isLeft);
+			attackingAnimation.draw(g2d, tempX-98, tempY+2, isLeft);
 		}
 	}
 }

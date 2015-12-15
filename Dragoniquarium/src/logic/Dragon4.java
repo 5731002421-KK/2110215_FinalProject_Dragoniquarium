@@ -12,13 +12,10 @@ public class Dragon4 extends DamageableObject{
 	private GameAnimation flyingAnimation;
 	private GameAnimation attackingAnimation;
 	
-	private int attackTickCount = 0;
-	private int attackDelay = 100;
-	
 	private boolean attacking = false;
 	
 	public Dragon4(int x, int y, int z) {
-		super(x, y, 25, z, 1, 10, 1);
+		super(x, y, 40, z, 1, 1, 0);
 		stateTime = 200;
 		flyingAnimation = DrawingUtility.createDragon4Animation();
 		attackingAnimation = DrawingUtility.createDragon4AnimationAttack();
@@ -45,7 +42,7 @@ public class Dragon4 extends DamageableObject{
 			if(stateTime == 0) {
 				if(GameLogic.enemyOnScreen) {
 					state = 3;
-					stateTime = 100;
+					stateTime = 60;
 					attackingAnimation.setCurrentFrame(0);
 				} else {
 					stateTime = 100;
@@ -54,13 +51,14 @@ public class Dragon4 extends DamageableObject{
 			}
 		} else if(state == 3) {
 			stateTime--;
-			if(stateTime == 40) {
+			if(stateTime == 6) {
 				attacking = true;
 			}
 			
 			if(stateTime == 0) {
 				if(GameLogic.enemyOnScreen) {
-					stateTime = 100;
+					stateTime = 60;
+					attackingAnimation.setCurrentFrame(0);
 				} else {
 					state = 1;
 					stateTime = 100;
@@ -91,9 +89,14 @@ public class Dragon4 extends DamageableObject{
 		if(!attacking) {
 			return ;
 		}
+		double tempX = x;
+		if(isLeft) {
+			tempX -= 25;
+		} else {
+			tempX += 25;
+		}
 		
-		AttackObject atk = new AttackObject(x, y, 15, zCounter, 5, targetEnemy.x, targetEnemy.y, 5, 3);
-//		AttackObject atk = new AttackObject(x, y, 5, zCounter, 1, targetEnemy.x, targetEnemy.y, 4, 4);
+		AttackObject atk = new AttackObject(tempX, y, 15, zCounter, 5, targetEnemy.x, targetEnemy.y, 5, 3);
 		onScreenAttack.add(atk);
 		RenderableHolder.getInstance().add(atk);
 
@@ -102,16 +105,20 @@ public class Dragon4 extends DamageableObject{
 	@Override
 	public void draw(Graphics2D g2d) {
 		// TODO Auto-generated method stub
+//		g2d.fillOval((int)x-radius, (int)y-radius, 2*radius, 2*radius);	
+		
+		int tempX = (int)x-radius;
+		int tempY = (int)y-radius;
+		
 		if(state == 1) {
-			flyingAnimation.draw(g2d, (int)x-radius, (int)y-radius, isLeft);
+			flyingAnimation.draw(g2d, tempX-6, tempY-10, isLeft);
 		} else if(state == 3) {
-			int temp = (int)x-radius;
 			if(isLeft) {
-				temp += 7;				
+				tempX -= 59;				
 			} else {
-				temp -= 7;
+				tempX -= 7;
 			}
-			attackingAnimation.draw(g2d, temp, (int)y-radius-8, isLeft);
+			attackingAnimation.draw(g2d, tempX, tempY-48, isLeft);
 		}
 	}
 

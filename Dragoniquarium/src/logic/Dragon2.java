@@ -1,6 +1,5 @@
 package logic;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.List;
 
@@ -13,13 +12,10 @@ public class Dragon2 extends DamageableObject {
 	private GameAnimation flyingAnimation;
 	private GameAnimation attackingAnimation;
 	
-	private int attackTickCount = 0;
-	private int attackDelay = 100;
-	
 	private boolean attacking = false;
 	
 	public Dragon2(int x, int y, int z) {
-		super(x, y, 25, z, 1, 1, 0);
+		super(x, y, 40, z, 1, 1, 0);
 		stateTime = 200;
 		flyingAnimation = DrawingUtility.createDragon2Animation();
 		attackingAnimation = DrawingUtility.createDragon2AnimationAttack();
@@ -95,16 +91,14 @@ public class Dragon2 extends DamageableObject {
 		if(!attacking) {
 			return ;
 		}
+		double tempX = x;
+		if(isLeft) {
+			tempX -= 40;
+		} else {
+			tempX += 40;
+		}
 		
-//		if(attackTickCount < attackDelay) {
-//			attackTickCount++;
-//			return ;
-//		}
-//		
-//		attackTickCount = 0;
-		
-		
-		AttackObject atk = new AttackObject(x, y, 10, zCounter, 1, targetEnemy.x, targetEnemy.y, 7, 2);
+		AttackObject atk = new AttackObject(tempX, y, 10, zCounter, 1, targetEnemy.x, targetEnemy.y, 7, 2);
 		onScreenAttack.add(atk);
 		RenderableHolder.getInstance().add(atk);
 
@@ -112,19 +106,20 @@ public class Dragon2 extends DamageableObject {
 	
 	@Override
 	public void draw(Graphics2D g2d) {
-//		g2d.setColor(Color.GREEN);
-		g2d.drawOval((int)x-radius, (int)y-radius, 2*radius, 2*radius);	
+//		g2d.fillOval((int)x-radius, (int)y-radius, 2*radius, 2*radius);	
+		
+		int tempX = (int)x-radius;
+		int tempY = (int)y-radius;
 		
 		if(state == 1) {
-			flyingAnimation.draw(g2d, (int)x-radius, (int)y-radius, isLeft);
+			flyingAnimation.draw(g2d, tempX-19, tempY-20, isLeft);
 		} else if(state == 3) {
-			int temp = (int)x-radius;
 			if(isLeft) {
-				temp += 7;				
+				tempX -= 32;				
 			} else {
-				temp -= 7;
+				tempX += 5;
 			}
-			attackingAnimation.draw(g2d, temp, (int)y-radius-8, isLeft);
+			attackingAnimation.draw(g2d, tempX-25, tempY-20, isLeft);
 		}
 	
 	}

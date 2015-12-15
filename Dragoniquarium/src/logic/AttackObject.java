@@ -101,6 +101,16 @@ public class AttackObject extends TargetObject {
 		
 		if(attackType == 1) {
 			DrawingUtility.drawAttack1(g2d, (int)(x-radius)-8, (int)(y-radius)-8, isPointerOver);
+		}else if(attackType == 3) {
+			
+			attackAnimation.draw(g2d, (int)(x-radius)-17, (int)(y-radius)-15, false);
+			
+		} else if(attackType == 4) {
+			
+			int tempX = (int)(x-radius);
+			int tempY = (int)(y-radius);
+			
+			attackAnimation.draw(g2d, tempX-33, tempY-25, false);
 		} else {
 			int tempX = (int)(x-radius);
 			int tempY = (int)(y-radius);

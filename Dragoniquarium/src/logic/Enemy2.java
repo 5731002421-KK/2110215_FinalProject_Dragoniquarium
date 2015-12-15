@@ -8,14 +8,14 @@ import render.DrawingUtility;
 import render.GameAnimation;
 import render.RenderableHolder;
 
-public class Enemy1 extends EnemyObject {
+public class Enemy2 extends EnemyObject {
 
 	private GameAnimation flyingAnimation;
 	private GameAnimation attackingAnimation;
 	
 	private boolean attacking = false;
 	
-	public Enemy1(int x, int y, int z) {
+	public Enemy2(int x, int y, int z) {
 		super(x, y, 35, z, 1, 20, 0, 100);
 		stateTime = 30;
 		flyingAnimation = DrawingUtility.createEnemy1Animation();
@@ -66,10 +66,6 @@ public class Enemy1 extends EnemyObject {
 	
 	@Override
 	public void attack(List <AttackObject> onScreenAttack, int zCounter) {
-//		if(attackTickCount < attackDelay) {
-////			attackTickCount++;
-//			return ;
-//		}
 		if(!attacking) {
 			return ;
 		}

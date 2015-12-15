@@ -10,7 +10,7 @@ public abstract class EnemyObject extends DamageableObject {
 		super(x, y, radius, z, movingType, life, defense);
 	}
 
-	abstract void attack(List <AttackObject> onScreenAttack, int zCounter);
+	public abstract void attack(List <AttackObject> onScreenAttack, int zCounter);
 	
 	public void isChased(double xClick, double yClick) {
 		

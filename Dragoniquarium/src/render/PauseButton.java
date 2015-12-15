@@ -1,5 +1,6 @@
 package render;
 
+import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -18,6 +19,9 @@ public class PauseButton extends JPanel {
 	private BufferedImage playImage;
 	private boolean isPointerOver = false;
 	public Color color = Color.RED;
+	
+	private static final AlphaComposite transcluentWhite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.7f);
+	private static final AlphaComposite opaque = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1);
 	
 	public PauseButton(int x, int y) {
 		pauseImage = DrawingUtility.getButton("pause");
@@ -38,16 +42,17 @@ public class PauseButton extends JPanel {
 				} else {
 					PlayerStatus.instance.setPause(true);
 				}
+				isPointerOver = false;
 			}
 			
 			@Override
 			public void mouseExited(MouseEvent e) {
-				color = Color.RED;
+				isPointerOver = false;
 			}
 			
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				color = Color.YELLOW;
+				isPointerOver = true;
 			}
 		});
 		
@@ -63,14 +68,19 @@ public class PauseButton extends JPanel {
 		g2d.setBackground(color);
 		g2d.clearRect(0, 0, getWidth(), getHeight());
 		
-		if(isPointerOver) {
-			
-		}
 		
-		if(PlayerStatus.instance.isPause()) {
+		
+		if(PlayerStatus.instance != null && PlayerStatus.instance.isPause()) {
 			g2d.drawImage(playImage, null, 0, 0);
 		} else {
 			g2d.drawImage(pauseImage, null, 0, 0);
+		}
+		
+		if(isPointerOver) {
+			g2d.setComposite(transcluentWhite);
+			g2d.setColor(Color.WHITE);
+			g2d.fillRect(0, 0, getWidth(), getHeight());
+			g2d.setComposite(opaque);
 		}
 		
 		

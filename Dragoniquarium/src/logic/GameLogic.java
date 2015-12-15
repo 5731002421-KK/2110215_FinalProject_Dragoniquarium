@@ -159,6 +159,7 @@ public class GameLogic {
 		
 		
 		spawnDelayCounter++;
+		
 		/*if (spawnDelayCounter >= SPAWN_DELAY ) {
 			AttackObject atk = new AttackObject(RandomUtility.random(300, 700), 200, 10, 
 										zCounter, 1, RandomUtility.random(300, 700), 600, 3, 1);
@@ -167,7 +168,7 @@ public class GameLogic {
 		}*/
 		if (spawnDelayCounter >= SPAWN_DELAY ) {
 			spawnDelayCounter = -500;
-			TargetObject newEnemy = new Enemy1(500, 300, 30, zCounter);
+			TargetObject newEnemy = new Enemy1(500, 300, zCounter);
 			onScreenObject.add(newEnemy);
 			RenderableHolder.getInstance().add(newEnemy);
 			GameAnimation anim = DrawingUtility.createWarppingAnimation(500, 300);
@@ -176,7 +177,6 @@ public class GameLogic {
 		}
 		if (spawnDelayCounter >= SPAWN_DELAY ) {
 			spawnDelayCounter = 0;
-//			TargetObject egg = new Egg1(RandomUtility.random(0, 1000), 600, 10);
 			TargetObject egg = new Dragon1(RandomUtility.random(300, 700), 0, zCounter);
 			onScreenObject.add(egg);
 			RenderableHolder.getInstance().add(egg);
@@ -215,7 +215,7 @@ public class GameLogic {
 				Dragon1 temp = (Dragon1)obj; 
 				if(temp.layingEgg) {
 					temp.layingEgg = false;
-					createEgg(temp.x, temp.y-5);
+					createEgg(temp.x, temp.y-obj.radius);
 				}
 			} // else if( obj instanceof)
 		}
@@ -228,11 +228,10 @@ public class GameLogic {
 			if(obj.attackType == 1) {
 				for(TargetObject target : onScreenObject) {
 					if(target.destroyed || target instanceof EnemyObject) continue;
-					if(target instanceof DamageableObject && target.contains(obj.x, obj.y)) {
+					if(target instanceof DamageableObject && target.contains(obj.x, obj.y, obj.radius)) {
 						((DamageableObject)target).hit(obj.getAttack());
-						
 						// if hit guardian dragon 
-						if(target instanceof Dragon3 || target instanceof Dragon4) {
+						if(target instanceof Dragon3 || target instanceof Dragon4 || target instanceof Dragon5) {
 							obj.destroyed = true;
 							GameAnimation anim = DrawingUtility.createAttack1DestroyAt((int)obj.x, (int)obj.y);
 							onScreenAnimation.add(anim);
@@ -245,7 +244,7 @@ public class GameLogic {
 			} else if(obj.attackType == 2 || obj.attackType == 3 || obj.attackType == 4) {
 				for(TargetObject target : onScreenObject) {
 					if(target.destroyed ) continue;
-					if(target instanceof EnemyObject && target.contains(obj.x, obj.y)) {
+					if(target instanceof EnemyObject && target.contains(obj.x, obj.y, obj.radius)) {
 						((DamageableObject)target).hit(obj.getAttack());
 						obj.destroyed = true;
 						GameAnimation anim;

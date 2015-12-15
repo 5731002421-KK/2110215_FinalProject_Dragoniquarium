@@ -83,24 +83,24 @@ public abstract class DamageableObject extends TargetObject {
 		y += (yDestination - y) * speed;
 	}
 	
-	@Override
-	public void move() {
-		if(destroyed) return;
-//		if(GameLogic.enemyOnScreen) {
-//			performStateAction();
+//	@Override
+//	public void move() {
+//		if(destroyed) return;
+////		if(GameLogic.enemyOnScreen) {
+////			performStateAction();
+////			return ;
+////		}
+//		if(hasDestination) {
+//			moveIn();
 //			return ;
 //		}
-		if(hasDestination) {
-			moveIn();
-			return ;
-		}
-		
-		if( movingType == 1) {
-			calculateYaxis();
-		}
-		
-		calculateXaxis();	
-	}
+//		
+//		if( movingType == 1) {
+//			calculateYaxis();
+//		}
+//		
+//		calculateXaxis();	
+//	}
 	
 	protected void calculateXaxis(){
 		

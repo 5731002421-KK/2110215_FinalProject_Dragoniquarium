@@ -41,7 +41,6 @@ public class DrawingUtility {
 	protected static final BufferedImage playButton = getImage("res/PlayButton.png");
 	protected static final BufferedImage pauseButton = getImage("res/PauseButton.png");
 	protected static final BufferedImage timeLineDragon = getImage("res/TimeLineDragon.png");
-	protected static final BufferedImage underline = getImage("res/Underline.png");
 	
 	protected static final BufferedImage dragon1 = getImage("res/dragon1.png");
 	protected static final BufferedImage dragon1_egg = getImage("res/dragon1_egg.png");
@@ -283,7 +282,7 @@ public class DrawingUtility {
 	}
 	
 	public static GameAnimation createDragon5AnimationAttack() {
-		GameAnimation anim = new GameAnimation(DrawingUtility.dragon5_attack,15,2,8,4);
+		GameAnimation anim = new GameAnimation(DrawingUtility.dragon5_attack,15,2,8,3);
 		anim.play();
 		return anim;
 	}
