@@ -171,12 +171,12 @@ public class DrawingUtility {
 	public static void drawStatusBar(Graphics2D g2, int currentEgg, boolean pause, 
 										int timeSpent, GameAnimation timeLineAnimation){
 
-		g2.setColor(Color.BLACK);
-		g2.fillRect(20, 600, 80, 60);
+//		g2.setColor(Color.BLACK);
+//		g2.fillRect(20, 600, 80, 60);
 		
 		g2.setColor(Color.WHITE);
 		g2.setFont(standardFont);
-		g2.drawString( "" + currentEgg + " " + (timeSpent*PlayerStatus.TIME_CLOCK)/1000, 20, 650);
+		g2.drawString( "" + currentEgg + " : " + (timeSpent*PlayerStatus.TIME_CLOCK)/1000, 20, 650);
 		
 //		g2.drawString("SOCRE : "+score, ConfigurableOption.screenWidth/2 + 40, 35);
 		

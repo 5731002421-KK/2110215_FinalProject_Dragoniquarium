@@ -375,28 +375,29 @@ public class GameLogic {
 	
 	private void createButton() {
 		
-		Button button = new Button(1, 15, 432, 30, 30, 100);
+		Button button ;
+		button = new Button(5, 15, 432, 80, 80, 100);
 		onScreenButton.add(button);
 		RenderableHolder.getInstance().add(button);
 		
-		button = new Button(2, 15, 330, 30, 30, 100);
+		button = new Button(4, 15, 330, 80, 80, 100);
 		onScreenButton.add(button);
 		RenderableHolder.getInstance().add(button);
 		
-		button = new Button(3, 15, 228, 30, 30, 100);
+		button = new Button(3, 15, 228, 80, 80, 100);
 		onScreenButton.add(button);
 		RenderableHolder.getInstance().add(button);
 		
-		button = new Button(4, 15, 126, 30, 30, 100);
+		button = new Button(2, 15, 126, 80, 80, 100);
 		onScreenButton.add(button);
 		RenderableHolder.getInstance().add(button);
 		
-		button = new Button(5, 15, 27, 30, 30, 100);
+		button = new Button(1, 15, 27, 80, 80, 100);
 		onScreenButton.add(button);
 		RenderableHolder.getInstance().add(button);
 		
 		// end game button
-		button = new Button(6, 15, 540, 30, 30, 100);
+		button = new Button(6, 15, 540, 147, 52, 100);
 		onScreenButton.add(button);
 		RenderableHolder.getInstance().add(button);
 	}

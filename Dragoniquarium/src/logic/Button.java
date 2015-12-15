@@ -1,5 +1,6 @@
 package logic;
 
+import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.List;
@@ -19,6 +20,9 @@ public class Button implements IRenderable{
 	private int width, height;
 	private boolean visible = true;
 	private boolean isPointerOver = false;
+	
+	private static final AlphaComposite transcluentWhite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f);
+	private static final AlphaComposite opaque = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1);
 	
 	private int type;
 	/* type 1 to 5 - create dragon 1-5
@@ -88,7 +92,11 @@ public class Button implements IRenderable{
 	@Override
 	public void draw(Graphics2D g2d) {
 		if(isPointerOver) {
-			g2d.setColor(Color.RED);
+//			g2d.setColor(Color.RED);
+			g2d.setComposite(transcluentWhite);
+			g2d.setColor(Color.WHITE);
+			g2d.fillRect(x, y, width, height);
+			g2d.setComposite(opaque);
 		} else {
 			g2d.setColor(Color.GREEN);
 		}
@@ -106,10 +114,10 @@ public class Button implements IRenderable{
 		case 5:
 			break;*/
 		case 6:
-			g2d.fillRect(x, y, width, height);
+//			g2d.fillRect(x, y, width, height);
 			break;
 		default:
-			g2d.fillRect(x, y, width, height);
+//			g2d.fillRect(x, y, width, height);
 			break;
 		}
 		
