@@ -53,6 +53,8 @@ public class GameLogic {
 		RenderableHolder.getInstance().add(player);
 		createButton();
 		spawnDelayCounter = 0;
+		targetEnemy = null;
+		enemyOnScreen = false;
 		
 		TargetObject dragon = new Dragon1(RandomUtility.random(300, 700), 0, zCounter);
 		onScreenObject.add(dragon);
@@ -70,6 +72,9 @@ public class GameLogic {
 		onScreenButton.clear();
 		onScreenAnimation.clear();
 		RenderableHolder.getInstance().clear();
+		targetEnemy = null;
+		enemyOnScreen = false;
+		spawnNumber = 0;
 	}
 	
 	public void logicUpdate() {
