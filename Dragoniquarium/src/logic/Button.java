@@ -62,7 +62,7 @@ public class Button implements IRenderable{
 			break;
 			
 		case 6:
-			if( player.getEgg() >= 10000) {
+			if( player.getEgg() >= cost) {
 				HighScoreUtility.recordHighScore((player.getTimeSpent()*PlayerStatus.TIME_CLOCK)/1000);
 				Main.goToTitle();
 			}
