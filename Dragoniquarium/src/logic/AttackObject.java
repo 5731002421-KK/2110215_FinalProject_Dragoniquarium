@@ -1,7 +1,5 @@
 package logic;
 
-import java.awt.AlphaComposite;
-import java.awt.Color;
 import java.awt.Graphics2D;
 
 import render.DrawingUtility;
@@ -11,7 +9,7 @@ public class AttackObject extends TargetObject {
 
 	
 	private int attack;
-	private int life = 1;
+	private int life = 2;
 	private double speed;
 	
 	private GameAnimation attackAnimation;
