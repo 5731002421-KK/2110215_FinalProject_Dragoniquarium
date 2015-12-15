@@ -93,15 +93,6 @@ public class GameLogic {
 	
 	public void logicUpdate() {
 		
-//		player.update();
-//		System.out.println("logic update");
-		
-		
-		//Paused
-//		if(InputUtility.getKeyTriggered(KeyEvent.VK_ENTER)){
-//			if(player.isPause()) player.setPause(false);
-//			else player.setPause(true);
-//		}
 		if(player.isPause()){
 			return;
 		}
@@ -292,7 +283,8 @@ public class GameLogic {
 						onScreenAnimation.add(anim);
 						RenderableHolder.getInstance().add(anim);
 						// if hit guardian dragon 
-						if(target instanceof Dragon3 || target instanceof Dragon4 || target instanceof Dragon5) {
+						if(target instanceof Dragon3 || target instanceof Dragon4 || 
+							target instanceof Dragon5 || target instanceof Dragon2) {
 							obj.destroyed = true;
 							break;
 						}

@@ -12,7 +12,7 @@ public class Dragon3 extends DamageableObject {
 	private GameAnimation guardingAnimation;
 	
 	public Dragon3(int x, int y, int z) {
-		super(x, y, 55, z, 2, 10, 0);
+		super(x, y, 55, z, 2, 5, 0);
 		stateTime = 100;
 		walkingAnimation = DrawingUtility.createDragon3Animation();
 		guardingAnimation = DrawingUtility.createDragon3AnimationDef();
