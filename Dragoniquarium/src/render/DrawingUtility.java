@@ -26,6 +26,7 @@ public class DrawingUtility {
 	}
 	
 	public static final BufferedImage egg = getImage("res/Egg.png");
+	public static final BufferedImage cursor = getImage("res/AncientCursor.png");
 	
 	protected static final BufferedImage bg = getImage("res/Background.jpg");
 	protected static final BufferedImage grass = getImage("res/Grass.png");

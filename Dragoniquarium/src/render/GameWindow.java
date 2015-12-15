@@ -5,7 +5,6 @@ import java.awt.Image;
 import java.awt.Point;
 import java.awt.Toolkit;
 
-import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 
@@ -25,7 +24,8 @@ public class GameWindow extends JFrame{
 		currentScene.requestFocus();
 		
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
-		Image image = new ImageIcon("src/res/AncientCursor.png").getImage();
+//		Image image = new ImageIcon("src/res/AncientCursor.png").getImage();
+		Image image = DrawingUtility.cursor;
 		Cursor c = toolkit.createCustomCursor(image , new Point(0, 0), "custom cursor");
 		this.setCursor (c);
 		
