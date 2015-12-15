@@ -16,10 +16,10 @@ public class Enemy2 extends EnemyObject {
 	private boolean attacking = false;
 	
 	public Enemy2(int x, int y, int z) {
-		super(x, y, 35, z, 1, 20, 0, 100);
+		super(x, y, 70, z, 1, 20, 0, 100);
 		stateTime = 30;
-		flyingAnimation = DrawingUtility.createEnemy1Animation();
-		attackingAnimation = DrawingUtility.createEnemy1AnimationAttack1();
+		flyingAnimation = DrawingUtility.createEnemy2Animation();
+		attackingAnimation = DrawingUtility.createEnemy2AnimationAttack1();
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -58,9 +58,7 @@ public class Enemy2 extends EnemyObject {
 			}
 		}
 		
-//		if(state == 1) {
-			calculateXaxis();
-//		}
+		calculateXaxis();
 		calculateYaxis();
 	}
 	
@@ -70,22 +68,64 @@ public class Enemy2 extends EnemyObject {
 			return ;
 		}
 		
-		for(int i=0;i<3;i++) {
-			AttackObject atk = new AttackObject(x, y, 20, zCounter, 1,
-					RandomUtility.random(leftBorder, rightBorder), bottomBorder, 3, 1);
+//		attack up
+		for(int i=0; i < RandomUtility.random(1, 2);i++) {
+			AttackObject atk = new AttackObject(x + RandomUtility.random(-20,20), y-60, 20, zCounter, 1,
+									RandomUtility.random(leftBorder, rightBorder), topBorder,
+									RandomUtility.random(3,6), 1);
 			onScreenAttack.add(atk);
 			RenderableHolder.getInstance().add(atk);
 		}
+		
+		// 1
+		AttackObject atk = new AttackObject(x+110, y+50, 20, zCounter, 1,
+								RandomUtility.random(leftBorder, rightBorder), bottomBorder,
+								RandomUtility.random(3,6), 1);
+		onScreenAttack.add(atk);
+		RenderableHolder.getInstance().add(atk);
+		
+		// 2
+		atk = new AttackObject(x-110, y+50, 20, zCounter, 1,
+					RandomUtility.random(leftBorder, rightBorder), bottomBorder, 
+					RandomUtility.random(3,6), 1);
+		onScreenAttack.add(atk);
+		RenderableHolder.getInstance().add(atk);
+
+		// 3
+		atk = new AttackObject(x+120, y+40, 20, zCounter, 1,
+					RandomUtility.random(leftBorder, rightBorder), bottomBorder,
+					RandomUtility.random(3,6), 1);
+		onScreenAttack.add(atk);
+		RenderableHolder.getInstance().add(atk);
+		
+		// 4
+		atk = new AttackObject(x-120, y+40, 20, zCounter, 1,
+					RandomUtility.random(leftBorder, rightBorder), bottomBorder, 
+					RandomUtility.random(3,6), 1);
+		onScreenAttack.add(atk);
+		RenderableHolder.getInstance().add(atk);
+		
+		// 5
+		atk = new AttackObject(x, y+65, 20, zCounter, 1,
+				RandomUtility.random(leftBorder, rightBorder), bottomBorder, 
+				RandomUtility.random(5,6), 1);
+		onScreenAttack.add(atk);
+		RenderableHolder.getInstance().add(atk);
 	}
 
 	@Override
 	public void draw(Graphics2D g2d) {
 //		g2d.setColor(Color.BLUE);
 //		g2d.fillOval((int)(x-radius), (int)(y-radius), 2*radius, 2*radius);
+		int tempX = (int)x-radius;
+		int tempY = (int)y-radius;
 		if(state == 1) {
-			flyingAnimation.draw(g2d, (int)x-radius*2-10, (int)y-radius, isLeft);
+			flyingAnimation.draw(g2d, tempX-91, tempY, isLeft);
 		} else if(state == 3) {
-			attackingAnimation.draw(g2d, (int)x-radius*2-35, (int)y-radius-10, isLeft);
+			if(isLeft) {
+				tempX += 8;
+			}
+			attackingAnimation.draw(g2d, tempX-147, tempY-21, isLeft);
 		}
 	}
 

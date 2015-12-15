@@ -20,7 +20,7 @@ public class PauseButton extends JPanel {
 	private boolean isPointerOver = false;
 	public Color color = Color.RED;
 	
-	private static final AlphaComposite transcluentWhite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.7f);
+	private static final AlphaComposite transcluentWhite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f);
 	private static final AlphaComposite opaque = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1);
 	
 	public PauseButton(int x, int y) {

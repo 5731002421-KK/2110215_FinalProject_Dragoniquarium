@@ -16,7 +16,7 @@ public class Dragon5 extends DamageableObject{
 	
 	public Dragon5(int x, int y, int z) {
 		super(x, y, 50, z, 1, 3, 0);
-		stateTime = 200;
+		stateTime = 80;
 		flyingAnimation = DrawingUtility.createDragon5Animation();
 		attackingAnimation = DrawingUtility.createDragon5AnimationAttack();
 	}
@@ -42,7 +42,7 @@ public class Dragon5 extends DamageableObject{
 			if(stateTime == 0) {
 				if(GameLogic.enemyOnScreen) {
 					state = 3;
-					stateTime = 150;
+					stateTime = 60;
 					attackingAnimation.setCurrentFrame(0);
 				} else {
 					stateTime = 100;
@@ -51,13 +51,13 @@ public class Dragon5 extends DamageableObject{
 			}
 		} else if(state == 3) {
 			stateTime--;
-			if(stateTime == 40) {
+			if(stateTime == 10) {
 				attacking = true;
 			}
 			
 			if(stateTime == 0) {
 				if(GameLogic.enemyOnScreen) {
-					stateTime = 150;
+					stateTime = 60;
 				} else {
 					state = 1;
 					stateTime = 100;
@@ -69,9 +69,9 @@ public class Dragon5 extends DamageableObject{
 		}
 		
 		if(state == 1) {
-//			calculateXaxis();
+			calculateXaxis();
 		}
-//		calculateYaxis();
+		calculateYaxis();
 	}
 	
 	public void attack(List <AttackObject> onScreenAttack, TargetObject targetEnemy, int zCounter ) {
@@ -96,7 +96,7 @@ public class Dragon5 extends DamageableObject{
 			tempX += 80;
 		}
 		
-		AttackObject atk = new AttackObject(tempX, y+10, 22, zCounter, 5, targetEnemy.x, targetEnemy.y, 2, 4);
+		AttackObject atk = new AttackObject(tempX, y+10, 22, zCounter, 5, targetEnemy.x, targetEnemy.y, 3, 4);
 //		AttackObject atk = new AttackObject(x, y, 15, zCounter, 5, targetEnemy.x, targetEnemy.y, 4, 3);
 		onScreenAttack.add(atk);
 		RenderableHolder.getInstance().add(atk);

@@ -29,6 +29,11 @@ public class GameLogic {
 	public static boolean enemyOnScreen = false; 
 	public TargetObject targetEnemy ; //MonsterObject
 	
+	private int spawnNumber = 0;
+	private int[] spawnX = new int[5];
+	private int[] spawnY = new int[5];
+	private int[] spawnType = new int[5];
+	
 	public static GameLogic getInstance() {
 		return instance;
 	}
@@ -133,16 +138,11 @@ public class GameLogic {
 			
 		}
 		
-		
 		dragon1CreateEgg();
 		
 		processAttack();
 		
 		processShootAndCollect();
-		
-		
-		// dragon attack
-		// update fire ball
 		
 		// push button
 		Button targetButton = null;
@@ -154,33 +154,37 @@ public class GameLogic {
 		targetButton = getButtonAt(InputUtility.getMouseX(), InputUtility.getMouseY());
 		if(targetButton != null && click ){
 			targetButton.click(onScreenObject, player, zCounter);
-//			Main.goToTitle();
 		}
 		
 		
 		spawnDelayCounter++;
+		if(spawnDelayCounter == 24*50 || spawnDelayCounter == 53*50 || spawnDelayCounter == 82*50 ||
+			spawnDelayCounter == 110*50 || spawnDelayCounter == 143*50 || spawnDelayCounter == 170*50 ||
+			spawnDelayCounter == 174*50 || spawnDelayCounter == 179*50) {
+			TargetObject newEnemy;
+			for(int i=0;i<spawnNumber;i++) {
+				if(spawnType[i] == 1) {
+					newEnemy = new Enemy1(spawnX[i], spawnY[i], zCounter);
+				} else {
+					newEnemy = new Enemy2(spawnX[i], spawnY[i], zCounter);
+				}
+				onScreenObject.add(newEnemy);
+				RenderableHolder.getInstance().add(newEnemy);
+			}
+		}
 		
-		/*if (spawnDelayCounter >= SPAWN_DELAY ) {
-			AttackObject atk = new AttackObject(RandomUtility.random(300, 700), 200, 10, 
-										zCounter, 1, RandomUtility.random(300, 700), 600, 3, 1);
-			onScreenAttack.add(atk);
-			RenderableHolder.getInstance().add(atk);
-		}*/
-		if (spawnDelayCounter >= SPAWN_DELAY ) {
-			spawnDelayCounter = -500;
-			TargetObject newEnemy = new Enemy1(500, 300, zCounter);
-			onScreenObject.add(newEnemy);
-			RenderableHolder.getInstance().add(newEnemy);
-			GameAnimation anim = DrawingUtility.createWarppingAnimation(500, 300);
-			onScreenAnimation.add(anim);
-			RenderableHolder.getInstance().add(anim);
-		}
-		if (spawnDelayCounter >= SPAWN_DELAY ) {
-			spawnDelayCounter = 0;
-			TargetObject egg = new Dragon1(RandomUtility.random(300, 700), 0, zCounter);
-			onScreenObject.add(egg);
-			RenderableHolder.getInstance().add(egg);
-		}
+		createWarpHole();
+//		if (spawnDelayCounter >= SPAWN_DELAY ) {
+//			spawnDelayCounter = -500;
+//			TargetObject newEnemy = new Enemy2(500, 300, zCounter);
+//			onScreenObject.add(newEnemy);
+//			RenderableHolder.getInstance().add(newEnemy);
+//			
+//			GameAnimation anim = DrawingUtility.createWarppingAnimation(500, 300);
+//			onScreenAnimation.add(anim);
+//			RenderableHolder.getInstance().add(anim);
+//		}
+		
 		zCounter++;
 		if(zCounter == Integer.MAX_VALUE-1){
 			zCounter = Integer.MIN_VALUE+1;
@@ -191,6 +195,41 @@ public class GameLogic {
 	
 	
 	// TODO end logic update
+	private void createWarpHole() {
+		GameAnimation anim;
+
+		if( spawnDelayCounter == 24*50-50 || spawnDelayCounter == 53*50-50 ||
+				spawnDelayCounter == 170*50-50) {
+			spawnNumber = 1;
+			spawnX[0] = RandomUtility.random(300, 1000);
+			spawnY[0] = RandomUtility.random(200, 400);
+			spawnType[0] = 1;
+			anim = DrawingUtility.createWarppingAnimation(spawnX[0], spawnY[0]);
+			onScreenAnimation.add(anim);
+			RenderableHolder.getInstance().add(anim);
+		} else if ( spawnDelayCounter == 82*50-50 || spawnDelayCounter == 110*50-50 || 
+					spawnDelayCounter == 143*50-50 || spawnDelayCounter == 174*50-50) {
+			spawnNumber = RandomUtility.random(1, 2);
+			for(int i=0 ; i<spawnNumber ; i++) {
+				spawnX[i] = RandomUtility.random(300, 1000);
+				spawnY[i] = RandomUtility.random(200, 400);
+				spawnType[i] = 1;
+				anim = DrawingUtility.createWarppingAnimation(spawnX[i], spawnY[i]);
+				onScreenAnimation.add(anim);
+				RenderableHolder.getInstance().add(anim);
+			}
+		} else if( spawnDelayCounter == 179*50-50 ) {
+			spawnNumber = 1;
+			spawnX[0] = RandomUtility.random(300, 1000);
+			spawnY[0] = RandomUtility.random(200, 400);
+			spawnType[0] = 2;
+			anim = DrawingUtility.createWarppingAnimation(spawnX[0], spawnY[0]);
+			onScreenAnimation.add(anim);
+			RenderableHolder.getInstance().add(anim);
+		}
+		
+	}
+	
 	
 	private void checkEnemyOnScreen() {
 		if(targetEnemy != null && !targetEnemy.isDestroyed()) {
@@ -230,12 +269,12 @@ public class GameLogic {
 					if(target.destroyed || target instanceof EnemyObject) continue;
 					if(target instanceof DamageableObject && target.contains(obj.x, obj.y, obj.radius)) {
 						((DamageableObject)target).hit(obj.getAttack());
+						GameAnimation anim = DrawingUtility.createAttack1DestroyAt((int)obj.x, (int)obj.y);
+						onScreenAnimation.add(anim);
+						RenderableHolder.getInstance().add(anim);
 						// if hit guardian dragon 
 						if(target instanceof Dragon3 || target instanceof Dragon4 || target instanceof Dragon5) {
 							obj.destroyed = true;
-							GameAnimation anim = DrawingUtility.createAttack1DestroyAt((int)obj.x, (int)obj.y);
-							onScreenAnimation.add(anim);
-							RenderableHolder.getInstance().add(anim);
 							break;
 						}
 					}

@@ -16,7 +16,7 @@ public class Dragon4 extends DamageableObject{
 	
 	public Dragon4(int x, int y, int z) {
 		super(x, y, 40, z, 1, 1, 0);
-		stateTime = 200;
+		stateTime = 100;
 		flyingAnimation = DrawingUtility.createDragon4Animation();
 		attackingAnimation = DrawingUtility.createDragon4AnimationAttack();
 	}

@@ -8,13 +8,12 @@ import render.GameAnimation;
 
 public class Dragon3 extends DamageableObject {
 	
-//	public boolean layingEgg = false;
 	private GameAnimation walkingAnimation;
 	private GameAnimation guardingAnimation;
 	
 	public Dragon3(int x, int y, int z) {
-		super(x, y, 55, z, 2, 1, 0);
-		stateTime = 200;
+		super(x, y, 55, z, 2, 10, 0);
+		stateTime = 100;
 		walkingAnimation = DrawingUtility.createDragon3Animation();
 		guardingAnimation = DrawingUtility.createDragon3AnimationDef();
 	}
@@ -45,21 +44,29 @@ public class Dragon3 extends DamageableObject {
 		}
 		if(state == 1) {
 			stateTime--;
-			if(stateTime == 0) {
+			
+			if (GameLogic.enemyOnScreen) {
 				state = 3;
 				radius = 95;
-				stateTime = RandomUtility.random(150, 400) + 1000;
-				defense = 5;
+				stateTime = RandomUtility.random(150, 300);
 				guardingAnimation.setCurrentFrame(0);
+				return ;
+			}
+			if(stateTime == 0 ) {
+				stateTime = RandomUtility.random(100, 200);
 			}
 			calculateXaxis();
 		} else if(state == 3) {
 			stateTime--;
-			if(stateTime == 0) {
-				radius = 55;
-				state = 1;
-				defense = 0;
-				stateTime = RandomUtility.random(100, 150);
+			
+			if(stateTime == 0 || GameLogic.enemyOnScreen) {
+				if(GameLogic.enemyOnScreen) {
+					stateTime = RandomUtility.random(150, 300);
+				} else {
+					radius = 55;
+					state = 1;
+					stateTime = RandomUtility.random(100, 200);
+				}
 			}
 		}
 		

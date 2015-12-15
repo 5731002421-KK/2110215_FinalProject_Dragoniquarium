@@ -55,6 +55,8 @@ public class DrawingUtility {
 	
 	protected static final BufferedImage Enemy1 = getImage("res/Enemy1.png");
 	protected static final BufferedImage Enemy1_attack = getImage("res/Enemy1_attack1.png");
+	protected static final BufferedImage Enemy2 = getImage("res/Enemy2.png");
+	protected static final BufferedImage Enemy2_attack = getImage("res/Enemy2_attack1.png");
 	
 	protected static final BufferedImage attack1 = getImage("res/FireBall1.png");
 	protected static final BufferedImage attack2 = getImage("res/FireBall2.png");
@@ -296,6 +298,18 @@ public class DrawingUtility {
 	
 	public static GameAnimation createEnemy1AnimationAttack1() {
 		GameAnimation anim = new GameAnimation(DrawingUtility.Enemy1_attack,12,3,4,4);
+		anim.play();
+		return anim;
+	}
+	
+	public static GameAnimation createEnemy2Animation() {
+		GameAnimation anim = new GameAnimation(DrawingUtility.Enemy2,12,2,6,3);
+		anim.play();
+		return anim;
+	}
+	
+	public static GameAnimation createEnemy2AnimationAttack1() {
+		GameAnimation anim = new GameAnimation(DrawingUtility.Enemy2_attack,12,3,4,4);
 		anim.play();
 		return anim;
 	}

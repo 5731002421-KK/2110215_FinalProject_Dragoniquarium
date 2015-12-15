@@ -16,8 +16,13 @@ public class Egg1 extends CollectibleObject {
 //		g2d.drawImage(Resource.egg1Sprite, null, (int)x-radius, (int)y-radius);
 //		g2d.setColor(Color.YELLOW);
 //		g2d.fillOval((int)x-radius, (int)y-radius, 2*radius, 2*radius);
+		if(isPointerOver) {
+			g2d.setComposite(transcluentWhite);
+		}
+		
 		g2d.drawImage(DrawingUtility.egg, null, (int)x-radius+2, (int)y-radius-4);
-		// TODO
+		
+		g2d.setComposite(opaque);
 	}
 
 	@Override

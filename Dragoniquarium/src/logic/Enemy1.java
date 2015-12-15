@@ -20,7 +20,6 @@ public class Enemy1 extends EnemyObject {
 		stateTime = 30;
 		flyingAnimation = DrawingUtility.createEnemy1Animation();
 		attackingAnimation = DrawingUtility.createEnemy1AnimationAttack1();
-		// TODO Auto-generated constructor stub
 	}
 	
 	@Override
@@ -58,9 +57,7 @@ public class Enemy1 extends EnemyObject {
 			}
 		}
 		
-//		if(state == 1) {
-			calculateXaxis();
-//		}
+		calculateXaxis();
 		calculateYaxis();
 	}
 	
@@ -74,22 +71,41 @@ public class Enemy1 extends EnemyObject {
 			return ;
 		}
 		
-		for(int i=0;i<3;i++) {
-			AttackObject atk = new AttackObject(x, y, 20, zCounter, 1,
-					RandomUtility.random(leftBorder, rightBorder), bottomBorder, 3, 1);
-			onScreenAttack.add(atk);
-			RenderableHolder.getInstance().add(atk);
-		}
+//		for(int i=0;i<3;i++) {
+		AttackObject atk = new AttackObject(x+50, y+20, 20, zCounter, 1,
+								RandomUtility.random(leftBorder, rightBorder), bottomBorder,
+								RandomUtility.random(3,5), 1);
+		onScreenAttack.add(atk);
+		RenderableHolder.getInstance().add(atk);
+		
+		AttackObject atk2 = new AttackObject(x, y+30, 20, zCounter, 1,
+								RandomUtility.random(leftBorder, rightBorder), bottomBorder, 
+								RandomUtility.random(3,5), 1);
+		onScreenAttack.add(atk2);
+		RenderableHolder.getInstance().add(atk2);
+		
+		AttackObject atk3 = new AttackObject(x-50, y+20, 20, zCounter, 1,
+								RandomUtility.random(leftBorder, rightBorder), bottomBorder, 
+								RandomUtility.random(3,5), 1);
+		onScreenAttack.add(atk3);
+		RenderableHolder.getInstance().add(atk3);
+		
+//		}
 	}
 
 	@Override
 	public void draw(Graphics2D g2d) {
 //		g2d.setColor(Color.BLUE);
 //		g2d.fillOval((int)(x-radius), (int)(y-radius), 2*radius, 2*radius);
+		int tempX = (int)x-radius;
+		int tempY = (int)y-radius;
 		if(state == 1) {
 			flyingAnimation.draw(g2d, (int)x-radius*2-10, (int)y-radius, isLeft);
 		} else if(state == 3) {
-			attackingAnimation.draw(g2d, (int)x-radius*2-35, (int)y-radius-10, isLeft);
+			if(isLeft) {
+				tempX += 4;
+			}
+			attackingAnimation.draw(g2d, tempX-73,tempY-10, isLeft);
 		}
 	}
 

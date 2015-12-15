@@ -1,5 +1,7 @@
 package logic;
 
+import java.awt.AlphaComposite;
+
 //import lib.AudioUtility;
 
 public abstract class CollectibleObject extends TargetObject{
@@ -8,6 +10,8 @@ public abstract class CollectibleObject extends TargetObject{
 	protected int reward;
 	protected int timeSpent = 300;
 	protected boolean movingUp;
+	
+	protected static final AlphaComposite transcluentWhite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.8f);
 	
 	public CollectibleObject(double x, double y, int radius, int z, int reward) {
 		super(x, y, radius, z);

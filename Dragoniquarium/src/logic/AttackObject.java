@@ -1,5 +1,6 @@
 package logic;
 
+import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
@@ -10,7 +11,7 @@ public class AttackObject extends TargetObject {
 
 	
 	private int attack;
-	private int life = 3;
+	private int life = 2;
 	private double speed;
 	
 	private GameAnimation attackAnimation;
@@ -23,10 +24,10 @@ public class AttackObject extends TargetObject {
 	 * type 4 : dragon 5 to monster
 	 */
 	
-	public int topBorder = 20;
+	public int topBorder = 80;
 	public int bottomBorder = 650;
 	public int rightBorder = 1240;
-	public int leftBorder = 200;
+	public int leftBorder = 260;
 	
 	public AttackObject(double x, double y, int radius, int z, int attack, 
 			double xDes, double yDes, double speed, int attackType) {
@@ -92,12 +93,9 @@ public class AttackObject extends TargetObject {
 	
 	@Override
 	public void draw(Graphics2D g2d) {
-		if(attackType >= 2) {
-//			g2d.setColor(Color.BLACK);
-		} else {
-//			g2d.setColor(Color.ORANGE);
+		if(attackType == 1 && isPointerOver) {
+			g2d.setComposite(transcluentWhite);
 		}
-//		g2d.fillOval((int)(x-radius), (int)(y-radius), 2*radius, 2*radius);
 		
 		if(attackType == 1) {
 			DrawingUtility.drawAttack1(g2d, (int)(x-radius)-8, (int)(y-radius)-8, isPointerOver);
@@ -106,18 +104,12 @@ public class AttackObject extends TargetObject {
 			attackAnimation.draw(g2d, (int)(x-radius)-17, (int)(y-radius)-15, false);
 			
 		} else if(attackType == 4) {
-			
-			int tempX = (int)(x-radius);
-			int tempY = (int)(y-radius);
-			
-			attackAnimation.draw(g2d, tempX-33, tempY-25, false);
+			attackAnimation.draw(g2d, (int)(x-radius)-33, (int)(y-radius)-25, false);
 		} else {
-			int tempX = (int)(x-radius);
-			int tempY = (int)(y-radius);
-			
-			attackAnimation.draw(g2d, tempX-20, tempY-20, false);
+			attackAnimation.draw(g2d, (int)(x-radius)-20, (int)(y-radius)-20, false);
 		}
 		
+		g2d.setComposite(opaque);
 	}
 	
 	@Override
