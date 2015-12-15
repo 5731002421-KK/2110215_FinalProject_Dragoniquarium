@@ -169,7 +169,7 @@ public class GameLogic {
 		// spawn enemy
 		spawnDelayCounter++;
 		
-		if(spawnDelayCounter == 5*50 || spawnDelayCounter == 53*50 || spawnDelayCounter == 82*50 ||
+		if(spawnDelayCounter == 24*50 || spawnDelayCounter == 53*50 || spawnDelayCounter == 82*50 ||
 			spawnDelayCounter == 110*50 || spawnDelayCounter == 143*50 || spawnDelayCounter == 170*50 ||
 			spawnDelayCounter == 174*50 || spawnDelayCounter == 179*50) {
 			TargetObject newEnemy;
@@ -200,7 +200,7 @@ public class GameLogic {
 	private void createWarpHole() {
 		GameAnimation anim;
 
-		if( spawnDelayCounter == 5*50-50 || spawnDelayCounter == 53*50-50 ||
+		if( spawnDelayCounter == 24*50-50 || spawnDelayCounter == 53*50-50 ||
 				spawnDelayCounter == 170*50-50) {
 			spawnNumber = 1;
 			spawnX[0] = RandomUtility.random(300, 1000);
