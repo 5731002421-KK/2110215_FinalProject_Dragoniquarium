@@ -1,6 +1,5 @@
 package logic;
 
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -8,9 +7,12 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 
 
+
+
+
+import main.Main;
 import render.DrawingUtility;
 import render.GameAnimation;
-import main.Main;
 import input.InputUtility;
 import render.RenderableHolder;
 
@@ -67,6 +69,14 @@ public class GameLogic {
 //		RenderableHolder.getInstance().add(playerStatus);
 		createButton();
 		spawnDelayCounter = 0;
+		
+		TargetObject dragon = new Dragon1(RandomUtility.random(300, 700), 0, zCounter);
+		onScreenObject.add(dragon);
+		RenderableHolder.getInstance().add(dragon);
+		
+		dragon = new Dragon1(RandomUtility.random(300, 700), 0, zCounter);
+		onScreenObject.add(dragon);
+		RenderableHolder.getInstance().add(dragon);
 	}
 	
 	//Called after exit the game loop
@@ -117,7 +127,20 @@ public class GameLogic {
 			}
 			anim.updateAnimation();
 		}
-			
+		
+		// check losing condition
+		boolean lose = true;
+		for(TargetObject obj : onScreenObject) {
+			if(obj instanceof Dragon1) {
+				lose = false;
+				break;
+			}
+		}
+		if(lose) {
+			Main.goToTitle();
+		}
+		
+		
 		// check if any enemy on screen
 		checkEnemyOnScreen();
 		
@@ -156,7 +179,7 @@ public class GameLogic {
 			targetButton.click(onScreenObject, player, zCounter);
 		}
 		
-		
+		// spawn enemy
 		spawnDelayCounter++;
 		if(spawnDelayCounter == 24*50 || spawnDelayCounter == 53*50 || spawnDelayCounter == 82*50 ||
 			spawnDelayCounter == 110*50 || spawnDelayCounter == 143*50 || spawnDelayCounter == 170*50 ||
@@ -174,16 +197,6 @@ public class GameLogic {
 		}
 		
 		createWarpHole();
-//		if (spawnDelayCounter >= SPAWN_DELAY ) {
-//			spawnDelayCounter = -500;
-//			TargetObject newEnemy = new Enemy2(500, 300, zCounter);
-//			onScreenObject.add(newEnemy);
-//			RenderableHolder.getInstance().add(newEnemy);
-//			
-//			GameAnimation anim = DrawingUtility.createWarppingAnimation(500, 300);
-//			onScreenAnimation.add(anim);
-//			RenderableHolder.getInstance().add(anim);
-//		}
 		
 		zCounter++;
 		if(zCounter == Integer.MAX_VALUE-1){

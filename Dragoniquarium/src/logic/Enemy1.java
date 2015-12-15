@@ -74,19 +74,19 @@ public class Enemy1 extends EnemyObject {
 //		for(int i=0;i<3;i++) {
 		AttackObject atk = new AttackObject(x+50, y+20, 20, zCounter, 1,
 								RandomUtility.random(leftBorder, rightBorder), bottomBorder,
-								RandomUtility.random(3,5), 1);
+								RandomUtility.random(2,4), 1);
 		onScreenAttack.add(atk);
 		RenderableHolder.getInstance().add(atk);
 		
 		AttackObject atk2 = new AttackObject(x, y+30, 20, zCounter, 1,
 								RandomUtility.random(leftBorder, rightBorder), bottomBorder, 
-								RandomUtility.random(3,5), 1);
+								RandomUtility.random(2,4), 1);
 		onScreenAttack.add(atk2);
 		RenderableHolder.getInstance().add(atk2);
 		
 		AttackObject atk3 = new AttackObject(x-50, y+20, 20, zCounter, 1,
 								RandomUtility.random(leftBorder, rightBorder), bottomBorder, 
-								RandomUtility.random(3,5), 1);
+								RandomUtility.random(2,4), 1);
 		onScreenAttack.add(atk3);
 		RenderableHolder.getInstance().add(atk3);
 		

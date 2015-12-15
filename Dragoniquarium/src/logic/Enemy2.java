@@ -72,7 +72,7 @@ public class Enemy2 extends EnemyObject {
 		for(int i=0; i < RandomUtility.random(1, 2);i++) {
 			AttackObject atk = new AttackObject(x + RandomUtility.random(-20,20), y-60, 20, zCounter, 1,
 									RandomUtility.random(leftBorder, rightBorder), topBorder,
-									RandomUtility.random(3,6), 1);
+									RandomUtility.random(2,5), 1);
 			onScreenAttack.add(atk);
 			RenderableHolder.getInstance().add(atk);
 		}
@@ -80,35 +80,35 @@ public class Enemy2 extends EnemyObject {
 		// 1
 		AttackObject atk = new AttackObject(x+110, y+50, 20, zCounter, 1,
 								RandomUtility.random(leftBorder, rightBorder), bottomBorder,
-								RandomUtility.random(3,6), 1);
+								RandomUtility.random(2,5), 1);
 		onScreenAttack.add(atk);
 		RenderableHolder.getInstance().add(atk);
 		
 		// 2
 		atk = new AttackObject(x-110, y+50, 20, zCounter, 1,
 					RandomUtility.random(leftBorder, rightBorder), bottomBorder, 
-					RandomUtility.random(3,6), 1);
+					RandomUtility.random(2,5), 1);
 		onScreenAttack.add(atk);
 		RenderableHolder.getInstance().add(atk);
 
 		// 3
 		atk = new AttackObject(x+120, y+40, 20, zCounter, 1,
 					RandomUtility.random(leftBorder, rightBorder), bottomBorder,
-					RandomUtility.random(3,6), 1);
+					RandomUtility.random(2,5), 1);
 		onScreenAttack.add(atk);
 		RenderableHolder.getInstance().add(atk);
 		
 		// 4
 		atk = new AttackObject(x-120, y+40, 20, zCounter, 1,
 					RandomUtility.random(leftBorder, rightBorder), bottomBorder, 
-					RandomUtility.random(3,6), 1);
+					RandomUtility.random(2,5), 1);
 		onScreenAttack.add(atk);
 		RenderableHolder.getInstance().add(atk);
 		
 		// 5
 		atk = new AttackObject(x, y+65, 20, zCounter, 1,
 				RandomUtility.random(leftBorder, rightBorder), bottomBorder, 
-				RandomUtility.random(5,6), 1);
+				RandomUtility.random(4,5), 1);
 		onScreenAttack.add(atk);
 		RenderableHolder.getInstance().add(atk);
 	}

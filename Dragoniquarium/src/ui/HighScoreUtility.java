@@ -1,6 +1,5 @@
 package ui;
 
-import java.awt.Font;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -9,11 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
 
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.UIManager;
-
-//Fill import
 
 public class HighScoreUtility {
 
@@ -162,7 +157,6 @@ public class HighScoreUtility {
 	private static boolean readAndParseScoreFile(File f){
 		try {
 			BufferedReader in = new BufferedReader(new FileReader(f));
-			String line;
 			highScoreRecord = new HighScoreRecord[10];
 			String str = "";
 			int c;

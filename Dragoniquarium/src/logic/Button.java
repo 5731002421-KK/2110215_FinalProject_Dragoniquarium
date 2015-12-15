@@ -100,29 +100,6 @@ public class Button implements IRenderable{
 		} else {
 			g2d.setColor(Color.GREEN);
 		}
-		
-		switch (type) {
-/*		case 1:
-			
-			break;
-		case 2:
-			break;
-		case 3:
-			break;
-		case 4:
-			break;
-		case 5:
-			break;*/
-		case 6:
-//			g2d.fillRect(x, y, width, height);
-			break;
-		default:
-//			g2d.fillRect(x, y, width, height);
-			break;
-		}
-		
-		
-//		DrawingUtility.drawButton(type);
 	}
 
 	@Override
