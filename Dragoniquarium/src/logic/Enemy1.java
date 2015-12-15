@@ -1,6 +1,5 @@
 package logic;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.List;
 
@@ -57,21 +56,16 @@ public class Enemy1 extends EnemyObject {
 			}
 		}
 		
-//		calculateXaxis();
-//		calculateYaxis();
+		calculateXaxis();
+		calculateYaxis();
 	}
 	
 	@Override
 	public void attack(List <AttackObject> onScreenAttack, int zCounter) {
-//		if(attackTickCount < attackDelay) {
-////			attackTickCount++;
-//			return ;
-//		}
 		if(!attacking) {
 			return ;
 		}
 		
-//		for(int i=0;i<3;i++) {
 		AttackObject atk = new AttackObject(x+50, y+20, 20, zCounter, 1,
 								RandomUtility.random(leftBorder, rightBorder), bottomBorder,
 								RandomUtility.random(1,3), 1);
@@ -90,12 +84,10 @@ public class Enemy1 extends EnemyObject {
 		onScreenAttack.add(atk3);
 		RenderableHolder.getInstance().add(atk3);
 		
-//		}
 	}
 
 	@Override
 	public void draw(Graphics2D g2d) {
-//		g2d.setColor(Color.BLUE);
 //		g2d.fillOval((int)(x-radius), (int)(y-radius), 2*radius, 2*radius);
 		int tempX = (int)x-radius;
 		int tempY = (int)y-radius;
